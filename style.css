@@ -1,1411 +1,295 @@
-html {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-}
-body {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    margin: 0;
-    padding-top: 100px;
-    box-sizing: border-box;
-    background-color: #222230;
-    color: #b2b9cf;
-    font-family: 'League Spartan', sans-serif;
-    font-size: 20px;
-}
-#desktop-header {
-    height: 65px;
-    width: 100%;
-    background-color: rgba(34, 34, 48, 0.9);
-    box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-    position: fixed;
-    top: 0;
-    padding-left: 60px;
-    padding-right: 30px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    z-index: 999;
-}
-#mobile-header {
-    height: 65px;
-    width: 100%;
-    background-color: rgba(34, 34, 48, 0.9);
-    box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-    position: fixed;
-    top: 0;
-    padding-left: 60px;
-    padding-right: 30px;
-    box-sizing: border-box;
-    display: none;
-    justify-content: space-between;
-    z-index: 999;
-}
-.logo {
-    color: white;
-    width: fit-content;
-    height: fit-content;
-    font-family: 'Dancing Script', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    padding: 5px 20px;
-    box-sizing: border-box;
-    border-radius: 3px 15px;
-    border: 2px solid #5dedcd;
-    margin-top: 12px;
-    margin-bottom: 12px;
-}
-.nav-list {
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    margin-top: 25px;
-}
-.nav-list li {
-    width: fit-content;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-.teal {
-    color: #5dedcd;
-}
-a {
-    text-decoration: none;
-    color: #b2b9cf;
-    cursor: pointer;
-    transition: 0.3s ease-out;
-}
-a:hover {
-    color: #5dedcd;
-}
-main {
-    width: 75%;
-    height: fit-content;
-    margin: auto;
-    z-index: 1;
-    
-}
-/*first section first section first section*/
-#first {
-    width: 100%;
-    height: 80vh;
-    font-size: 22px;
-}
-.khalid {
-    color: #e3e6f0;
-    font-size: 80px;
-    font-weight: 900;
-}
-.web-dev {
-    font-size: 80px;
-    font-weight: 900;
-    color: #969caf;
-}
-button {
-    width: fit-content;
-    height: fit-content;
-    padding: 20px 35px;
-    box-sizing: border-box;
-    border-radius: 3px;
-    border: 1px solid #5dedcd;
-    background-color: #222230;
-    color: #5dedcd;
-    font-size: 18px;
-    font-family: 'League Spartan', sans-serif;
-    cursor: pointer;
-    transition: all 0.3s ease-out;
-}
-button:hover {
-    background-color: rgba(93, 237, 205, 0.2);
-}
-.mob-scroll {
-    display: none;
-    width: fit-content;
-    height: fit-content;
-    font-size: 20px;
-    background-color: rgba(93, 237, 205, 0.2);
-    padding: 5px;
-    box-sizing: border-box;
-    position: absolute;
-}
-/*first section ends!!!! first section ends!!!! first section ends!!!!*/
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Khalid Oyeneye</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header id="mobile-header">
+            <div class="logo"><a href="#first" >Khal</a></div>
+            <div class="dropdown">
+                <div onclick="myFunction()" class="dropbtn"></div>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#about"><span class="teal">01.</span> About me</a>
+                    <a href="#works"><span class="teal">02.</span> Works</a>
+                    <a href="#footer"><span class="teal">03.</span> Contact</a>
+                    <a href="#"><span class="teal">04.</span> Resume</a>
+                </div>
+            </div>
+        </header>
 
-/*vert section vert section vert section*/
-#vert {
-    width: 65px;
-    height: fit-content;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    right: 60px;
-}
-#vert div {
-    width: 1px;
-    height: 150px;
-    margin: auto;
-    background-color: #5dedcd;
-}
-.social-img {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease-out;
-}
-.social-img:hover {
-    transform: scale(1.2);
-    background-color: rgba(93, 237, 205, 0.5);
-}
-/*vert section vert section vert section ENDS!!!*/
-#mob-foot-links {
-    width: 80%;
-    height: fit-content;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    right: 60px;
-    display: none;
-    justify-content: space-between;
-}
+        <header id="desktop-header">
+            <div class="logo"><a href="#first" >Khal</a></div>
+            <ul class="nav-list">
+                <li><a href="#about"><span class="teal">01.</span> About me</a></li>
+                <li><a href="#works"><span class="teal">02.</span> Works</a></li>
+                <li><a href="#footer"><span class="teal">03.</span> Contact</a></li>
+                <li><a href="#"><span class="teal">04.</span> Resume</a></li>
+            </ul>
+        </header>
+        <main>
+            <section id="first">
+                <p>
+                    <span class="teal">Hi, my name is</span><br><br><br>
+                    <span class="khalid">Khalid Oyeneye,</span><br><br>
+                    <span class="web-dev">Web developer<span class="dot">.</span></span><br><br>
+                    I am a Frontend developer, i build things for the web.. specialized in building<br> simple yet gorgeous, lag free websites. 
+                </p><br><br><br>
+                <a href="#works"><button>Check out my works!</button></a>
+                <div class="mob-scroll">
+                    <p>Scroll down</p>
+                </div>
+            </section>
 
-/* MOVING vert section vert section vert section*/
-#moving-vert {
-    width: 50px;
-    height: fit-content;
-    position: absolute;
-    bottom: 0;
-    left: 60px;
-}
-#moving-vert div {
-    width: 1px;
-    height: 300px;
-    margin: auto;
-    background-color: #5dedcd;
-    animation: moving 4s ease-in-out infinite;
-}
-@keyframes moving {
-    0% {
-        position: relative;
-        bottom: 1px;
-        height: 220px;
-    }
-    50% {
-        position: relative;
-        bottom: 550px;
-        height: 1px;
-    }
-    100% {
-        position: relative;
-        bottom: 1px;
-        height: 220px;
-    }
-} 
-/* MOVING vert section ENDS!! vert section vert section*/
 
-/*ABOUT ME section vert section vert section*/
-#about {
-    width: 100%;
-    height: fit-content;
-    border-right: 1px solid #5dedcd;
-    padding-top: 50px;
-    margin-bottom: 100px;
-}
+            <section id="vert">
+                <a href="https://github.com/khalteck"><img src="https://img.icons8.com/ios/344/ffffff/github--v1.png" class="social-img"></a><br><br>
+                <a href="https://twitter.com/khalteck"><img src="https://img.icons8.com/ios/344/ffffff/twitter--v1.png" class="social-img"></a><br><br>
+                <a href="https://instagram.com/khalteck"><img src="https://img.icons8.com/ios/344/ffffff/instagram-new--v1.png" class="social-img"></a><br><br>
+                <a href="https://www.linkedin.com/in/khalid-oyeneye/"><img src="https://img.icons8.com/ios/344/ffffff/linkedin.png" class="social-img"></a><br><br>
+                <a href="https://wa.me/+2348107327238"><img src="https://img.icons8.com/material-outlined/344/ffffff/whatsapp--v1.png" class="social-img"></a><br><br>
+                <div></div>
+            </section>
 
-.heading {
-    width: 60%;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-h1 {
-    height: fit-content;
-    color: #e3e6f0;
-    font-size: 35px;
-    font-weight: 900;
-    margin-right: 30px;
-}
-.horizon-line {
-    width: 60%;
-    height: 1px;
-    background-color: #5dedcd;
-}
-.half1 {
-    width: 55%;
-}
-.word {
-    line-height: 25px;
-}
-#about-flex {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    justify-content: space-between;
-}
-.half2 {
-    width: 30%;
-    height: fit-content;
-    display: block;
-    background-color: #5dedcd;
-}
-.khalid-img {
-    width: 100%;
-    height: auto;
-    opacity: 0.6;
-}
 
-/*ABOUT ME section ends!!*/
+            <section id="moving-vert">
+                <div></div>
+            </section>
 
-/*WORKS section vert section vert section*/
-#works {
-    width: 100%;
-    height: fit-content;
-    padding-top: 65px;
-}
-.heading2 {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.horizon-line2 {
-    width: 40%;
-    height: 1px;
-    background-color: #5dedcd;
-}
-.heading3-mob {
-    width: 100%;
-    height: fit-content;
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-}
-.work-container {
-    width: 100%;
-    height: 450px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 200px;
-}
-.work-container-mobile {
-    width: 100%;
-    height: fit-content;
-    display: none;
-    justify-content: center;
-    margin-bottom: 200px;
-}
-.fadey {
-    width: 100%;
-    height: fit-content;
-    display: none;
-    margin-bottom: 100px;
-}
-.fadeyOut { opacity: 0; display: none;}
-.fadeyIn { opacity: 1; display: none;}
-.work-img-div {
-    width: 50%;
-    height: fit-content;
-    background-color: #5dedcd;
-    position: relative;
-    top: 130px;
-    border-right: 1px solid #5dedcd;
-}
-.work-img-div2 {
-    width: 50%;
-    height: fit-content;
-    background-color: #5dedcd;
-    position: relative;
-    top: 130px;
-    border-left: 1px solid #5dedcd;
-}
-.work-img {
-    width: 100%;
-    height: auto;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-}
-.work-img:hover {
-    opacity: 1;
-}
-.work-img2 {
-    width: 100%;
-    height: auto;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-}
-.work-img2:hover {
-    opacity: 1;
-}
-.caption-box {
-    width: 50%;
-    height: fit-content;
-    text-align: right;
-    display: block;
-    border-left: 1px solid #5dedcd;
-}
-.caption-box2 {
-    width: 50%;
-    height: fit-content;
-    text-align: left;
-    display: block;
-    border-right: 1px solid #5dedcd;
-}
-.caption {
-    width: 100%;
-    height: fit-content;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #3c3c53;
-    box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-}
-.project-title {
-    font-weight: 900;
-    font-size: 30px;
-}
-/*WORKS section ends!!!*/
 
-/*CONTACT section vert section vert section*/
-footer {
-    width: 75%;
-    height: fit-content;
-    margin: auto;
-    z-index: 1;
-    text-align: center;
-    margin-bottom: 30px;
-}
-.foot-talk {
-    width: 60%;
-    line-height: 25px;
-    height: fit-content;
-    margin: auto;
-}
-.foot-heading {
-    width: fit-content;
-    height: fit-content;
-    margin: auto;
-}
-.get-in {
-    font-size: 50px;
-    font-weight: 900;
-    color: #e3e6f0;
-}
-.dot {
-    color: #e3e6f0;
-    animation: tayun 5s ease-out infinite;
-}
-@keyframes tayun {
-    0%, 100% {
-        color: #e3e6f0;
-        position: relative;
-        left: 0;
-    }
-    50% {
-        color: #5dedcd;
-        position: relative;
-        left: 100px;
-    }
-}
-#top {
-    width: 45px;
-    height: fit-content;
-    background-color: rgba(93, 237, 205, 0.1);
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 63px;
-}
-#top div {
-    width: 1px;
-    height: 50px;
-    margin: auto;
-    background-color: #5dedcd;
-}
-.copyright {
-    font-size: 13px;
-}
+            <section id="about">
+                <div class="heading">
+                    <h1><span class="teal">01.</span> About me</h1>
+                    <div class="horizon-line"></div>
+                </div> 
+                <div id="about-flex">
+                    <p class="word half1">
+                        I'm a Front-End Developer who has serious passion for building gorgeous lag-free websites. Simple yet amazing web pages using HTML, CSS and 
+                        javascript which gives dynamic user experiences.<br>
+                        I've gathered significant experience over the years working for freelance clients around the globe i met and learnt from amazing and ambitious people.<br>
+                        I currently work remotely at <a href="https://www.afis.ng" target="_blank" class="afis-link">AFIS Nigeria</a> as the lead web developer, i am therefore open to new 
+                        opportunities.<br><br><br>
+                        <a href="#"><button>View my resume</button></a>
+                    </p>
+                    <div class="half2">
+                        <img src="khalid img.jpg" class="khalid-img">
+                    </div>
+                </div>
+            </section>
 
-/*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/
-/*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/
-/*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/
 
-@media (max-width: 780px) {
-    html {
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-    }
-    body {
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        margin: 0;
-        padding-top: 100px;
-        box-sizing: border-box;
-        background-color: #222230;
-        color: #b2b9cf;
-        font-family: 'League Spartan', sans-serif;
-        font-size: 20px;
-    }
-    #desktop-header {
-        height: 65px;
-        width: 100%;
-        background-color: rgba(34, 34, 48, 0.9);
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-        position: fixed;
-        top: 0;
-        padding-left: 60px;
-        padding-right: 30px;
-        box-sizing: border-box;
-        display: none;
-        justify-content: space-between;
-        z-index: 999;
-    }
-    #mobile-header {
-        height: 65px;
-        width: 100%;
-        background-color: rgba(34, 34, 48, 0.9);
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-        position: fixed;
-        top: 0;
-        padding-left: 20px;
-        padding-right: 20px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: space-between;
-        z-index: 999;
-        align-items: center;
-    }
-    .dropdown {
-        width: 30%;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        right: 5px;
-        display: inline-block;
-    }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        right: -5px;
-        top: 65px;
-        width: 100vw;
-        overflow: auto;
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-        z-index: 2;
-    }
-    #myDropdown {
-        background: #222230;
-    }
-    .dropdown-content a {
-        font-size: 20px;
-        padding: 30px 16px;
-        text-decoration: none;
-        display: block;
-        transition: 0.3s ease;
-    }
-    .dropdown a:hover {
-        background-color: rgba(93, 237, 205, 0.2);
-    }
-    .show {
-        display: block;
-    }
-    .dropbtn {
-        width: 25px;
-        height: 25px;
-        background-image: url('https://img.icons8.com/fluency-systems-regular/344/ffffff/drag-list-down.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-size: 20px;
-        position: -webkit-relative; /* Safari */
-        position: relative;
-        top: 17px;
-        right: -80px;
-        opacity: 1;
-        z-index: 2;
-        cursor: pointer;
-    }
-    .logo {
-        color: white;
-        width: fit-content;
-        height: fit-content;
-        font-family: 'Dancing Script', sans-serif;
-        font-weight: 700;
-        font-size: 16px;
-        padding: 5px 15px;
-        box-sizing: border-box;
-        border-radius: 3px 15px;
-        border: 2px solid #5dedcd;
-    }
-    
-    .teal {
-        color: #5dedcd;
-    }
-    a {
-        text-decoration: none;
-        color: #b2b9cf;
-        cursor: pointer;
-        transition: 0.3s ease-out;
-    }
-    a:hover {
-        color: #5dedcd;
-    }
-    main {
-        width: 90%;
-        height: fit-content;
-        margin: auto;
-        z-index: 1;
-        
-    }
-    /*first section first section first section*/
-    #first {
-        width: 100%;
-        height: 80vh;
-        font-size: 19px;
-        padding-top: 80px;
-    }
-    .khalid {
-        color: #e3e6f0;
-        font-size: 45px;
-        font-weight: 900;
-    }
-    .web-dev {
-        font-size: 45px;
-        font-weight: 900;
-        color: #969caf;
-    }
-    button {
-        width: fit-content;
-        height: fit-content;
-        padding: 20px 35px;
-        box-sizing: border-box;
-        border-radius: 3px;
-        border: 1px solid #5dedcd;
-        background-color: #222230;
-        color: #5dedcd;
-        font-size: 18px;
-        font-family: 'League Spartan', sans-serif;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-    }
-    button:hover {
-        background-color: rgba(93, 237, 205, 0.2);
-    }
-    .mob-scroll {
-        display: block;
-        width: fit-content;
-        height: fit-content;
-        font-size: 20px;
-        color: #e3e6f0;
-        background-color: #222230;
-        padding: 0px, 0px;
-        transform: rotate(90deg);
-        position: absolute;
-        left: -20px;
-        bottom: 20px;
-        animation: scrolling 1.5s ease-in-out infinite;
-    }
-    @keyframes scrolling {
-        0%, 100% {
-            position: absolute;
-            bottom: 20px;
-        }
-        50% {
-            position: absolute;
-            bottom: 35px;
-        }
-    }
-    /*first section ends!!!! first section ends!!!! first section ends!!!!*/
-    
-    /*vert section vert section vert section*/
-    #vert {
-        width: 65px;
-        height: fit-content;
-        text-align: center;
-        position: fixed;
-        bottom: 0;
-        right: 60px;
-        display: none;
-    }
-    #vert div {
-        width: 1px;
-        height: 150px;
-        margin: auto;
-        background-color: #5dedcd;
-    }
-    .social-img {
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-    }
-    .social-img:hover {
-        transform: scale(1.2);
-        background-color: rgba(93, 237, 205, 0.5);
-    }
-    /*vert section vert section vert section ENDS!!!*/
-
-    #mob-foot-links {
-        width: 75%;
-        height: fit-content;
-        position: static;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-    }
-    .social-img {
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-    }
-    .social-img:hover {
-        transform: scale(1.2);
-        background-color: rgba(93, 237, 205, 0.5);
-    }
-    
-    /* MOVING vert section vert section vert section*/
-    #moving-vert {
-        width: 50px;
-        height: fit-content;
-        position: absolute;
-        bottom: 0;
-        left: 60px;
-    }
-    #moving-vert div {
-        width: 1px;
-        height: 300px;
-        margin: auto;
-        background-color: #5dedcd;
-        animation: moving 4s ease-in-out infinite;
-        display: none;
-    }
-    @keyframes moving {
-        0% {
-            position: relative;
-            bottom: 1px;
-            height: 220px;
-        }
-        50% {
-            position: relative;
-            bottom: 550px;
-            height: 1px;
-        }
-        100% {
-            position: relative;
-            bottom: 1px;
-            height: 220px;
-        }
-    } 
-    /* MOVING vert section ENDS!! vert section vert section*/
-    
-    /*ABOUT ME section vert section vert section*/
-    #about {
-        width: 100%;
-        height: fit-content;
-        border-right: none;
-        padding-top: 50px;
-        margin-bottom: 50px;
-    }
-    
-    .heading {
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    h1 {
-        width: fit-content;
-        height: fit-content;
-        padding: 0;
-        color: #e3e6f0;
-        font-size: 20px;
-        font-weight: 900;
-    }
-    .horizon-line {
-        width: 55%;
-        height: 1px;
-        background-color: #5dedcd;
-    }
-    .half1 {
-        width: 100%;
-        height: fit-content;
-    }
-    .word {
-        line-height: 25px;
-    }
-    #about-flex {
-        width: 100%;
-        height: fit-content;
-        display: block;
-    }
-    .half2 {
-        width: 70%;
-        height: fit-content;
-        margin-top: 50px;
-        display: block;
-        background-color: #5dedcd;
-        position: relative;
-        left: 30%;
-    }
-    .khalid-img {
-        width: 100%;
-        height: auto;
-        opacity: 0.6;
-    }
-    /*ABOUT ME section ends!!*/
-    
-    /*WORKS section vert section vert section*/
-    #works {
-        width: 100%;
-        height: fit-content;
-        padding-top: 65px;
-    }
-    .heading2 {
-        width: 100%;
-        height: fit-content;
-        display: none;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .horizon-line2 {
-        width: 40%;
-        height: 1px;
-        background-color: #5dedcd;
-        display: none;
-    }
-    .heading3-mob {
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .work-container {
-        width: 100%;
-        height: fit-content;
-        display: none;
-        justify-content: center;
-        margin-bottom: 200px;
-    }
-    .fadey {
-        width: 100%;
-        height: fit-content;
-        display: block;
-        margin-bottom: 100px;
-    }
-    .fadeyOut { opacity: 0; }
-    .fadeyIn { opacity: 1; }
-    .work-img-div {
-        width: 100%;
-        height: fit-content;
-        border-right: none;
-        background-color: #222230;
-        position: relative;
-        top: 0px;
-    }
-    .work-img-div2 {
-        width: 100%;
-        height: fit-content;
-        background-color: #5dedcd;
-        border-left: none;
-    }
-    .work-img {
-        width: 100%;
-        height: auto;
-        opacity: 1;
-        transition: all 0.3s ease;
-    }
-    .work-img2 {
-        width: 100%;
-        height: auto;
-        opacity: 1;
-        transition: all 0.3s ease;
-    }
-    .caption-box {
-        width: 80%;
-        height: fit-content;
-        text-align: right;
-        display: block;
-        border-left: 1px solid #5dedcd;
-    }
-    .caption-box2 {
-        width: 80%;
-        height: fit-content;
-        text-align: left;
-        display: none;
-        border-right: 1px solid #5dedcd;
-    }
-    .caption {
-        width: 100%;
-        height: fit-content;
-        padding: 10px 10px;
-        box-sizing: border-box;
-        background-color: #3c3c53;
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-    }
-    .project-title {
-        font-weight: 900;
-        font-size: 30px;
-    }
-    /*WORKS section ends!!!*/
-    
-    /*CONTACT section vert section vert section*/
-    footer {
-        width: 95%;
-        height: fit-content;
-        margin: auto;
-        z-index: 1;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .foot-talk {
-        width: 90%;
-        font-size: 20px;
-        line-height: 25px;
-        height: fit-content;
-        margin: auto;
-    }
-    .foot-heading {
-        width: fit-content;
-        height: fit-content;
-        margin: auto;
-        display: none;
-    }
-    .get-in {
-        font-size: 50px;
-        font-weight: 900;
-        color: #e3e6f0;
-    }
-    .dot {
-        color: #e3e6f0;
-        animation: tayun 5s ease-out infinite;
-    }
-    @keyframes tayun {
-        0%, 100% {
-            color: #e3e6f0;
-            position: relative;
-            left: 0;
-        }
-        50% {
-            color: #5dedcd;
-            position: relative;
-            left: 100px;
-        }
-    }
-    #top {
-        width: 45px;
-        height: fit-content;
-        background-color: rgba(93, 237, 205, 0.1);
-        font-size: 15px;
-        text-align: center;
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 85%;
-    }
-    #top div {
-        width: 1px;
-        height: 20px;
-        margin: auto;
-        background-color: #5dedcd;
-    }
-    .copyright {
-        font-size: 13px;
-    }
-}
-
-/*mobile site ends!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site ends!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site ends!!!!!!!!!!!!!!!!!!!!!!*/
-/*mobile site ends!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site ends!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site ends!!!!!!!!!!!!!!!!!!!!!!*/
+            <section id="works">
+                <div class="heading2">
+                    <div class="horizon-line2"></div>
+                    <h1><span class="teal">02.</span> Works</h1>
+                    <div class="horizon-line2"></div>
+                </div>
+                <div class="heading3-mob">
+                    <h1><span class="teal">02.</span> Works</h1>
+                    <div class="horizon-line"></div>
+                </div>
+                <p class="word">
+                    A small gallery of some things i've built! Do well to check through this, i may just wow you.
+                </p><br><br><br>
+                <div class="work-container">
+                    <div class="work-img-div"><img class="work-img" src="base 22 pic.png"></div>
+                    <div class="caption-box">
+                        <p>
+                            <span class="teal word">Featured Project</span><br>
+                            <span class="project-title">Base 22 Real estate.</span>
+                        </p>
+                        <div class="caption">
+                            <p>
+                                Base 22 is a real estate agency company in Lagos nigeria, still Awaiting their official launch, but you can check out a preview gorgeous 
+                                website made by yours truly..
+                            </p>
+                        </div><br><br><br>
+                        <a href="basse22 preview.pdf" target="_blank"><button>Preview</button></a>
+                    </div>
+                </div>
+                <!--mobile work-container-->
+                <div class="fadey fadeyOut">
+                    <div class="work-img-div">
+                        <p>
+                            <span class="teal word">Featured Project</span><br>
+                            <span class="project-title">Base 22 Real estate.</span>
+                        </p>
+                        <img class="work-img" src="base 22 pic.png">
+                    </div>
+                    <div class="caption-box">
+                        <div class="caption">
+                            <p>
+                                Base 22 is a real estate agency company in Lagos nigeria, still Awaiting their official launch, but you can check out a preview gorgeous 
+                                website made by yours truly..
+                            </p>
+                        </div><br><br><br>
+                        <a href="basse22 preview.pdf" target="_blank"><button>Preview</button></a>
+                    </div>
+                </div>
 
 
 
+                <div class="work-container">
+                    <div class="caption-box2">
+                        <p>
+                            <span class="teal word">Featured Project</span><br>
+                            <span class="project-title">AFIS Nigeria.</span>
+                        </p>
+                        <div class="caption">
+                            <p>
+                                Agrofeed Integrated Services (AFIS) is the first ever Agrofeed Nigeria, Agrofeed Hungary which is one of the leading Premix manufacturers
+                                in the world. I helped create a spike in income and awareness through their bright, simple and amazing website which i SOLELY built!
+                            </p>
+                        </div><br><br><br>
+                        <a href="https://www.afis.ng" target="_blank"><button>Visit Site</button></a>
+                    </div>
+                    <div class="work-img-div2"><img class="work-img2" src="afis pic.png"></div>
+                </div>
+                <!--mobile work-container-->
+                <div class="fadey fadeyOut">
+                    <div class="work-img-div">
+                        <p>
+                            <span class="teal word">Featured Project</span><br>
+                            <span class="project-title">AFIS Nigeria.</span>
+                        </p>
+                        <img class="work-img" src="afis pic.png">
+                    </div>
+                    <div class="caption-box">
+                        <div class="caption">
+                            <p>
+                                Agrofeed Integrated Services (AFIS) is the first ever Agrofeed Nigeria, Agrofeed Hungary which is one of the leading Premix manufacturers
+                                in the world. I helped create a spike in income and awareness through their bright, simple and amazing website which i SOLELY built!
+                            </p>
+                        </div><br><br><br>
+                        <a href="https://www.afis.ng" target="_blank"><button>Visit Site</button></a>
+                    </div>
+                </div>
 
-/*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site ends!!!!!!!!!!!!!!!!!!!!!!*/
-/*tab site stARTS!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site ends!!!!!!!!!!!!!!!!!!!!!!*/
 
-@media (max-width: 1000px) and (min-width: 781px) {
-    html {
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-    }
-    body {
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        margin: 0;
-        padding-top: 200px;
-        box-sizing: border-box;
-        background-color: #222230;
-        color: #b2b9cf;
-        font-family: 'League Spartan', sans-serif;
-        font-size: 20px;
-    }
-    #desktop-header {
-        height: 65px;
-        width: 100%;
-        background-color: rgba(34, 34, 48, 0.9);
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-        position: fixed;
-        top: 0;
-        padding-left: 30px;
-        padding-right: 30px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: space-between;
-        z-index: 999;
-    }
-    #mobile-header {
-        height: 65px;
-        width: 100%;
-        background-color: rgba(34, 34, 48, 0.9);
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-        position: fixed;
-        top: 0;
-        padding-left: 20px;
-        padding-right: 20px;
-        box-sizing: border-box;
-        display: none;
-        justify-content: space-between;
-        z-index: 999;
-        align-items: center;
-    }
-    .dropdown {
-        width: 30%;
-        height: 100%;
-        text-align: center;
-        position: absolute;
-        right: 5px;
-        display: inline-block;
-    }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        right: -5px;
-        top: 65px;
-        width: 100vw;
-        overflow: auto;
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-        z-index: 2;
-    }
-    #myDropdown {
-        background: #222230;
-    }
-    .dropdown-content a {
-        font-size: 20px;
-        padding: 30px 16px;
-        text-decoration: none;
-        display: block;
-        transition: 0.3s ease;
-    }
-    .dropdown a:hover {
-        background-color: rgba(93, 237, 205, 0.2);
-    }
-    .show {
-        display: block;
-    }
-    .dropbtn {
-        width: 30px;
-        height: 30px;
-        background-image: url('https://img.icons8.com/fluency-systems-regular/344/ffffff/drag-list-down.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-size: 20px;
-        position: -webkit-relative; /* Safari */
-        position: relative;
-        top: 17px;
-        right: -180px;
-        opacity: 1;
-        z-index: 2;
-        cursor: pointer;
-    }
-    .logo {
-        color: white;
-        width: fit-content;
-        height: fit-content;
-        font-family: 'Dancing Script', sans-serif;
-        font-weight: 700;
-        font-size: 20px;
-        padding: 5px 15px;
-        box-sizing: border-box;
-        border-radius: 3px 15px;
-        border: 2px solid #5dedcd;
-    }
-    
-    .teal {
-        color: #5dedcd;
-    }
-    a {
-        text-decoration: none;
-        color: #b2b9cf;
-        cursor: pointer;
-        transition: 0.3s ease-out;
-    }
-    a:hover {
-        color: #5dedcd;
-    }
-    main {
-        width: 80%;
-        height: fit-content;
-        font-size: 23px;
-        margin: auto;
-        z-index: 1;
-        
-    }
-    /*first section first section first section*/
-    #first {
-        width: 100%;
-        height: 100vh;
-        font-size: 19px;
-        padding-top: 80px;
-    }
-    .khalid {
-        color: #e3e6f0;
-        font-size: 80px;
-        font-weight: 900;
-    }
-    .web-dev {
-        font-size: 80px;
-        font-weight: 900;
-        color: #969caf;
-    }
-    button {
-        width: fit-content;
-        height: fit-content;
-        padding: 20px 35px;
-        box-sizing: border-box;
-        border-radius: 3px;
-        border: 1px solid #5dedcd;
-        background-color: #222230;
-        color: #5dedcd;
-        font-size: 20px;
-        font-family: 'League Spartan', sans-serif;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-    }
-    button:hover {
-        background-color: rgba(93, 237, 205, 0.2);
-    }
-    .mob-scroll {
-        display: block;
-        width: fit-content;
-        height: fit-content;
-        font-size: 20px;
-        color: #e3e6f0;
-        background-color: #222230;
-        padding: 0px, 0px;
-        transform: rotate(90deg);
-        position: absolute;
-        left: -20px;
-        bottom: 20px;
-        animation: scrolling 1.5s ease-in-out infinite;
-    }
-    @keyframes scrolling {
-        0%, 100% {
-            position: absolute;
-            bottom: 20px;
-        }
-        50% {
-            position: absolute;
-            bottom: 35px;
-        }
-    }
-    /*first section ends!!!! first section ends!!!! first section ends!!!!*/
-    
-    /*vert section vert section vert section*/
-    #vert {
-        width: 65px;
-        height: fit-content;
-        text-align: center;
-        position: fixed;
-        bottom: 0;
-        right: 60px;
-        display: none;
-    }
-    #vert div {
-        width: 1px;
-        height: 150px;
-        margin: auto;
-        background-color: #5dedcd;
-    }
-    .social-img {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-    }
-    .social-img:hover {
-        transform: scale(1.2);
-        background-color: rgba(93, 237, 205, 0.5);
-    }
-    /*vert section vert section vert section ENDS!!!*/
 
-    #mob-foot-links {
-        width: 75%;
-        height: fit-content;
-        position: static;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-    }
-    .social-img {
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-        transition: all 0.3s ease-out;
-    }
-    .social-img:hover {
-        transform: scale(1.2);
-        background-color: rgba(93, 237, 205, 0.5);
-    }
-    
-    /* MOVING vert section vert section vert section*/
-    #moving-vert {
-        width: 50px;
-        height: fit-content;
-        position: absolute;
-        bottom: 0;
-        left: 60px;
-    }
-    #moving-vert div {
-        width: 1px;
-        height: 300px;
-        margin: auto;
-        background-color: #5dedcd;
-        animation: moving 4s ease-in-out infinite;
-        display: none;
-    }
-    @keyframes moving {
-        0% {
-            position: relative;
-            bottom: 1px;
-            height: 220px;
-        }
-        50% {
-            position: relative;
-            bottom: 550px;
-            height: 1px;
-        }
-        100% {
-            position: relative;
-            bottom: 1px;
-            height: 220px;
-        }
-    } 
-    /* MOVING vert section ENDS!! vert section vert section*/
-    
-    /*ABOUT ME section vert section vert section*/
-    #about {
-        width: 100%;
-        height: fit-content;
-        border-right: none;
-        padding-top: 50px;
-        margin-bottom: 50px;
-    }
-    
-    .heading {
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    h1 {
-        width: fit-content;
-        height: fit-content;
-        padding: 0;
-        color: #e3e6f0;
-        font-size: 30px;
-        font-weight: 900;
-    }
-    .horizon-line {
-        width: 55%;
-        height: 1px;
-        background-color: #5dedcd;
-    }
-    .half1 {
-        width: 100%;
-    }
-    .word {
-        line-height: 25px;
-    }
-    #about-flex {
-        width: 100%;
-        height: fit-content;
-        display: block;
-    }
-    .half2 {
-        width: 60%;
-        height: fit-content;
-        margin-top: 50px;
-        display: block;
-        background-color: #5dedcd;
-        position: relative;
-        left: 40%;
-    }
-    .khalid-img {
-        width: 100%;
-        height: auto;
-        opacity: 0.6;
-    }
-    
-    /*ABOUT ME section ends!!*/
-    
-    /*WORKS section vert section vert section*/
-    #works {
-        width: 100%;
-        height: fit-content;
-        padding-top: 65px;
-    }
-    .heading2 {
-        width: 100%;
-        height: fit-content;
-        display: none;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .horizon-line2 {
-        width: 40%;
-        height: 1px;
-        background-color: #5dedcd;
-        display: none;
-    }
-    .heading3-mob {
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .work-container {
-        width: 100%;
-        height: fit-content;
-        display: none;
-        justify-content: center;
-        margin-bottom: 200px;
-    }
-    .fadey {
-        width: 100%;
-        height: fit-content;
-        display: block;
-        margin-bottom: 100px;
-    }
-    .fadeyOut { opacity: 0; }
-    .fadeyIn { opacity: 1; }
-    .work-img-div {
-        width: 100%;
-        height: fit-content;
-        border-right: none;
-        background-color: #222230;
-        position: relative;
-        top: 0px;
-    }
-    .work-img-div2 {
-        width: 100%;
-        height: fit-content;
-        background-color: #5dedcd;
-        border-left: none;
-    }
-    .work-img {
-        width: 100%;
-        height: auto;
-        opacity: 1;
-        transition: all 0.3s ease;
-    }
-    .work-img2 {
-        width: 100%;
-        height: auto;
-        opacity: 1;
-        transition: all 0.3s ease;
-    }
-    .caption-box {
-        width: 80%;
-        height: fit-content;
-        text-align: right;
-        display: block;
-        border-left: 1px solid #5dedcd;
-    }
-    .caption-box2 {
-        width: 80%;
-        height: fit-content;
-        text-align: left;
-        display: none;
-        border-right: 1px solid #5dedcd;
-    }
-    .caption {
-        width: 100%;
-        height: fit-content;
-        padding: 10px 10px;
-        box-sizing: border-box;
-        background-color: #3c3c53;
-        box-shadow: 0px 2px 15px rgba(6, 16, 31, 1);
-    }
-    .project-title {
-        font-weight: 900;
-        font-size: 30px;
-    }
-    /*WORKS section ends!!!*/
-    
-    /*CONTACT section vert section vert section*/
-    footer {
-        width: 95%;
-        height: fit-content;
-        margin: auto;
-        z-index: 1;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .foot-talk {
-        width: 90%;
-        font-size: 20px;
-        line-height: 25px;
-        height: fit-content;
-        margin: auto;
-    }
-    .foot-heading {
-        width: fit-content;
-        height: fit-content;
-        margin: auto;
-        display: none;
-    }
-    .get-in {
-        font-size: 50px;
-        font-weight: 900;
-        color: #e3e6f0;
-    }
-    .dot {
-        color: #e3e6f0;
-        animation: tayun 5s ease-out infinite;
-    }
-    @keyframes tayun {
-        0%, 100% {
-            color: #e3e6f0;
-            position: relative;
-            left: 0;
-        }
-        50% {
-            color: #5dedcd;
-            position: relative;
-            left: 100px;
-        }
-    }
-    #top {
-        width: 45px;
-        height: fit-content;
-        background-color: rgba(93, 237, 205, 0.1);
-        font-size: 15px;
-        text-align: center;
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 85%;
-    }
-    #top div {
-        width: 1px;
-        height: 20px;
-        margin: auto;
-        background-color: #5dedcd;
-    }
-    .copyright {
-        font-size: 16px;
-    }
-}
+                <div class="work-container">
+                    <div class="work-img-div"><img class="work-img" src="fh pic.png"></div>
+                    <div class="caption-box">
+                        <p>
+                            <span class="teal word">Featured Project</span><br>
+                            <span class="project-title">Frontline Habitations.</span>
+                        </p>
+                        <div class="caption">
+                            <p>
+                                Frontline habitations was formed to create innovative designs that are cost efficient, environmentally friendly, and visually appealing 
+                                just like their official website which was built by me. Check out the website preview.
+                            </p>
+                        </div><br><br><br>
+                        <a href="fh preview.pdf" target="_blank"><button>Preview</button></a>
+                    </div>
+                </div>
+                <!--mobile work-container-->
+                <div class="fadey fadeyOut">
+                    <div class="work-img-div">
+                        <p>
+                            <span class="teal word">Featured Project</span><br>
+                            <span class="project-title">Frontline Habitations.</span>
+                        </p>
+                        <img class="work-img" src="fh pic.png">
+                    </div>
+                    <div class="caption-box">
+                        <div class="caption">
+                            <p>
+                                Frontline habitations was formed to create innovative designs that are cost efficient, environmentally friendly, and visually appealing 
+                                just like their official website which was built by me. Check out the website preview.
+                            </p>
+                        </div><br><br><br>
+                        <a href="fh preview.pdf" target="_blank"><button>Preview</button></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="footer">
+
+            <div class="foot-heading">
+                <h1><span class="teal">03.</span> Contact me!</h1>
+            </div>
+            <div class="heading3-mob">
+                <h1><span class="teal">02.</span> Contact me!</h1>
+                <div class="horizon-line"></div>
+            </div>
+            <p class="get-in">Get in touch<span class="dot">.</span></p> 
+            <p class="foot-talk">
+                I am always open to new opportunities, lets build something! From simple landing pages to huge projects, freelance jobs, etc.<br> If you have other 
+                requests or questions,<br> please by all means.. <br>slide in!
+            </p><br><br><br>
+            <a href="mailto:khalidoyeneye@gmail.com"><button>Send Message!</button></a><br><br><br><br><br><br><br><br>
+            <div id="mob-foot-links">
+                <a href="https://github.com/khalteck" target="_blank"><img src="https://img.icons8.com/fluency/344/ffffff/github.png" class="social-img"></a>
+                <a href="https://twitter.com/khalteck" target="_blank"><img src="https://img.icons8.com/ios/344/ffffff/twitter--v1.png" class="social-img"></a>
+                <a href="https://instagram.com/khalteck" target="_blank"><img src="https://img.icons8.com/ios/344/ffffff/instagram-new--v1.png" class="social-img"></a>
+                <a href="https://www.linkedin.com/in/khalid-oyeneye/" target="_blank"><img src="https://img.icons8.com/ios/344/ffffff/linkedin.png" class="social-img"></a>
+                <a href="https://wa.me/+2348107327238" target="_blank"><img src="https://img.icons8.com/material-outlined/344/ffffff/whatsapp--v1.png" class="social-img"></a>
+            </div><br>
+            <p class="copyright">Designed and built by Khalid Oyeneye.<br><br> © 2022.</p>
+            <a href="#first">
+                <section id="top">
+                    <p>T<br>O<br>P</p>
+                    <div></div>
+                </section>
+            </a>
+            
+        </footer>
+
+        <script>
+            /* When the user clicks on the button, 
+                    toggle between hiding and showing the dropdown content */
+                    function myFunction() {
+                      document.getElementById("myDropdown").classList.toggle("show");
+                    }
+
+                    // Close the dropdown if the user clicks outside of it
+                    window.onclick = function(event) {
+                        if (!event.target.matches('.dropbtn')) {
+                            var dropdowns = document.getElementsByClassName("dropdown-content");
+                            var i;
+                            for (i = 0; i < dropdowns.length; i++) {
+                                var openDropdown = dropdowns[i];
+                                if (openDropdown.classList.contains('show')) {
+                                    openDropdown.classList.remove('show');
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    // fade In and out
+            const observerOptions = {
+              root: null,
+              rootMargin: "0px",
+              threshold: 0.2
+            };
+
+            function observerCallback(entries, observer) {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+      // fade in observed elements that are in view
+                  entry.target.classList.replace('fadeyOut', 'fadeyIn');
+                } else {
+      // fade out observed elements that are not in view
+                  entry.target.classList.replace('fadeyIn', 'fadeyOut');
+                }
+              });
+            }
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            const fadeElms = document.querySelectorAll('.fadey');
+            fadeElms.forEach(el => observer.observe(el));
+        </script>
+    </body>
+</html>
