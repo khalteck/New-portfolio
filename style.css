@@ -273,11 +273,7 @@ h1 {
     justify-content: space-between;
 }
 .half2 {
-<<<<<<< HEAD
     width: fit-content;
-=======
-    width: 25%;
->>>>>>> b15e3b92d92b0062845ba41925d020a336f962bf
     height: fit-content;
     padding: 30px;
     box-sizing: border-box;
@@ -858,7 +854,6 @@ footer {
         display: block;
     }
     .half2 {
-<<<<<<< HEAD
         width: 100%;
         height: fit-content;
         margin-top: 50px;
@@ -867,15 +862,6 @@ footer {
         border-radius: 10px;
         box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
         background-color: #1c1e22;
-=======
-        width: 45%;
-        height: fit-content;
-        margin-top: 50px;
-        display: block;
-        background-color: #5dedcd;
-        position: relative;
-        left: 50%;
->>>>>>> b15e3b92d92b0062845ba41925d020a336f962bf
     }
     .stack-hold {
         width: fit-content;
@@ -985,14 +971,9 @@ footer {
         width: 100%;
         height: fit-content;
         display: block;
-<<<<<<< HEAD
         margin-top: -70px;
         margin-bottom: 130px;
         transition: all 0.6s ease;
-=======
-        margin-bottom: 200px;
-        transition: all 0.4s ease;
->>>>>>> b15e3b92d92b0062845ba41925d020a336f962bf
     }
     .fadeyOut { opacity: 0; transform: translateY(100px);}
     .fadeyIn { opacity: 1; transform: translateY(0);}
