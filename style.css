@@ -129,6 +129,9 @@ button {
 button:hover {
     background-color: rgba(93, 237, 205, 0.2);
 }
+.mob-resume {
+    display: none;
+}
 .mob-scroll {
     display: block;
     width: fit-content;
@@ -672,7 +675,7 @@ footer {
     /*first section first section first section*/
     #first {
         width: 100%;
-        height: 600px;
+        height: 530px;
         font-size: 20px;
         padding-top: 0;
         position: relative;
@@ -704,6 +707,29 @@ footer {
     button:hover {
         background-color: rgba(93, 237, 205, 0.2);
     }
+    .button {
+        width: fit-content;
+        height: fit-content;
+        padding: 15px 48px;
+        box-sizing: border-box;
+        border-radius: 3px;
+        border: 1px solid #5dedcd;
+        background-color: #5dedcd;
+        color: black;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Overpass', sans-serif;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+    }
+    .button:hover {
+        background-color: rgba(93, 237, 205, 0.2);
+        color: #5dedcd;
+    }
+    .mob-resume {
+        display: block;
+        margin-top: 20px;
+    }
     .mob-scroll {
         display: block;
         width: fit-content;
@@ -715,7 +741,7 @@ footer {
         transform: rotate(90deg);
         position: absolute;
         left: -35px;
-        bottom: 0px;
+        bottom: 20px;
         animation: scrolling 1.2s ease-in-out infinite;
     }
     @keyframes scrolling {
@@ -1105,7 +1131,7 @@ footer {
 /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site ends!!!!!!!!!!!!!!!!!!!!!!*/
 /*tab site stARTS!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site ends!!!!!!!!!!!!!!!!!!!!!!*/
 
-@media (max-width: 1000px) and (min-width: 781px) {
+@media (max-width: 1030px) and (min-width: 781px) {
     html {
         overflow-x: hidden;
         scroll-behavior: smooth;
@@ -1262,6 +1288,9 @@ footer {
     }
     button:hover {
         background-color: rgba(93, 237, 205, 0.2);
+    }
+    .mob-resume {
+        display: none;
     }
     .mob-scroll {
         display: block;
