@@ -103,11 +103,13 @@ main {
     margin-top: 140px;
 }
 .khalid {
+    display: inline-block;
     color: white;
     font-size: 100px;
     font-weight: 900;
 }
 .web-dev {
+    display: inline-block;
     font-size: 100px;
     font-weight: 900;
     color: white;
@@ -154,6 +156,37 @@ button:hover {
     50% {
         position: absolute;
         bottom: 35px;
+    }
+}
+.hide {
+    display: none;
+}
+.inline {
+    display: inline-block;
+}
+.scale-up {
+    animation: pop 0.8s ease-in 1;
+}
+@keyframes pop {
+    0% {
+        transform: scale(0, 0);
+    }
+    90% {
+        transform: scale(1.5, 1.5);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+.slide-right {
+    animation: slide-right 0.4s ease-out 1;
+}
+@keyframes slide-right {
+    0% {
+        transform: translateX(-300px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }
 /*first section ends!!!! first section ends!!!! first section ends!!!!*/
@@ -496,6 +529,7 @@ footer {
 .dot {
     color: #e3e6f0;
     animation: tayun 5s ease-out infinite;
+    animation-delay: 2s;
 }
 @keyframes tayun {
     0%, 100% {
@@ -532,7 +566,7 @@ footer {
 /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/
 /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*mobile site starts!!!!!!!!!!!!!!!!!!!!!!*/
 
-@media (max-width: 780px) {
+@media (max-width: 650px) {
     html {
         overflow-x: hidden;
         scroll-behavior: smooth;
@@ -605,18 +639,32 @@ footer {
     .dropdown-content {
         display: none;
         position: absolute;
-        right: -5px;
+        right: -7px;
         top: 65px;
-        width: 100vw;
+        width: 101vw;
         overflow: auto;
         box-shadow: 0px 2px 15px rgba(6, 16, 31, 0);
         z-index: 2;
+        border-right: 1px solid #5dedcd;
+        border-left: 1px solid #5dedcd;
+        animation: unfold 0.5s ease-in;
+    }
+    @keyframes unfold {
+        0% {
+            transform: scaleX(0);
+        }
+        70% {
+            transform: scaleX(1.5);
+        }
+        100% {
+            transform: scaleX(1);
+        }
     }
     #myDropdown {
         background: #121418;
     }
     .dropdown-content a {
-        font-size: 20px;
+        font-size: 16px;
         padding: 25px 16px;
         border-top: 1px solid #1c1e22;
         text-decoration: none;
@@ -629,6 +677,7 @@ footer {
     .show {
         display: block;
     }
+
     .dropbtn {
         width: 25px;
         height: 25px;
@@ -675,7 +724,7 @@ footer {
     /*first section first section first section*/
     #first {
         width: 100%;
-        height: 530px;
+        min-height: 75vh;
         font-size: 20px;
         padding-top: 0;
         position: relative;
@@ -991,18 +1040,18 @@ footer {
         height: fit-content;
         display: none;
         justify-content: center;
-        margin-bottom: 200px;
+        margin-bottom: 300px;
     }
     .fadey {
         width: 100%;
         height: fit-content;
         display: block;
         margin-top: -70px;
-        margin-bottom: 130px;
+        margin-bottom: 200px;
         transition: all 0.6s ease;
     }
-    .fadeyOut { opacity: 0; transform: translateY(100px);}
-    .fadeyIn { opacity: 1; transform: translateY(0);}
+    .fadeyOut { opacity: 0; transform: scale(0.1, 0.1);}
+    .fadeyIn { opacity: 1; transform: scale(1, 1);}
     .work-img-div {
         width: 100%;
         height: fit-content;
@@ -1034,6 +1083,8 @@ footer {
         height: fit-content;
         text-align: right;
         display: block;
+        position: relative;
+        top: -6px;
         border-left: 1px solid #5dedcd;
     }
     .caption-box2 {
@@ -1131,7 +1182,7 @@ footer {
 /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site ends!!!!!!!!!!!!!!!!!!!!!!*/
 /*tab site stARTS!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site starts!!!!!!!!!!!!!!!!!!!!!!*/ /*tab site ends!!!!!!!!!!!!!!!!!!!!!!*/
 
-@media (max-width: 1030px) and (min-width: 781px) {
+@media (max-width: 1030px) and (min-width: 651px) {
     html {
         overflow-x: hidden;
         scroll-behavior: smooth;

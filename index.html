@@ -39,12 +39,12 @@
             <section id="first">
                 <p>
                     <!--<span class="teal">Hi, my name is</span><br><br><br>-->
-                    <span class="khalid">Khalid</span><br>
-                    <span class="web-dev">Web developer<span class="dot">.</span></span><br>
-                    Front end developer, i build things for the web..
+                    <span id="khalid-pop" class="khalid hide">Khalid</span><br>
+                    <span id="dev-pop" class="web-dev hide">Web developer<span class="dot">.</span></span><br>
+                    <span id="intro-text" class="hide">Front end developer, i build things for the web..</span>
                 </p><br>
-                <a href="#footer"><button> Contact me! </button></a>
-                <a class="mob-resume" href="Resume.pdf"><button class="button">View resume</button></a>
+                <a href="#footer" class="hide" id="contact-btn"><button> Contact me! </button></a>
+                <a class="mob-resume" href="Resume.pdf"><button id="resume-btn" class="button hide">View resume</button></a>
                 <div class="mob-scroll">
                     <p>Scroll down</p>
                 </div>
@@ -119,8 +119,7 @@
                         </p>
                         <div class="caption">
                             <p>
-                                Base 22 is a real estate agency company in Lagos nigeria, still Awaiting their official launch, but you can check out a preview gorgeous 
-                                website made by yours truly..
+                                A neat landing page for a real estate agency company in Lagos nigeria, still at pre-launch.
                             </p>
                         </div><br><br><br>
                         <a href="basse22 preview.pdf" target="_blank"><button>Preview</button></a>
@@ -138,8 +137,7 @@
                     <div class="caption-box">
                         <div class="caption">
                             <p>
-                                Base 22 is a real estate agency company in Lagos nigeria, still Awaiting their official launch, but you can check out a preview gorgeous 
-                                website made by yours truly..
+                                A neat landing page for a real estate agency.
                             </p>
                         </div><br><br><br>
                         <a href="basse22 preview.pdf" target="_blank"><button>Preview</button></a>
@@ -156,8 +154,7 @@
                         </p>
                         <div class="caption">
                             <p>
-                                Agrofeed Integrated Services (AFIS) is the first ever Agrofeed Nigeria, Agrofeed Hungary which is one of the leading Premix manufacturers
-                                in the world. I helped create a spike in income and awareness through their bright, simple and amazing website which i SOLELY built!
+                                Fully functional website for Agrofeed Nigeria.
                             </p>
                         </div><br><br><br>
                         <a href="https://www.afis.ng" target="_blank"><button>Visit Site</button></a>
@@ -176,8 +173,7 @@
                     <div class="caption-box">
                         <div class="caption">
                             <p>
-                                Agrofeed Integrated Services (AFIS) is the first ever Agrofeed Nigeria, Agrofeed Hungary which is one of the leading Premix manufacturers
-                                in the world. I helped create a spike in income and awareness through their bright, simple and amazing website which i SOLELY built!
+                                Fully funtional website for Agrofeed Nigeria.
                             </p>
                         </div><br><br><br>
                         <a href="https://www.afis.ng" target="_blank"><button>Visit Site</button></a>
@@ -195,8 +191,7 @@
                         </p>
                         <div class="caption">
                             <p>
-                                Frontline habitations was formed to create innovative designs that are cost efficient, environmentally friendly, and visually appealing 
-                                just like their official website which was built by me. Check out the website preview.
+                                Achitectural brand website.
                             </p>
                         </div><br><br><br>
                         <a href="fh preview.pdf" target="_blank"><button>Preview</button></a>
@@ -214,8 +209,7 @@
                     <div class="caption-box">
                         <div class="caption">
                             <p>
-                                Frontline habitations was formed to create innovative designs that are cost efficient, environmentally friendly, and visually appealing 
-                                just like their official website which was built by me. Check out the website preview.
+                                Achitectural brand website.
                             </p>
                         </div><br><br><br>
                         <a href="fh preview.pdf" target="_blank"><button>Preview</button></a>
@@ -303,7 +297,7 @@
             fadeElms.forEach(el => observer.observe(el));
 
         //header animation
-        window.onscroll = function spread() {
+        window.addEventListener("scroll", function spread() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 document.getElementById("khal").style.opacity = "1";
                 document.getElementById("khal").style.transform = "translateX(0%)";
@@ -313,7 +307,50 @@
                 document.getElementById("khal").style.transform = "translateX(-30%)";
                 document.getElementById("star").style.transform = "rotate(0)";
             }
-        }
+        });
+        window.addEventListener("load", () => {
+            setTimeout(
+                () => {
+                    document.getElementById("khalid-pop").classList.remove("hide")
+                    document.getElementById("khalid-pop").classList.add("scale-up")
+                }, 300
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("dev-pop").classList.remove("hide")
+                    document.getElementById("dev-pop").classList.add("scale-up")
+                }, 1100
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("intro-text").classList.remove("hide")
+                    document.getElementById("intro-text").classList.add("inline")
+                    document.getElementById("intro-text").classList.add("scale-up")
+                }, 1900
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("contact-btn").classList.remove("hide")
+                    document.getElementById("contact-btn").classList.add("inline")
+                    document.getElementById("contact-btn").classList.add("slide-right")
+                }, 2700
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("resume-btn").classList.remove("hide")
+                    document.getElementById("resume-btn").classList.add("inline")
+                    document.getElementById("resume-btn").classList.add("slide-right")
+                }, 3000
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("scroll").classList.remove("hide")
+                    document.getElementById("scroll").classList.add("inline")
+                    document.getElementById("scroll").classList.add("slide-right")
+                }, 3300
+            );
+        });
+        
         </script>
     </body>
 </html>
