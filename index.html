@@ -11,6 +11,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@800&display=swap" rel="stylesheet">
     </head>
     <body>
         <header id="mobile-header">
@@ -37,6 +40,8 @@
         </header>
         <main>
             <section id="first">
+                <div id="hello" class="hello hide">HELLO</div>
+                <div id="i-am"><span class="hide" id="i-am1">I</span> <span class="hide" id="i-am2">a</span><span class="hide" id="i-am3">m</span><span class="hide" id="i-am4">.</span><span class="hide" id="i-am5">.</span></div>
                 <p>
                     <!--<span class="teal">Hi, my name is</span><br><br><br>-->
                     <span id="khalid-pop" class="khalid hide">Khalid</span><br>
@@ -45,7 +50,7 @@
                 </p><br>
                 <a href="#footer" class="hide" id="contact-btn"><button> Contact me! </button></a>
                 <a class="mob-resume" href="Resume.pdf"><button id="resume-btn" class="button hide">View resume</button></a>
-                <div class="mob-scroll">
+                <div id="scroll" class="mob-scroll hide">
                     <p>Scroll down</p>
                 </div>
             </section>
@@ -226,7 +231,7 @@
                 <h1><span class="teal">02.</span> Contact</h1>
                 <div class="horizon-line"></div>
             </div>
-            <p class="get-in">Get in touch<span class="dot">.</span></p> 
+            <p class="get-in">Get in touch<span class="dot">.</span></p>
             <p class="foot-talk">
                 I am always open to new opportunities, lets build something! From simple landing pages to huge projects, freelance jobs, etc.<br> If you have other 
                 requests or questions,<br> please by all means.. <br>slide in!
@@ -308,7 +313,7 @@
                 document.getElementById("star").style.transform = "rotate(0)";
             }
         });
-        window.addEventListener("load", () => {
+        /*window.addEventListener("load", () => {
             setTimeout(
                 () => {
                     document.getElementById("khalid-pop").classList.remove("hide")
@@ -348,6 +353,95 @@
                     document.getElementById("scroll").classList.add("inline")
                     document.getElementById("scroll").classList.add("slide-right")
                 }, 3300
+            );
+        });*/
+        window.addEventListener("load", () => {
+            setTimeout(
+                () => {
+                    document.getElementById("hello").classList.remove("hide")
+                    document.getElementById("hello").classList.add("bounce")
+                }, 300
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("i-am1").classList.remove("hide")
+                    document.getElementById("i-am1").classList.add("order")
+                }, 1100
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("i-am2").classList.remove("hide")
+                    document.getElementById("i-am2").classList.add("order")
+                }, 1500
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("i-am3").classList.remove("hide")
+                    document.getElementById("i-am3").classList.add("order")
+                }, 1900
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("i-am4").classList.remove("hide")
+                    document.getElementById("i-am4").classList.add("order")
+                }, 2100
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("i-am5").classList.remove("hide")
+                    document.getElementById("i-am5").classList.add("order")
+                }, 2500
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("hello").classList.add("pull-up")
+                    document.getElementById("i-am").classList.add("pull-up")
+                }, 3500
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("hello").classList.add("hide")
+                    document.getElementById("i-am").classList.add("hide")
+                }, 4000
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("khalid-pop").classList.remove("hide")
+                    document.getElementById("khalid-pop").classList.add("scale-up")
+                }, 4100
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("dev-pop").classList.remove("hide")
+                    document.getElementById("dev-pop").classList.add("scale-up")
+                }, 4900
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("intro-text").classList.remove("hide")
+                    document.getElementById("intro-text").classList.add("inline")
+                    document.getElementById("intro-text").classList.add("scale-up")
+                }, 5700
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("contact-btn").classList.remove("hide")
+                    document.getElementById("contact-btn").classList.add("inline")
+                    document.getElementById("contact-btn").classList.add("slide-right")
+                }, 6500
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("resume-btn").classList.remove("hide")
+                    document.getElementById("resume-btn").classList.add("inline")
+                    document.getElementById("resume-btn").classList.add("slide-right")
+                }, 6800
+            );
+            setTimeout(
+                () => {
+                    document.getElementById("scroll").classList.remove("hide")
+                    document.getElementById("scroll").classList.add("scroll")
+                }, 7200
             );
         });
         
