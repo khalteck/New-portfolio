@@ -78,9 +78,10 @@
                 </div> 
                 <div id="about-flex">
                     <p class="word half1">
-                        I am a Front End Developer. I build web apps using the best & latest front end frameworks/libraries which gives dynamic user experience.<br>
+                        A Front End Developer. I build web apps using the best & latest front end frameworks/libraries which gives dynamic user experience.<br>
+                        I do my best to stay on top of changes in the state of the art so i can meet challenges with tools well suited to the job at hand.
                         I've gathered significant experience over the years working for freelance clients around the globe, I have met and learnt from amazing and ambitious people.<br>
-                        I currently work remotely at <a href="https://www.afis.ng" target="_blank" class="afis-link">Agrofeed Nigeria</a>. I am therefore open to new 
+                        I currently work remotely at <a href="https://www.afis.ng" target="_blank" class="afis-link">Agrofeed Integrated Services</a> Nigeria. I am therefore open to new 
                         opportunities.<br><br><br>
                         <a href="Resume.pdf"><button>View my resume</button></a>
                     </p>
@@ -106,9 +107,89 @@
                     </div>
                 </div>
             </section>
-
-
             <section id="works">
+                <div class="heading2">
+                    <div class="horizon-line2"></div>
+                    <h1><span class="teal">02.</span> Works</h1>
+                    <div class="horizon-line2"></div>
+                </div>
+                <div class="heading3-mob">
+                    <h1><span class="teal">02.</span> Works</h1>
+                    <div class="horizon-line"></div>
+                </div>
+                <p class="word">
+                    A small gallery of some things i've built mainly with HTML, CSS, Tailwind and JavaScript. Ranging from functional webapp components to landing pages and websites. There's more from where these came from.
+                </p><br><br><br>
+                <div class="cont">
+                    <div class="box box1">
+                        <div class="box-name">
+                            <div class="hold">
+                                Admin Panel<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box2">
+                        <div class="box-name">
+                            <div class="hold">
+                                Iroko events Intl<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box3">
+                        <div class="box-name">
+                            <div class="hold">
+                                Expenses chart component<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box4">
+                        <div class="box-name">
+                            <div class="hold">
+                                Agrofeed NG<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box5">
+                        <div class="box-name">
+                            <div class="hold">
+                                Interactive rating<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box6">
+                        <div class="box-name">
+                            <div class="hold">
+                                Percentage calculator<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box7">
+                        <div class="box-name">
+                            <div class="hold">
+                                Real estate Landing-page<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box box8">
+                        <div class="box-name">
+                            <div class="hold">
+                                FAQ Accordion<br><br>
+                                <button class="view">View</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!--<section id="works">
                 <div class="heading2">
                     <div class="horizon-line2"></div>
                     <h1><span class="teal">02.</span> Works</h1>
@@ -136,7 +217,7 @@
                         <a href="basse22 preview.pdf" target="_blank"><button>Preview</button></a>
                     </div>
                 </div>
-                <!--mobile work-container-->
+                mobile work-container
                 <div class="fadey fadeyOut">
                     <div class="work-img-div">
                         <p>
@@ -172,7 +253,7 @@
                     </div>
                     <div class="work-img-div2"><img class="work-img2" src="afis figma.png"></div>
                 </div>
-                <!--mobile work-container-->
+                <!--mobile work-container
                 <div class="fadey fadeyOut">
                     <div class="work-img-div">
                         <p>
@@ -208,7 +289,7 @@
                         <a href="fh preview.pdf" target="_blank"><button>Preview</button></a>
                     </div>
                 </div>
-                <!--mobile work-container-->
+                <!--mobile work-container
                 <div class="fadey fadeyOut">
                     <div class="work-img-div">
                         <p>
@@ -226,7 +307,7 @@
                         <a href="fh preview.pdf" target="_blank"><button>Preview</button></a>
                     </div>
                 </div>
-            </section>
+            </section>-->
         </main>
         <footer id="footer">
 
@@ -424,6 +505,32 @@
             );
         });
 
+        //to animate the works section
+        let box = document.querySelectorAll(".box");
+        let hold = document.querySelectorAll(".hold");
+
+        box.forEach((item, index) => {
+            let boxName = box[index].firstElementChild;
+            let clicked = false;
+            //let hold = boxName[index].firstElementChild;
+            item.addEventListener("mouseover", () => {
+                if (clicked === false) {
+                    boxName.style.display = "flex";
+                    boxName.classList.add("spread");
+                    hold.forEach((item) => {
+                        item.classList.add("rush");
+                        item.style.display = "block";
+                    })
+                    clicked = true;
+                } 
+            })
+            item.addEventListener("mouseout", () => {
+                if (clicked === true) {
+                    boxName.style.display = "none";
+                    clicked = false
+;                }
+            })
+        })
         </script>
     </body>
 </html>

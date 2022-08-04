@@ -465,6 +465,7 @@ h1 {
     width: 100%;
     height: fit-content;
     padding-top: 65px;
+    margin-bottom: 80px;
 }
 .heading2 {
     width: 100%;
@@ -484,6 +485,131 @@ h1 {
     display: none;
     align-items: center;
     justify-content: space-between;
+}
+.cont {
+    width: 100%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 0.25fr);
+}
+.box {
+    height: 220px;
+    border-radius: 10px;
+    background-color: rgba(93, 237, 205, 1);
+    position: relative;
+}
+.box-name {
+    width: 100%;
+    height: 100%;
+    border-radius: 9px 9px 0 0;
+    text-align: center;
+    font-size: 14px;
+    background-color: rgba(93, 237, 205, 0.4);
+    color: #1c1e22;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.spread {
+    animation: spread 0.7s ease;
+}
+@keyframes spread {
+    0% {
+        transform: scale(0.6, 0.6);
+    }
+    100% {
+        transform: scale(1.0, 1.0);
+    }
+}
+.rush {
+    animation: rush 1.2s ease;
+}
+@keyframes rush {
+    0% {
+        transform: scale(0.1, 0.1) translate(200px, 200px);
+    }
+    100% {
+        transform: scale(1.0, 1.0) translate(0, 0);
+    }
+}
+.box1 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("admin\ panel.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+.box2 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("irokoevents.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box3 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("expenses\ chart.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box4 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("afis\ figma.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box5 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("interactive.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box6 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("percentage\ calc.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box7 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("astra\ figma.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.box8 {
+    background-color: rgba(93, 237, 205, 1);
+    background: url("FAQ\ accordion.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.hold {
+    width: 40%;
+    height: fit-content;
+    border: 3px solid #5dedcd;
+    padding: 15px;
+    border-radius: 9px;
+    background-color: rgba(93, 237, 205, 0.5);
+    display: none;
+}
+.view {
+    width: 100%;
+    height: fit-content;
+    padding: 10px 20px;
+    font-size: 11px;
+    border-radius: 9px;
+}
+.view:hover{
+    background-color: #4c525c;
 }
 .work-container {
     width: 100%;
@@ -1213,6 +1339,118 @@ footer {
         align-items: center;
         justify-content: space-between;
     }
+    .cont {
+        width: 100%;
+        display: block;
+        margin-top: -50px;
+    }
+    .box {
+        width: 100%;
+        height: 200px;
+        border-radius: 10px;
+        background-color: #5dedcd;
+        margin-bottom: 20px;
+        position: relative;
+        border: 2px solid #5dedcd;
+    }
+    .box-name {
+        width: 100%;
+        height: 100%;
+        border-radius: 9px 9px 0 0;
+        text-align: center;
+        font-size: 14px;
+        background-color: rgba(93, 237, 205, 0.3);
+        color: #1c1e22;
+        font-weight: 700;
+        position: absolute;
+        top: 0;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        animation: spread 0.3s ease;
+    }
+    @keyframes spread {
+        0% {
+            transform: scale(1.6, 1.6);
+        }
+        0% {
+            transform: scale(1.0, 1.0);
+        }
+    }
+    .box1 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("admin\ panel.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+    }
+    .box2 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("irokoevents.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+    .box3 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("expenses\ chart.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box4 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("afis\ figma.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box5 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("interactive.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box6 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("percentage\ calc.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box7 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("astra\ figma.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box8 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("FAQ\ accordion.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .hold {
+        width: 40%;
+        height: fit-content;
+        border: 3px solid #5dedcd;
+        padding: 15px;
+        border-radius: 9px;
+        background-color: rgba(93, 237, 205, 0.5);
+    }
+    .view {
+        width: 100%;
+        height: fit-content;
+        padding: 10px 20px;
+        font-size: 11px;
+        border-radius: 9px;
+    }
+    .view:hover{
+        background-color: #4c525c;
+    }
     .work-container {
         width: 100%;
         height: fit-content;
@@ -1780,12 +2018,122 @@ footer {
         align-items: center;
         justify-content: space-between;
     }
+    .cont {
+        width: 100%;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(2, 0.5fr);
+    }
+    .box {
+        height: 200px;
+        border-radius: 10px;
+        background-color: #5dedcd;
+    }
     .work-container {
         width: 100%;
         height: fit-content;
         display: none;
         justify-content: center;
         margin-bottom: 200px;
+        position: relative;
+    }
+    .box-name {
+        width: 100%;
+        height: 100%;
+        border-radius: 9px 9px 0 0;
+        text-align: center;
+        font-size: 14px;
+        background-color: rgba(93, 237, 205, 0.3);
+        color: #1c1e22;
+        font-weight: 700;
+        position: absolute;
+        top: 0;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        animation: spread 0.3s ease;
+    }
+    @keyframes spread {
+        0% {
+            transform: scale(1.6, 1.6);
+        }
+        0% {
+            transform: scale(1.0, 1.0);
+        }
+    }
+    .box1 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("admin\ panel.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+    }
+    .box2 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("irokoevents.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+    .box3 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("expenses\ chart.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box4 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("afis\ figma.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box5 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("interactive.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box6 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("percentage\ calc.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box7 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("astra\ figma.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .box8 {
+        background-color: rgba(93, 237, 205, 1);
+        background: url("FAQ\ accordion.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .hold {
+        width: 40%;
+        height: fit-content;
+        border: 3px solid #5dedcd;
+        padding: 15px;
+        border-radius: 9px;
+        background-color: rgba(93, 237, 205, 0.5);
+    }
+    .view {
+        width: 100%;
+        height: fit-content;
+        padding: 10px 20px;
+        font-size: 11px;
+        border-radius: 9px;
+    }
+    .view:hover{
+        background-color: #4c525c;
     }
     .fadey {
         width: 100%;
