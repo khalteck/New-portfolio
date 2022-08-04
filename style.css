@@ -492,6 +492,12 @@ h1 {
     gap: 20px;
     grid-template-columns: repeat(4, 0.25fr);
 }
+.cont-mobile {
+    width: 100%;
+    display: none;
+    gap: 20px;
+    grid-template-columns: repeat(4, 0.25fr);
+}
 .box {
     height: 220px;
     border-radius: 10px;
@@ -1341,6 +1347,11 @@ footer {
     }
     .cont {
         width: 100%;
+        display: none;
+        margin-top: -50px;
+    }
+    .cont-mobile {
+        width: 100%;
         display: block;
         margin-top: -50px;
     }
@@ -2021,6 +2032,12 @@ footer {
     .cont {
         width: 100%;
         display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(2, 0.5fr);
+    }
+    .cont-mobile {
+        width: 100%;
+        display: none;
         gap: 20px;
         grid-template-columns: repeat(2, 0.5fr);
     }
