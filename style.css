@@ -542,6 +542,20 @@ h1 {
         transform: scale(1.0, 1.0) translate(0, 0);
     }
 }
+.stack-strip {
+    width: fit-content;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.stack-strip > img {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+}
 .box1 {
     background-color: rgba(93, 237, 205, 1);
     background: url("admin\ panel.png");
@@ -572,28 +586,28 @@ h1 {
 }
 .box5 {
     background-color: rgba(93, 237, 205, 1);
-    background: url("interactive.jpg");
+    background: url("loopstudios.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .box6 {
     background-color: rgba(93, 237, 205, 1);
-    background: url("percentage\ calc.png");
+    background: url("Quote\ Generator.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .box7 {
     background-color: rgba(93, 237, 205, 1);
-    background: url("astra\ figma.png");
+    background: url("tictactoe\ snapshot.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .box8 {
     background-color: rgba(93, 237, 205, 1);
-    background: url("FAQ\ accordion.jpg");
+    background: url("tenzies.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -1388,6 +1402,20 @@ footer {
             transform: scale(1.0, 1.0);
         }
     }
+    .stack-strip {
+        width: fit-content;
+        margin: 10px auto;
+        border-radius: 5px;
+        padding: 3px;
+        display: flex;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .stack-strip > img {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+    }
     .box1 {
         background-color: rgba(93, 237, 205, 1);
         background: url("admin\ panel.png");
@@ -1418,28 +1446,28 @@ footer {
     }
     .box5 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("interactive.jpg");
+        background: url("loopstudios.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box6 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("percentage\ calc.png");
+        background: url("Quote\ Generator.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box7 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("astra\ figma.png");
+        background: url("tictactoe\ snapshot.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box8 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("FAQ\ accordion.jpg");
+        background: url("tenzies.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -2078,6 +2106,20 @@ footer {
             transform: scale(1.0, 1.0);
         }
     }
+    .stack-strip {
+        width: fit-content;
+        margin: 10px auto;
+        border-radius: 5px;
+        padding: 3px;
+        display: flex;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .stack-strip > img {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+    }
     .box1 {
         background-color: rgba(93, 237, 205, 1);
         background: url("admin\ panel.png");
@@ -2108,28 +2150,28 @@ footer {
     }
     .box5 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("interactive.jpg");
+        background: url("loopstudios.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box6 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("percentage\ calc.png");
+        background: url("Quote\ Generator.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box7 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("astra\ figma.png");
+        background: url("tictactoe\ snapshot.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box8 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("FAQ\ accordion.jpg");
+        background: url("tenzies.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
