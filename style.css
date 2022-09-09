@@ -855,6 +855,7 @@ footer {
     }
     .home {
         position: relative;
+        color: #5dedcd;
     }
     #khal {
         width: 100px;
@@ -1091,8 +1092,9 @@ footer {
         font-size: 6rem;
     }
     #i-am {
-        width: fit-content;
+        width: 100%;
         height: fit-content;
+        text-align: center;
         font-family: 'Sniglet', sans-serif;
         color: #5dedcd;
         position: absolute;
