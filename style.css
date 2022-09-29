@@ -1047,6 +1047,46 @@ footer {
         padding-top: 0;
         position: relative;
     }
+    .baloon1 {
+        animation: float1 15s ease-in infinite;
+        animation-delay: 2s;
+    }
+    .baloon2 {
+        animation: float1 20s ease-in infinite;
+        animation-delay: 10s;
+    }
+    .baloon3 {
+        animation: float1 15s ease-in infinite;
+        animation-delay: 8s;
+    }
+    .baloon4 {
+        animation: float1 20s ease-in infinite;
+        animation-delay: 6s;
+    }
+    .baloon5 {
+        animation: float1 12s ease-in infinite;
+        animation-delay: 0.5s;
+    }
+    .baloon6 {
+        animation: float1 20s ease-in infinite;
+        animation-delay: 11s;
+    }
+    .baloon7 {
+        animation: float1 15s ease-in infinite;
+        animation-delay: 7s;
+    }
+    .baloon8 {
+        animation: float1 20s ease-in infinite;
+        animation-delay: 14s;
+    }
+    .baloon9 {
+        animation: float1 15s ease-in infinite;
+        animation-delay: 4s;
+    }
+    .baloon10 {
+        animation: float1 20s ease-in infinite;
+        animation-delay: 12s;
+    }
     @keyframes float1 {
         0% {
             transform: translate(0px, 100px) rotate(10deg) scale(1, 1);
