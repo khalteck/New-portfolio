@@ -127,44 +127,44 @@ main {
     transform: translateY(100px);
 }
 .baloon1 {
-    animation: float1 20s ease infinite;
-    animation-delay: 4s;
+    animation: float1 15s ease-in infinite;
+    animation-delay: 6s;
 }
 .baloon2 {
-    animation: float1 20s ease infinite;
-    animation-delay: 12s;
+    animation: float1 20s ease-in infinite;
+    animation-delay: 3s;
 }
 .baloon3 {
-    animation: float1 20s ease infinite;
-    animation-delay: 8s;
+    animation: float1 15s ease-in infinite;
+    animation-delay: 9s;
 }
 .baloon4 {
-    animation: float1 20s ease infinite;
-    animation-delay: 16s;
+    animation: float1 20s ease-in infinite;
+    animation-delay: 13s;
 }
 .baloon5 {
-    animation: float1 20s ease infinite;
-    animation-delay: 5s;
+    animation: float1 12s ease-in infinite;
+    animation-delay: 0.5s;
 }
 .baloon6 {
-    animation: float1 20s ease infinite;
-    animation-delay: 17s;
+    animation: float1 20s ease-in infinite;
+    animation-delay: 7s;
 }
 .baloon7 {
-    animation: float1 20s ease infinite;
-    animation-delay: 2s;
+    animation: float1 15s ease-in infinite;
+    animation-delay: 12s;
 }
 .baloon8 {
-    animation: float1 20s ease infinite;
+    animation: float1 20s ease-in infinite;
     animation-delay: 15s;
 }
 .baloon9 {
-    animation: float1 20s ease infinite;
-    animation-delay: 7s;
+    animation: float1 15s ease-in infinite;
+    animation-delay: 8s;
 }
 .baloon10 {
-    animation: float1 20s ease infinite;
-    animation-delay: 10s;
+    animation: float1 20s ease-in infinite;
+    animation-delay: 18s;
 }
 @keyframes float1 {
     0% {
@@ -173,12 +173,12 @@ main {
     }
     1% {
         transform: translate(0px, 100px) rotate(10deg) scale(1, 1);
-        opacity: 0.4;
+        opacity: 0.7;
     }
     
     100% {
         transform: translate(0px, -700px) rotate(-10deg) scale(2.5, 2.5);
-        opacity: 0.2;
+        opacity: 0.4;
     }
 }
 .khalid {
