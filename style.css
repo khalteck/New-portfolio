@@ -103,11 +103,90 @@ main {
     margin-top: 140px;
     position: relative;
 }
+.first--tray {
+    z-index: 2;
+}
+.baloon--cont {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 0.1fr);
+    gap: 20px;
+    place-items: end;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+.baloon--cont > div {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(100px);
+}
+.baloon1 {
+    animation: float1 20s ease infinite;
+    animation-delay: 4s;
+}
+.baloon2 {
+    animation: float1 20s ease infinite;
+    animation-delay: 12s;
+}
+.baloon3 {
+    animation: float1 20s ease infinite;
+    animation-delay: 8s;
+}
+.baloon4 {
+    animation: float1 20s ease infinite;
+    animation-delay: 16s;
+}
+.baloon5 {
+    animation: float1 20s ease infinite;
+    animation-delay: 5s;
+}
+.baloon6 {
+    animation: float1 20s ease infinite;
+    animation-delay: 17s;
+}
+.baloon7 {
+    animation: float1 20s ease infinite;
+    animation-delay: 2s;
+}
+.baloon8 {
+    animation: float1 20s ease infinite;
+    animation-delay: 15s;
+}
+.baloon9 {
+    animation: float1 20s ease infinite;
+    animation-delay: 7s;
+}
+.baloon10 {
+    animation: float1 20s ease infinite;
+    animation-delay: 10s;
+}
+@keyframes float1 {
+    0% {
+        transform: translate(0px, 100px) rotate(10deg) scale(1, 1);
+        opacity: 0;
+    }
+    1% {
+        transform: translate(0px, 100px) rotate(10deg) scale(1, 1);
+        opacity: 0.4;
+    }
+    
+    100% {
+        transform: translate(0px, -700px) rotate(-10deg) scale(2.5, 2.5);
+        opacity: 0.2;
+    }
+}
 .khalid {
     display: inline-block;
     color: white;
     font-size: 100px;
     font-weight: 900;
+    z-index: 100;
 }
 .web-dev {
     display: inline-block;
@@ -365,7 +444,7 @@ h1 {
     width: 65%;
 }
 .word {
-    line-height: 25px;
+    line-height: 30px;
 }
 #about-flex {
     width: 100%;
@@ -968,6 +1047,21 @@ footer {
         padding-top: 0;
         position: relative;
     }
+    @keyframes float1 {
+        0% {
+            transform: translate(0px, 100px) rotate(10deg) scale(1, 1);
+            opacity: 0;
+        }
+        1% {
+            transform: translate(0px, 100px) rotate(10deg) scale(1, 1);
+            opacity: 0.4;
+        }
+        
+        100% {
+            transform: translate(0px, -800px) rotate(-10deg) scale(2.5, 2.5);
+            opacity: 0.2;
+        }
+    }
     .khalid {
         color: white;
         font-size: 50px;
@@ -1275,7 +1369,7 @@ footer {
         height: fit-content;
     }
     .word {
-        line-height: 25px;
+        line-height: 30px;
     }
     #about-flex {
         width: 100%;
@@ -1999,7 +2093,7 @@ footer {
         height: fit-content;
     }
     .word {
-        line-height: 25px;
+        line-height: 30px;
     }
     #about-flex {
         width: 100%;
@@ -2187,49 +2281,49 @@ footer {
     }
     .box2 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("irokoevents.png");
+        background: url("./images/irokoevents.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top;
     }
     .box3 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("expenses\ chart.jpg");
+        background: url("./images/expenses\ chart.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box4 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("afis\ figma.png");
+        background: url("./images/afis\ figma.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box5 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("loopstudios.jpg");
+        background: url("./images/loopstudios.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box6 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("Quote\ Generator.jpg");
+        background: url("./images/Quote\ Generator.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box7 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("tictactoe\ snapshot.png");
+        background: url("./images/tictactoe\ snapshot.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
     .box8 {
         background-color: rgba(93, 237, 205, 1);
-        background: url("tenzies.png");
+        background: url("./images/tenzies.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
