@@ -368,6 +368,17 @@ button:hover {
   background-color: rgba(251, 146, 60, 0.5);
 }
 /*vert section vert section vert section ENDS!!!*/
+#float-links {
+  width: 75%;
+  height: fit-content;
+  position: fixed;
+  bottom: 100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  display: none;
+}
+
 #mob-foot-links {
   width: 80%;
   height: fit-content;
@@ -1340,6 +1351,24 @@ footer {
     background-color: rgba(251, 146, 60, 0.5);
   }
   /*vert section vert section vert section ENDS!!!*/
+
+  #float-links {
+    width: 75%;
+    height: fit-content;
+    background-color: rgba(251, 146, 60, 0.4);
+    padding: 10px 20px;
+    border-radius: 30px;
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    z-index: 999;
+    border: 1px solid #fb923c;
+    box-sizing: border-box;
+  }
 
   #mob-foot-links {
     width: 75%;
