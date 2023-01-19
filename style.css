@@ -1,3 +1,9 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -40,7 +46,19 @@ body {
 }
 .home {
   position: relative;
+  width: 220px;
+  border: 1px solid rgba(18, 20, 24, 0.7);
 }
+.khal {
+  color: #fb923c;
+  font-size: 20px;
+  font-weight: 900;
+  position: absolute;
+  top: 17px;
+  left: 40px;
+  transition: all 0.5s ease-out;
+}
+
 #khal {
   width: 100px;
   color: #fb923c;
@@ -586,8 +604,8 @@ h1 {
 .cont {
   width: 100%;
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(4, 0.25fr);
+  gap: 30px;
+  grid-template-columns: repeat(3, 0.34fr);
 }
 .cont-mobile {
   width: 100%;
@@ -595,16 +613,24 @@ h1 {
   gap: 20px;
   grid-template-columns: repeat(4, 0.25fr);
 }
-.box {
-  height: 220px;
+.box-hold {
+  height: 380px;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #1c1e22;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  background-color: rgba(251, 146, 60, 1);
+  position: relative;
+}
+.box {
+  width: 100%;
+  height: 60%;
   position: relative;
 }
 .box-name {
   width: 100%;
   height: 100%;
-  border-radius: 9px 9px 0 0;
+  /* border-radius: 9px 9px 0 0; */
   text-align: center;
   font-size: 14px;
   background-color: rgba(251, 146, 60, 0.4);
@@ -612,6 +638,7 @@ h1 {
   font-weight: 700;
   position: absolute;
   top: 0;
+  left: 0;
   display: none;
   justify-content: center;
   align-items: center;
@@ -639,6 +666,7 @@ h1 {
     transform: scale(1, 1) translate(0, 0);
   }
 }
+
 .stack-strip {
   width: fit-content;
   margin: 10px auto;
@@ -646,6 +674,7 @@ h1 {
   padding: 3px;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.9);
 }
 .stack-strip > img {
@@ -653,89 +682,168 @@ h1 {
   height: 20px;
   margin: 0 5px;
 }
+.stack-info-hold {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stack-info {
+  width: fit-content;
+  border-radius: 5px;
+  padding: 3px 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  background-color: #121418;
+}
+.stack-info > img {
+  width: 15px;
+  height: 15px;
+}
+.stack-info > p {
+  font-size: 0.7rem;
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  margin: 10px 0;
+  padding: 0;
+  font-size: 1.25rem;
+  color: #fb923c;
+}
+.label {
+  width: 40px;
+  height: auto;
+  position: absolute;
+  bottom: 90px;
+  right: 20px;
+}
+.info {
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+.view-code {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  position: absolute;
+  right: 20px;
+  bottom: 0px;
+}
 .box1 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/todo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: top;
 }
 .box2 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/irokoevents.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box3 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/noteapp.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box4 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/afis\ figma.png");
+  background: url("./images/lorenzofigma.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box5 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/loopstudios.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box6 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/crowdfund.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box7 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/travas.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box8 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/tenzies.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box9 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/ecommerce.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box10 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/Quote\ Generator.jpg");
+  background: url("./images/afrogrids.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box11 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/easybank.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .box12 {
+  width: 100%;
+  height: 65%;
   background-color: rgba(251, 146, 60, 1);
   background: url("./images/meme-gen.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
 }
 .hold {
   width: 40%;
@@ -1582,6 +1690,23 @@ footer {
     display: block;
     margin-top: -50px;
   }
+  .box-hold {
+    height: 380px;
+    padding: 15px;
+    margin: 20px 0;
+    box-sizing: border-box;
+    background-color: #1c1e22;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    position: relative;
+  }
+  .label {
+    width: 40px;
+    height: auto;
+    position: absolute;
+    bottom: 110px;
+    right: 20px;
+  }
   .box {
     width: 100%;
     height: 200px;
@@ -1652,7 +1777,7 @@ footer {
   }
   .box4 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/afis\ figma.png");
+    background: url("./images/lorenzofigma.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -1694,7 +1819,7 @@ footer {
   }
   .box10 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/Quote\ Generator.jpg");
+    background: url("./images/afrogrids.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -2388,7 +2513,7 @@ footer {
   }
   .box4 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/afis\ figma.png");
+    background: url("./images/lorenzofigma.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
