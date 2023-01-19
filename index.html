@@ -1456,127 +1456,127 @@
       AOS.init();
       /* When the user clicks on the button, 
                     toggle between hiding and showing the dropdown content */
-      // function myFunction() {
-      //   document.getElementById("myDropdown").classList.toggle("show");
-      // }
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
 
-      // // Close the dropdown if the user clicks outside of it
-      // window.onclick = function (event) {
-      //   if (!event.target.matches(".dropbtn")) {
-      //     var dropdowns = document.getElementsByClassName("dropdown-content");
-      //     var i;
-      //     for (i = 0; i < dropdowns.length; i++) {
-      //       var openDropdown = dropdowns[i];
-      //       if (openDropdown.classList.contains("show")) {
-      //         openDropdown.classList.remove("show");
-      //       }
-      //     }
-      //   }
-      // };
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
 
-      // // fade In and out
-      // const observerOptions = {
-      //   root: null,
-      //   rootMargin: "0px",
-      //   threshold: 0.2,
-      // };
+      // fade In and out
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.2,
+      };
 
-      // function observerCallback(entries, observer) {
-      //   entries.forEach((entry) => {
-      //     if (entry.isIntersecting) {
-      //       // fade in observed elements that are in view
-      //       entry.target.classList.replace("fadeyOut", "fadeyIn");
-      //     } else {
-      //       // fade out observed elements that are not in view
-      //       entry.target.classList.replace("fadeyIn", "fadeyOut");
-      //     }
-      //   });
-      // }
+      function observerCallback(entries, observer) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // fade in observed elements that are in view
+            entry.target.classList.replace("fadeyOut", "fadeyIn");
+          } else {
+            // fade out observed elements that are not in view
+            entry.target.classList.replace("fadeyIn", "fadeyOut");
+          }
+        });
+      }
 
-      // const observer = new IntersectionObserver(
-      //   observerCallback,
-      //   observerOptions
-      // );
+      const observer = new IntersectionObserver(
+        observerCallback,
+        observerOptions
+      );
 
-      // const fadeElms = document.querySelectorAll(".fadey");
-      // fadeElms.forEach((el) => observer.observe(el));
+      const fadeElms = document.querySelectorAll(".fadey");
+      fadeElms.forEach((el) => observer.observe(el));
 
-      // //header animation
-      // window.addEventListener("scroll", function spread() {
-      //   if (
-      //     document.body.scrollTop > 300 ||
-      //     document.documentElement.scrollTop > 300
-      //   ) {
-      //     document.getElementById("khal").style.opacity = "1";
-      //     document.getElementById("khal").style.transform = "translateX(0%)";
-      //     document.getElementById("star").style.transform = "rotate(215deg)";
-      //   } else {
-      //     document.getElementById("khal").style.opacity = "0";
-      //     document.getElementById("khal").style.transform = "translateX(-30%)";
-      //     document.getElementById("star").style.transform = "rotate(0)";
-      //   }
-      // });
-      // window.addEventListener("load", () => {
-      //   setTimeout(() => {
-      //     document.getElementById("hello").classList.remove("hide");
-      //     document.getElementById("hello").classList.add("bounce");
-      //   }, 300);
-      //   setTimeout(() => {
-      //     document.getElementById("i-am1").classList.remove("hide");
-      //     document.getElementById("i-am1").classList.add("order");
-      //   }, 1100);
-      //   setTimeout(() => {
-      //     document.getElementById("i-am2").classList.remove("hide");
-      //     document.getElementById("i-am2").classList.add("order");
-      //   }, 1500);
-      //   setTimeout(() => {
-      //     document.getElementById("i-am3").classList.remove("hide");
-      //     document.getElementById("i-am3").classList.add("order");
-      //   }, 1900);
-      //   setTimeout(() => {
-      //     document.getElementById("i-am4").classList.remove("hide");
-      //     document.getElementById("i-am4").classList.add("order");
-      //   }, 2100);
-      //   setTimeout(() => {
-      //     document.getElementById("i-am5").classList.remove("hide");
-      //     document.getElementById("i-am5").classList.add("order");
-      //   }, 2500);
-      //   setTimeout(() => {
-      //     document.getElementById("hello").classList.add("pull-up");
-      //     document.getElementById("i-am").classList.add("pull-up");
-      //   }, 3500);
-      //   setTimeout(() => {
-      //     document.getElementById("hello").classList.add("hide");
-      //     document.getElementById("i-am").classList.add("hide");
-      //   }, 4000);
-      //   setTimeout(() => {
-      //     document.getElementById("khalid-pop").classList.remove("hide");
-      //     document.getElementById("khalid-pop").classList.add("scale-up");
-      //   }, 4100);
-      //   setTimeout(() => {
-      //     document.getElementById("dev-pop").classList.remove("hide");
-      //     document.getElementById("dev-pop").classList.add("scale-up");
-      //   }, 4900);
-      //   setTimeout(() => {
-      //     document.getElementById("intro-text").classList.remove("hide");
-      //     document.getElementById("intro-text").classList.add("inline");
-      //     document.getElementById("intro-text").classList.add("scale-up");
-      //   }, 5700);
-      //   setTimeout(() => {
-      //     document.getElementById("contact-btn").classList.remove("hide");
-      //     document.getElementById("contact-btn").classList.add("inline");
-      //     document.getElementById("contact-btn").classList.add("slide-right");
-      //   }, 6500);
-      //   setTimeout(() => {
-      //     document.getElementById("resume-btn").classList.remove("hide");
-      //     document.getElementById("resume-btn").classList.add("inline");
-      //     document.getElementById("resume-btn").classList.add("slide-right");
-      //   }, 7200);
-      //   setTimeout(() => {
-      //     document.getElementById("scroll").classList.remove("hide");
-      //     document.getElementById("scroll").classList.add("scroll");
-      //   }, 7900);
-      // });
+      //header animation
+      window.addEventListener("scroll", function spread() {
+        if (
+          document.body.scrollTop > 300 ||
+          document.documentElement.scrollTop > 300
+        ) {
+          document.getElementById("khal").style.opacity = "1";
+          document.getElementById("khal").style.transform = "translateX(0%)";
+          document.getElementById("star").style.transform = "rotate(215deg)";
+        } else {
+          document.getElementById("khal").style.opacity = "0";
+          document.getElementById("khal").style.transform = "translateX(-30%)";
+          document.getElementById("star").style.transform = "rotate(0)";
+        }
+      });
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("hello").classList.remove("hide");
+          document.getElementById("hello").classList.add("bounce");
+        }, 300);
+        setTimeout(() => {
+          document.getElementById("i-am1").classList.remove("hide");
+          document.getElementById("i-am1").classList.add("order");
+        }, 1100);
+        setTimeout(() => {
+          document.getElementById("i-am2").classList.remove("hide");
+          document.getElementById("i-am2").classList.add("order");
+        }, 1500);
+        setTimeout(() => {
+          document.getElementById("i-am3").classList.remove("hide");
+          document.getElementById("i-am3").classList.add("order");
+        }, 1900);
+        setTimeout(() => {
+          document.getElementById("i-am4").classList.remove("hide");
+          document.getElementById("i-am4").classList.add("order");
+        }, 2100);
+        setTimeout(() => {
+          document.getElementById("i-am5").classList.remove("hide");
+          document.getElementById("i-am5").classList.add("order");
+        }, 2500);
+        setTimeout(() => {
+          document.getElementById("hello").classList.add("pull-up");
+          document.getElementById("i-am").classList.add("pull-up");
+        }, 3500);
+        setTimeout(() => {
+          document.getElementById("hello").classList.add("hide");
+          document.getElementById("i-am").classList.add("hide");
+        }, 4000);
+        setTimeout(() => {
+          document.getElementById("khalid-pop").classList.remove("hide");
+          document.getElementById("khalid-pop").classList.add("scale-up");
+        }, 4100);
+        setTimeout(() => {
+          document.getElementById("dev-pop").classList.remove("hide");
+          document.getElementById("dev-pop").classList.add("scale-up");
+        }, 4900);
+        setTimeout(() => {
+          document.getElementById("intro-text").classList.remove("hide");
+          document.getElementById("intro-text").classList.add("inline");
+          document.getElementById("intro-text").classList.add("scale-up");
+        }, 5700);
+        setTimeout(() => {
+          document.getElementById("contact-btn").classList.remove("hide");
+          document.getElementById("contact-btn").classList.add("inline");
+          document.getElementById("contact-btn").classList.add("slide-right");
+        }, 6500);
+        setTimeout(() => {
+          document.getElementById("resume-btn").classList.remove("hide");
+          document.getElementById("resume-btn").classList.add("inline");
+          document.getElementById("resume-btn").classList.add("slide-right");
+        }, 7200);
+        setTimeout(() => {
+          document.getElementById("scroll").classList.remove("hide");
+          document.getElementById("scroll").classList.add("scroll");
+        }, 7900);
+      });
 
       //to animate the works section
       let boxHold = document.querySelectorAll(".box-hold");
