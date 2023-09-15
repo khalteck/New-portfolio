@@ -750,7 +750,7 @@ h2 {
   width: 100%;
   height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/irokoevents.png");
+  background: url("./images/iroko.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -795,7 +795,7 @@ h2 {
   width: 100%;
   height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/travas.png");
+  background: url("./images/lonacare.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -813,7 +813,7 @@ h2 {
   width: 100%;
   height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/ecommerce.jpg");
+  background: url("./images/shoply.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -1682,6 +1682,19 @@ footer {
   }
   .cont {
     width: 100%;
+    display: grid;
+    gap: 10px;
+    margin-top: -70px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  /* .cont-mobile {
+    width: 100%;
+    display: none;
+    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+  } */
+  /* .cont {
+    width: 100%;
     display: none;
     margin-top: -50px;
   }
@@ -1689,11 +1702,12 @@ footer {
     width: 100%;
     display: block;
     margin-top: -50px;
-  }
+    border: 1px solid red;
+  } */
   .box-hold {
     height: 380px;
     padding: 15px;
-    margin: 20px 0;
+    margin: 20px 0 0;
     box-sizing: border-box;
     background-color: #1c1e22;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
@@ -1763,7 +1777,7 @@ footer {
   }
   .box2 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/irokoevents.png");
+    background: url("./images/iroko.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
@@ -1798,7 +1812,7 @@ footer {
   }
   .box7 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/travas.png");
+    background: url("./images/lonacare.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -2499,7 +2513,7 @@ footer {
   }
   .box2 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/irokoevents.png");
+    background: url("./images/iroko.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
@@ -2534,7 +2548,7 @@ footer {
   }
   .box7 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/travas.png");
+    background: url("./images/lonacare.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
