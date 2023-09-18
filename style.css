@@ -614,7 +614,7 @@ h1 {
   grid-template-columns: repeat(4, 0.25fr);
 }
 .box-hold {
-  height: 380px;
+  height: 400px;
   padding: 15px;
   box-sizing: border-box;
   background-color: #1c1e22;
@@ -720,7 +720,7 @@ h2 {
   width: 40px;
   height: auto;
   position: absolute;
-  bottom: 90px;
+  bottom: 100px;
   right: 20px;
 }
 .info {
@@ -733,9 +733,9 @@ h2 {
   padding: 0;
   font-size: 0.8rem;
   text-decoration: underline;
-  position: absolute;
+  /* position: absolute;
   right: 20px;
-  bottom: 0px;
+  bottom: 0px; */
 }
 .box1 {
   width: 100%;
@@ -1705,7 +1705,7 @@ footer {
     border: 1px solid red;
   } */
   .box-hold {
-    height: 380px;
+    height: 400px;
     padding: 15px;
     margin: 20px 0 0;
     box-sizing: border-box;
@@ -1826,7 +1826,7 @@ footer {
   }
   .box9 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/ecommerce.jpg");
+    background: url("./images/shoply.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -2562,7 +2562,7 @@ footer {
   }
   .box9 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/ecommerce.jpg");
+    background: url("./images/shoply.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
