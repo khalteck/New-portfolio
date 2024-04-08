@@ -489,7 +489,7 @@ h1 {
   justify-content: space-between;
 }
 .half2 {
-  width: fit-content;
+  min-width: fit-content;
   height: fit-content;
   padding: 20px 10px;
   box-sizing: border-box;
