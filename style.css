@@ -482,6 +482,9 @@ h1 {
 .word {
   line-height: 30px;
 }
+.center-text {
+  text-align: center;
+}
 #about-flex {
   width: 100%;
   height: fit-content;
@@ -601,12 +604,25 @@ h1 {
   align-items: center;
   justify-content: space-between;
 }
-.cont {
+/* .cont {
   width: 80%;
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(2, 0.5fr);
+} */
+.cont {
+  width: 80%;
+  margin: 0 auto; /* Center the container itself */
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(
+    2,
+    1fr
+  ); /* Adjust column size for better alignment */
+  justify-content: center; /* Center items horizontally within the container */
+  align-items: center; /* Center items vertically within the container */
 }
+
 .cont-mobile {
   width: 100%;
   display: none;
@@ -614,7 +630,7 @@ h1 {
   grid-template-columns: repeat(4, 0.25fr);
 }
 .box-hold {
-  height: 400px;
+  height: 460px;
   padding: 15px;
   box-sizing: border-box;
   background-color: #1c1e22;
@@ -721,7 +737,7 @@ h2 {
   width: 40px;
   height: auto;
   position: absolute;
-  bottom: 100px;
+  top: 300px;
   right: 20px;
 }
 .info {
@@ -742,7 +758,7 @@ h2 {
   width: 100%;
   height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/todo.jpg");
+  background: url("./images/tcipod.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -751,7 +767,7 @@ h2 {
   width: 100%;
   height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/iroko.png");
+  background: url("./images/aashiikii.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -760,7 +776,8 @@ h2 {
   width: 100%;
   height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/noteapp.png");
+  background: url("./images/shoply.png");
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -778,79 +795,7 @@ h2 {
   width: 100%;
   height: 65%;
   background-color: rgba(251, 146, 60, 1);
-  background: url("./images/loopstudios.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box6 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/crowdfund.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box7 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/lonacare.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box8 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/tenzies.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box9 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/shoply.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box10 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/afrogrids.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box11 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/easybank.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box12 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/meme-gen.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-}
-.box13 {
-  width: 100%;
-  height: 65%;
-  background-color: rgba(251, 146, 60, 1);
-  background: url("./images/aashiikii.png");
+  background: url("./images/noteapp.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -968,7 +913,7 @@ h2 {
 footer {
   width: 75%;
   height: fit-content;
-  margin: auto;
+  margin: 200px auto;
   z-index: 1;
   text-align: center;
   margin-bottom: 30px;
@@ -1697,25 +1642,8 @@ footer {
     margin-top: -70px;
     grid-template-columns: repeat(1, 1fr);
   }
-  /* .cont-mobile {
-    width: 100%;
-    display: none;
-    gap: 10px;
-    grid-template-columns: repeat(1, 1fr);
-  } */
-  /* .cont {
-    width: 100%;
-    display: none;
-    margin-top: -50px;
-  }
-  .cont-mobile {
-    width: 100%;
-    display: block;
-    margin-top: -50px;
-    border: 1px solid red;
-  } */
   .box-hold {
-    height: 400px;
+    height: 420px;
     padding: 15px;
     margin: 20px 0 0;
     box-sizing: border-box;
@@ -1728,7 +1656,7 @@ footer {
     width: 40px;
     height: auto;
     position: absolute;
-    bottom: 130px;
+    top: 230px;
     right: 20px;
   }
   .box {
@@ -1778,23 +1706,24 @@ footer {
     height: 20px;
     margin: 0 5px;
   }
+
   .box1 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/todo.jpg");
+    background: url("./images/tcipod.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left;
   }
   .box2 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/iroko.png");
+    background: url("./images/aashiikii.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
   }
   .box3 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/noteapp.png");
+    background: url("./images/shoply.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -1808,60 +1737,12 @@ footer {
   }
   .box5 {
     background-color: rgba(251, 146, 60, 1);
-    background: url("./images/loopstudios.jpg");
+    background: url("./images/noteapp.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
-  .box6 {
-    background-color: rgba(251, 146, 60, 1);
-    background: url("./images/crowdfund.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .box7 {
-    background-color: rgba(251, 146, 60, 1);
-    background: url("./images/lonacare.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .box8 {
-    background-color: rgba(251, 146, 60, 1);
-    background: url("./images/tenzies.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .box9 {
-    background-color: rgba(251, 146, 60, 1);
-    background: url("./images/shoply.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .box10 {
-    background-color: rgba(251, 146, 60, 1);
-    background: url("./images/afrogrids.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .box11 {
-    background-color: rgba(251, 146, 60, 1);
-    background: url("./images/easybank.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  .box12 {
-    background-color: rgba(251, 146, 60, 1);
-    background: url("./images/meme-gen.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+
   .hold {
     width: 40%;
     height: fit-content;
