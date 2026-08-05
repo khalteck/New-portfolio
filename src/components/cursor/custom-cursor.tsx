@@ -15,22 +15,19 @@ export function CustomCursor({ className, manageDocumentCursor = true }: CustomC
   useEffect(() => {
     if (reducedMotion || !finePointer || !cursor.current) return;
     const element = cursor.current;
-    const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    const current = { ...target };
+    const position = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     let frame = 0;
-    let running = !document.hidden;
 
     if (manageDocumentCursor) document.documentElement.classList.add("has-custom-cursor");
-    const animate = () => {
-      current.x += (target.x - current.x) * 0.17;
-      current.y += (target.y - current.y) * 0.17;
-      element.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
-      frame = running ? window.requestAnimationFrame(animate) : 0;
+    const renderPosition = () => {
+      frame = 0;
+      element.style.transform = `translate3d(${position.x}px, ${position.y}px, 0)`;
     };
     const move = (event: PointerEvent) => {
-      target.x = event.clientX;
-      target.y = event.clientY;
+      position.x = event.clientX;
+      position.y = event.clientY;
       element.dataset.visible = "true";
+      if (!frame) frame = window.requestAnimationFrame(renderPosition);
     };
     const leave = () => {
       element.dataset.visible = "false";
@@ -40,27 +37,14 @@ export function CustomCursor({ className, manageDocumentCursor = true }: CustomC
       element.dataset.state =
         targetElement?.closest("[data-cursor]")?.getAttribute("data-cursor") ?? "default";
     };
-    const handleVisibility = () => {
-      running = !document.hidden;
-      if (running && !frame) frame = window.requestAnimationFrame(animate);
-      if (!running && frame) {
-        window.cancelAnimationFrame(frame);
-        frame = 0;
-      }
-    };
-
-    if (running) frame = window.requestAnimationFrame(animate);
     window.addEventListener("pointermove", move, { passive: true });
     document.addEventListener("pointerover", over, { passive: true });
-    document.addEventListener("visibilitychange", handleVisibility);
     document.documentElement.addEventListener("mouseleave", leave);
     return () => {
-      running = false;
       if (manageDocumentCursor) document.documentElement.classList.remove("has-custom-cursor");
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("pointermove", move);
       document.removeEventListener("pointerover", over);
-      document.removeEventListener("visibilitychange", handleVisibility);
       document.documentElement.removeEventListener("mouseleave", leave);
     };
   }, [finePointer, manageDocumentCursor, reducedMotion]);

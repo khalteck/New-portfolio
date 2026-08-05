@@ -59,12 +59,11 @@
   position: fixed;
   z-index: 0;
   inset: 0;
-  opacity: 0.72;
+  opacity: 0.9;
   pointer-events: none;
 }
 
 main,
-.site-navigation,
 .contact-footer {
   position: relative;
   z-index: 1;
@@ -86,11 +85,6 @@ main,
 
 .custom-cursor[data-visible="true"] {
   opacity: 1;
-}
-
-.custom-cursor--drawer {
-  position: fixed;
-  z-index: 2;
 }
 
 .custom-cursor svg {
@@ -179,7 +173,6 @@ main,
 
   .preloader,
   .page-transition,
-  .particle-field,
   .custom-cursor {
     display: none !important;
   }

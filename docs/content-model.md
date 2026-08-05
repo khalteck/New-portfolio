@@ -26,14 +26,14 @@ Use the narrowest available source and preserve its limitations.
 
 The current résumé-backed facts are:
 
-- Khalid Oyeneye, Senior Frontend Engineer, Lagos, Nigeria;
+- Khalid Oyeneye, Fullstack SaaS Engineer, Lagos, Nigeria;
 - `khalidoyeneye@gmail.com`;
-- 1840 & Company — Senior Frontend Engineer, June 2024–present, Kansas/United States remote;
-- Atop Web Technologies — Frontend Engineer, April 2023–January 2024, Stockholm/Sweden remote;
-- Iroko Events International — Frontend Developer, February 2022–January 2023, Budapest/Hungary
+- 1840 & Company: Senior Frontend Engineer, June 2024 to present, Kansas/United States remote;
+- Atop Web Technologies: Frontend Engineer, April 2023 to January 2024, Stockholm/Sweden remote;
+- Iroko Events International: Frontend Developer, February 2022 to January 2023, Budapest/Hungary
   remote;
-- Agrofeed Integrated Services — Frontend Developer, November 2019–January 2022, Lagos/Nigeria;
-- University of Ilorin — BEng Electrical & Electronics Engineering, August 2024; and
+- Agrofeed Integrated Services: Frontend Developer, November 2019 to January 2022, Lagos/Nigeria;
+- University of Ilorin: BEng Electrical & Electronics Engineering, August 2024; and
 - TCI Podcast client application and admin CMS built with React, Redux Toolkit, and Firebase,
   including episode CRUD, pagination, and audio playback.
 
@@ -50,7 +50,7 @@ Agrofeed. Do not move or generalize those figures.
 | Field          | Type     | Rule                                                                         |
 | -------------- | -------- | ---------------------------------------------------------------------------- |
 | `name`         | `string` | Verified public name                                                         |
-| `role`         | `string` | Current positioning; presently `Senior Frontend Engineer`                    |
+| `role`         | `string` | Current positioning; presently `Fullstack SaaS Engineer`                     |
 | `location`     | `string` | City and country only                                                        |
 | `email`        | `string` | Valid verified address; rendered through `mailto:`                           |
 | `summary`      | `string` | Concise positioning, not an unsupported outcome claim                        |
@@ -81,7 +81,6 @@ Hungary. Changing a display value requires updating its basis and source evidenc
 
 ### Narrative and capabilities
 
-- `philosophy` is one evidence-safe engineering statement.
 - `about` is an ordered array of biography paragraphs.
 - `capabilities[]` contains a `title` and `description`; a capability must be supported by the
   résumé or a published project.
@@ -159,7 +158,7 @@ An incoming entry is deliberately unable to satisfy the published interface. It 
 - `status: "incoming"`;
 - `number`;
 - internal `id`;
-- visible `title` ending in `— Incoming`;
+- visible `title` ending in `| In progress`;
 - neutral `shortDescription`; and
 - `previewLabel` that clearly communicates placeholder status.
 

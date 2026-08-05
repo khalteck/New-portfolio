@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { portfolio, publishedProjects } from "@/data/portfolio";
-import { absoluteUrl, getRouteMetadata } from "@/helpers/route-metadata";
+import {
+  absoluteUrl,
+  getRouteMetadata,
+  getStructuredData,
+  SITE_NAME
+} from "@/helpers/route-metadata";
 
 const setMeta = (selector: string, attributes: Record<string, string>) => {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -22,6 +26,7 @@ export function RouteHead() {
     document.title = metadata.title;
 
     setMeta('meta[name="description"]', { name: "description", content: metadata.description });
+    setMeta('meta[name="author"]', { name: "author", content: SITE_NAME });
     setMeta('meta[name="robots"]', { name: "robots", content: metadata.robots });
     setMeta('meta[property="og:title"]', { property: "og:title", content: metadata.title });
     setMeta('meta[property="og:description"]', {
@@ -31,7 +36,23 @@ export function RouteHead() {
     setMeta('meta[property="og:type"]', { property: "og:type", content: metadata.type });
     setMeta('meta[property="og:url"]', { property: "og:url", content: canonicalUrl });
     setMeta('meta[property="og:image"]', { property: "og:image", content: imageUrl });
+    setMeta('meta[property="og:image:alt"]', {
+      property: "og:image:alt",
+      content: metadata.imageAlt
+    });
+    setMeta('meta[property="og:site_name"]', { property: "og:site_name", content: SITE_NAME });
+    setMeta('meta[property="og:locale"]', { property: "og:locale", content: "en_NG" });
     setMeta('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
+    setMeta('meta[name="twitter:title"]', { name: "twitter:title", content: metadata.title });
+    setMeta('meta[name="twitter:description"]', {
+      name: "twitter:description",
+      content: metadata.description
+    });
+    setMeta('meta[name="twitter:image"]', { name: "twitter:image", content: imageUrl });
+    setMeta('meta[name="twitter:image:alt"]', {
+      name: "twitter:image:alt",
+      content: metadata.imageAlt
+    });
 
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
@@ -41,34 +62,7 @@ export function RouteHead() {
     }
     canonical.href = canonicalUrl;
 
-    const project = publishedProjects.find(
-      (candidate) => `/projects/${candidate.slug}` === metadata.canonicalPath
-    );
-    const structuredData = project
-      ? {
-          "@context": "https://schema.org",
-          "@type": project.slug === "relayops" ? "SoftwareApplication" : "CreativeWork",
-          name: project.title,
-          description: project.shortDescription,
-          creator: { "@type": "Person", name: portfolio.profile.name },
-          dateCreated: project.year,
-          url: project.liveUrl,
-          codeRepository: project.sourceUrl,
-          programmingLanguage: project.technologies
-        }
-      : metadata.canonicalPath === "/"
-        ? {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: portfolio.profile.name,
-            jobTitle: portfolio.profile.role,
-            email: `mailto:${portfolio.profile.email}`,
-            address: { "@type": "PostalAddress", addressLocality: "Lagos", addressCountry: "NG" },
-            sameAs: portfolio.socialLinks.map((social) => social.href),
-            url: absoluteUrl("/")
-          }
-        : undefined;
-
+    const structuredData = getStructuredData(location.pathname);
     let script = document.head.querySelector<HTMLScriptElement>("#portfolio-structured-data");
     if (!structuredData) {
       script?.remove();

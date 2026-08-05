@@ -54,12 +54,12 @@ const tciPreview: ProjectImage = {
 export const portfolio: PortfolioContent = {
   profile: {
     name: "Khalid Oyeneye",
-    role: "Senior Frontend Engineer",
+    role: "Fullstack SaaS Engineer",
     location: "Lagos, Nigeria",
     email: "khalidoyeneye@gmail.com",
     summary:
-      "I architect and ship accessible, high-performance product experiences—and the systems behind them—for teams working across borders.",
-    availability: "Open to strong remote frontend roles and select paid product engagements.",
+      "I build production SaaS products across web and mobile, from product architecture and interfaces to APIs, data, testing, and delivery.",
+    availability: "Open to opportunities.",
     resumeUrl: "/khalid-oyeneye-resume.pdf"
   },
   socialLinks: [
@@ -80,32 +80,26 @@ export const portfolio: PortfolioContent = {
       visible: true
     }
   ],
-  philosophy:
-    "Great interfaces make complex systems feel clear, fast, and trustworthy—without hiding the engineering underneath.",
   about: [
-    "I’m Khalid, a Senior Frontend Engineer based in Lagos. I build product interfaces where architecture, interaction design, accessibility, and performance are treated as one engineering problem.",
-    "My work spans frontend systems, product delivery, technical leadership, API and realtime integrations, and the practical tooling that helps teams ship with confidence. I’m at my best turning complex operational needs into calm, legible software."
+    "I build SaaS products end to end across web and mobile.",
+    "My scope adapts to the product and team, whether that means fullstack delivery or focused ownership of frontend, mobile, backend, or another delivery area."
   ],
   capabilities: [
     {
-      title: "Frontend architecture",
-      description:
-        "Scalable React systems, typed boundaries, reusable components, and deliberate state ownership."
+      title: "SaaS product engineering",
+      description: "Product architecture and fullstack delivery from idea to production."
     },
     {
-      title: "Product engineering",
-      description:
-        "End-to-end delivery that connects user needs, interface craft, APIs, data, and deployment."
+      title: "Frontend and mobile",
+      description: "Accessible interfaces, maintainable state, and responsive product experiences."
     },
     {
-      title: "Quality by design",
-      description:
-        "Accessibility, responsive behavior, performance, testing, and failure states built into the work."
+      title: "Backend and data",
+      description: "APIs, data models, authentication, realtime workflows, and integrations."
     },
     {
-      title: "Technical leadership",
-      description:
-        "Task breakdown, reviews, mentoring, cross-functional alignment, and dependable delivery practices."
+      title: "Quality and delivery",
+      description: "Testing, performance, CI/CD, review, and cross-functional execution."
     }
   ],
   technologyGroups: [
@@ -146,7 +140,7 @@ export const portfolio: PortfolioContent = {
       start: "Jun 2024",
       end: "Present",
       summary:
-        "Architecting core frontend systems and leading delivery across recruitment, marketplace, and financial-service products.",
+        "Lead frontend architecture and delivery across recruitment, marketplace, and financial products.",
       achievements: [
         "Breaks down work, reviews pull requests, and supports frontend engineers and interns.",
         "Contributed to 1840 Global Talent Cloud, Link-able and its AI LinkFinder search experience, and First Market."
@@ -167,8 +161,7 @@ export const portfolio: PortfolioContent = {
       title: "Frontend Engineer",
       start: "Apr 2023",
       end: "Jan 2024",
-      summary:
-        "Led Scorebox frontend architecture and built a component system focused on quality, performance, and product stability.",
+      summary: "Led Scorebox frontend architecture and built its reusable component system.",
       achievements: [
         "Established reusable interface foundations for a pre-launch product.",
         "Delivered frontend performance, reliability, and product-quality improvements."
@@ -182,7 +175,7 @@ export const portfolio: PortfolioContent = {
       start: "Feb 2022",
       end: "Jan 2023",
       summary:
-        "Built the public voting experience and admin tooling for a modern events platform using React and Firebase.",
+        "Built the public voting experience and administration tools with React and Firebase.",
       achievements: [
         "Resume-reported voter participation increased by 50%.",
         "Resume-reported admin effort fell by 70% and voting errors by 95%."
@@ -195,8 +188,7 @@ export const portfolio: PortfolioContent = {
       title: "Frontend Developer",
       start: "Nov 2019",
       end: "Jan 2022",
-      summary:
-        "Built and maintained the company web experience while collaborating across product and business needs.",
+      summary: "Built and maintained the company website across product and business requirements.",
       achievements: [
         "Resume-reported sales increased by 20% after the company website launch.",
         "Resume-reported search ranking improved by 100% through SEO work."
@@ -213,9 +205,9 @@ export const portfolio: PortfolioContent = {
       year: "2026",
       role: "Product architecture · Frontend · Backend · Delivery",
       shortDescription:
-        "A multi-tenant incident-operations platform that keeps ownership, SLA pressure, collaboration, and audit history in one workflow.",
+        "A multi-tenant incident operations platform for ownership, SLA tracking, collaboration, and audit history.",
       overview:
-        "RelayOps is a production-oriented service-operations platform for distributed product teams. It turns incident response into a clear, tenant-aware workflow backed by explicit permissions, durable history, realtime updates, and measurable service commitments.",
+        "RelayOps gives distributed product teams one workflow for incident ownership, response, communication, and reporting. Permissions, tenant boundaries, realtime updates, and audit history remain explicit throughout.",
       technologies: [
         "React 19",
         "TypeScript",
@@ -294,35 +286,34 @@ export const portfolio: PortfolioContent = {
         )
       ],
       problem: [
-        "Distributed response teams often reconstruct ownership, deadlines, and decisions across several tools while an incident is active.",
-        "The product needed to make tenant boundaries, permissions, responsibility, SLA state, and the incident record explicit without turning the interface into a dense control panel."
+        "Distributed teams often reconstruct incident ownership, deadlines, and decisions across several tools.",
+        "The interface needed to expose permissions, responsibility, SLA state, and history without becoming a dense control panel."
       ],
       solution: [
-        "A focused incident workflow combines organisation and workspace context, assignment, status transitions, SLA snapshots, comments, immutable timeline entries, notifications, audit history, and analytics.",
-        "The frontend and backend share validated contracts while remaining independently deployable. URL state keeps incidents, filters, sorting, pagination, and saved views addressable."
+        "A focused workflow combines workspace context, assignment, SLA snapshots, comments, timeline entries, notifications, audit history, and analytics.",
+        "The independently deployable frontend and API share validated contracts. URL state keeps incidents, filters, sorting, and saved views addressable."
       ],
       responsibilities: [
         "Designed the product architecture and responsive interface system.",
-        "Built the React application, Express API, shared contracts, realtime layer, and MongoDB persistence model.",
-        "Implemented secure session rotation, CSRF protection, tenant-scoped authorization, account lifecycle email, and role capabilities.",
-        "Created unit, integration, accessibility, and browser-test infrastructure.",
-        "Configured CI workflows for linting, strict types, targeted coverage, production builds, and browser suites, plus Render deployment for both services."
+        "Built the React application, Express API, shared contracts, realtime layer, and MongoDB model.",
+        "Implemented session security, CSRF protection, tenant authorization, lifecycle email, and role capabilities.",
+        "Created the test, CI, and Render deployment pipelines for both services."
       ],
       challenges: [
-        "Keeping optimistic frontend state aligned with transaction-backed changes and duplicate or stale realtime revisions.",
-        "Enforcing tenant and workspace permissions at both the interface and API boundaries without treating the client as a security layer.",
-        "Making data-heavy incident workflows usable across keyboard, touch, reduced motion, light/dark presentation, and narrow screens."
+        "Keeping optimistic state aligned with transactions and realtime revisions.",
+        "Enforcing tenant and workspace permissions at both interface and API boundaries.",
+        "Supporting keyboard, touch, reduced motion, color themes, and narrow screens."
       ],
       outcomes: [
-        "Delivered a public two-service deployment with independently buildable frontend and backend applications.",
+        "Delivered independently buildable frontend and backend services.",
         "Created 29 test/spec files spanning contracts, business rules, integration behavior, UI states, accessibility, and browser workflows.",
-        "Targeted coverage artifacts report 96.29% backend critical-rule lines, 86.36% frontend critical-state lines, and 100% shared-contract lines. These are scoped surfaces, not whole-repository coverage.",
-        "Documented architecture, data boundaries, accessibility expectations, deployment, and deliberate product trade-offs."
+        "Targeted coverage reports 96.29% for backend critical rules, 86.36% for frontend critical state, and 100% for shared contracts.",
+        "Documented architecture, data boundaries, accessibility, deployment, and product tradeoffs."
       ],
       liveUrl: "https://relayops-frontend.onrender.com/",
       sourceUrl: "https://github.com/khalteck/RelayOps",
       sourceNote:
-        "Verified from the public RelayOps repository, local documentation, tracked reports, and live Render endpoints on 5 August 2026. No adoption, business-impact, green-CI, or currently passing browser-job claim is published."
+        "Verified from the public repository, project documentation, reports, and live Render services on 5 August 2026. Coverage figures apply only to the named critical surfaces."
     },
     {
       status: "published",
@@ -331,9 +322,9 @@ export const portfolio: PortfolioContent = {
       title: "TCI Podcast",
       role: "Frontend application · Admin CMS",
       shortDescription:
-        "A bright, editorial podcast experience sharing migration stories, supported by a purpose-built episode administration workflow.",
+        "A podcast website and episode administration workflow for migration stories.",
       overview:
-        "The Chronicles of an Immigrant shares migration stories from around the world. I built the listener-facing product and the administrative experience used to manage its episode catalogue.",
+        "The Chronicles of an Immigrant publishes migration stories from around the world. I built the listener website and the administration interface for its episode catalogue.",
       technologies: ["React", "Redux Toolkit", "Firebase", "Tailwind CSS"],
       preview: tciPreview,
       gallery: [
@@ -344,36 +335,36 @@ export const portfolio: PortfolioContent = {
         }
       ],
       problem: [
-        "The podcast needed a distinctive public home for its stories and a manageable way to keep episode content current.",
-        "Both the audience experience and routine publishing workflow had to feel coherent with the TCI visual identity."
+        "The podcast needed a public home for its stories and a practical episode publishing workflow.",
+        "The listener and administration experiences needed to share one clear visual system."
       ],
       solution: [
-        "The client application presents podcast details, producers, episode discovery, pagination, and audio playback options.",
-        "A Firebase-backed admin dashboard supports create, read, update, and delete workflows for episode management."
+        "The client presents podcast details, producers, episode discovery, pagination, and playback options.",
+        "A Firebase-backed dashboard supports episode creation, editing, publishing, and removal."
       ],
       responsibilities: [
         "Built the client-facing application and administrative dashboard.",
-        "Implemented catalogue pagination, episode presentation, audio playback paths, and content-management operations.",
-        "Translated the podcast’s bright visual identity into responsive React interfaces."
+        "Implemented catalogue pagination, episode presentation, playback paths, and content operations.",
+        "Built responsive React interfaces from the podcast visual identity."
       ],
       challenges: [
-        "Balancing a highly expressive brand palette with readable, repeatable content patterns.",
-        "Keeping listener-facing data and administrative CRUD workflows aligned through Firebase."
+        "Balancing the brand palette with readable, repeatable content patterns.",
+        "Keeping public episode data and administration workflows aligned through Firebase."
       ],
       outcomes: [
-        "Delivered both the public listener experience and an internal episode-management workflow.",
-        "No quantitative outcome, public source permission, or currently reliable live URL is claimed."
+        "Delivered the public listener experience and internal episode management workflow.",
+        "No quantitative outcome or currently reliable public URL is claimed."
       ],
       sourceNote:
-        "Verified from the existing portfolio, current resume, and retained public screenshot. The broken live URL and unrelated commented source link are intentionally omitted."
+        "Verified from the existing portfolio, current résumé, and retained product screenshot. Unreliable public links are omitted."
     },
     ...["03", "04", "05", "06"].map((number) => ({
       status: "incoming" as const,
       number,
       id: `incoming-${number}`,
-      title: `Project ${number} — Incoming`,
-      shortDescription: "A new verified case study will replace this editorial placeholder.",
-      previewLabel: "New work in preparation"
+      title: `Project ${number} | In progress`,
+      shortDescription: "Reserved for a verified case study.",
+      previewLabel: "Case study in preparation"
     }))
   ]
 };

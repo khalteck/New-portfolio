@@ -28,7 +28,7 @@ describe("session preloader", () => {
     vi.useFakeTimers();
     render(<Preloader />);
 
-    expect(screen.getByTestId("preloader")).toHaveTextContent("KHALID");
+    expect(screen.getByTestId("preloader")).toHaveTextContent("KO");
     expect(sessionStorage.getItem(sessionKey)).toBe("true");
 
     void act(() => vi.advanceTimersByTime(1_449));

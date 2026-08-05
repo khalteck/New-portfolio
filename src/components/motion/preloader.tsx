@@ -23,8 +23,8 @@ export function Preloader() {
 
   return (
     <div className="preloader" aria-hidden="true" data-testid="preloader">
-      <div className="preloader__word" aria-label="Khalid">
-        {[..."KHALID"].map((letter, index) => (
+      <div className="preloader__word" aria-label="KO">
+        {[..."KO"].map((letter, index) => (
           <span
             key={`${letter}-${index}`}
             style={{ "--letter-index": index } as React.CSSProperties}

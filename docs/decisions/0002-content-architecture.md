@@ -36,7 +36,7 @@ No backend or CMS is needed for this small, version-controlled content set.
 - **Markdown/MDX case studies:** useful for a larger writing archive, but introduces a second content
   pipeline without solving evidence typing for profile, experience, and placeholders.
 - **Headless CMS:** adds authentication, network/runtime failure, schema duplication, and operational
-  overhead to a deliberately frontend-only portfolio.
+  overhead to a focused engineering portfolio.
 - **One project type with many optional fields:** cannot prevent an incomplete placeholder from
   acquiring a route or partial professional claim.
 

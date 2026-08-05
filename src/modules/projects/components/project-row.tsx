@@ -39,6 +39,8 @@ export function ProjectRow({ project, onPreview, onPointerMove }: ProjectRowProp
         to={`/projects/${project.slug}`}
         aria-label={`View ${project.title} case study`}
         data-cursor="project"
+        data-analytics-event="project_open"
+        data-analytics-label={project.slug}
         onPointerEnter={(event) => onPreview(project, event.currentTarget)}
         onPointerMove={(event) => onPointerMove(event.clientX, event.clientY)}
         onPointerLeave={() => onPreview(undefined)}

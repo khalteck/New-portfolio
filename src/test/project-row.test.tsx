@@ -65,7 +65,7 @@ describe("project row input equivalents", () => {
       </MemoryRouter>
     );
 
-    const slot = screen.getByRole("article", { name: /Project 03 — Incoming, incoming/i });
+    const slot = screen.getByRole("article", { name: /Project 03 \| In progress, incoming/i });
     expect(slot).toBeInTheDocument();
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
     expect(screen.queryByRole("button")).not.toBeInTheDocument();

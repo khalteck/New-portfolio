@@ -8,11 +8,19 @@ export function PageTransition() {
   const container = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const reducedMotion = useReducedMotion();
+  const skipPageTransition = Boolean(
+    (location.state as { skipPageTransition?: boolean } | null)?.skipPageTransition
+  );
 
   useGSAP(
     () => {
-      if (reducedMotion || !container.current) return;
+      if (!container.current) return;
       const layers = container.current.querySelectorAll("span");
+      if (reducedMotion || skipPageTransition) {
+        gsap.set(container.current, { autoAlpha: 0 });
+        gsap.set(layers, { scaleX: 0 });
+        return;
+      }
       gsap
         .timeline()
         .set(container.current, { autoAlpha: 1 })
@@ -25,7 +33,11 @@ export function PageTransition() {
         })
         .set(container.current, { autoAlpha: 0 });
     },
-    { scope: container, dependencies: [location.key, reducedMotion], revertOnUpdate: true }
+    {
+      scope: container,
+      dependencies: [location.key, reducedMotion, skipPageTransition],
+      revertOnUpdate: true
+    }
   );
 
   return (

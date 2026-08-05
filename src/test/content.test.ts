@@ -2,7 +2,12 @@ import { describe, expect, it } from "vitest";
 import { portfolio, publishedProjects } from "@/data/portfolio";
 import { cn } from "@/helpers/cn";
 import { externalLinkProps } from "@/helpers/external-link";
-import { absoluteUrl, getRouteMetadata, SITE_URL } from "@/helpers/route-metadata";
+import {
+  absoluteUrl,
+  getRouteMetadata,
+  PUBLISHED_PROJECT_PATHS,
+  SITE_URL
+} from "@/helpers/route-metadata";
 import {
   getAdjacentProjects,
   getPublishedProject,
@@ -13,9 +18,9 @@ describe("portfolio content", () => {
   it("keeps identity, availability, public channels, and verified metrics centralized", () => {
     expect(portfolio.profile).toMatchObject({
       name: "Khalid Oyeneye",
-      role: "Senior Frontend Engineer",
+      role: "Fullstack SaaS Engineer",
       location: "Lagos, Nigeria",
-      availability: "Open to strong remote frontend roles and select paid product engagements.",
+      availability: "Open to opportunities.",
       resumeUrl: "/khalid-oyeneye-resume.pdf"
     });
     expect(portfolio.profile.email).toMatch(/@/);
@@ -59,7 +64,7 @@ describe("portfolio content", () => {
 
     const incoming = portfolio.projects.filter((project) => project.status === "incoming");
     expect(incoming.map(({ number }) => number)).toEqual(["03", "04", "05", "06"]);
-    expect(incoming.every(({ title }) => title.endsWith("— Incoming"))).toBe(true);
+    expect(incoming.every(({ title }) => title.endsWith("| In progress"))).toBe(true);
     expect(hasOnlySafeIncomingProjects()).toBe(true);
 
     for (const project of incoming) {
@@ -91,7 +96,7 @@ describe("portfolio content", () => {
       liveUrl: "https://relayops-frontend.onrender.com/",
       sourceUrl: "https://github.com/khalteck/RelayOps"
     });
-    expect(relayOps?.outcomes.join(" ")).toMatch(/two-service deployment/i);
+    expect(relayOps?.outcomes.join(" ")).toMatch(/frontend and backend services/i);
     expect(relayOps?.outcomes.join(" ")).not.toMatch(/adoption|revenue|customers/i);
 
     expect(tciPodcast?.technologies).toEqual(
@@ -119,25 +124,26 @@ describe("portfolio content", () => {
 
 describe("route metadata and shared helpers", () => {
   it("returns route-specific metadata only for the three public routes", () => {
+    expect(PUBLISHED_PROJECT_PATHS).toEqual(["/projects/relayops", "/projects/tci-podcast"]);
     expect(getRouteMetadata("/")).toMatchObject({
-      title: "Khalid Oyeneye — Senior Frontend Engineer",
+      title: "Khalid Oyeneye | Fullstack SaaS Web and Mobile Engineer",
       canonicalPath: "/",
       type: "website"
     });
     expect(getRouteMetadata("/projects/relayops/")).toMatchObject({
-      title: "RelayOps — Khalid Oyeneye",
+      title: "RelayOps | Khalid Oyeneye",
       canonicalPath: "/projects/relayops",
       image: "/images/projects/relayops/social-preview.png",
       type: "article"
     });
     expect(getRouteMetadata("/projects/tci-podcast")).toMatchObject({
-      title: "TCI Podcast — Khalid Oyeneye",
+      title: "TCI Podcast | Khalid Oyeneye",
       canonicalPath: "/projects/tci-podcast",
       image: "/images/projects/tci-podcast/tci-podcast-1440.webp",
       type: "article"
     });
     expect(getRouteMetadata("/projects/incoming-03")).toMatchObject({
-      title: "Page not found — Khalid Oyeneye",
+      title: "Page not found | Khalid Oyeneye",
       canonicalPath: "/projects/incoming-03",
       type: "website"
     });

@@ -48,8 +48,8 @@ export function SelectedProjectsSection() {
         <SectionTitle
           titleId="projects-title"
           eyebrow="04 · Selected work"
-          title="Systems with evidence behind them."
-          description="Two verified case studies now. Four deliberate spaces for the new work replacing this first release."
+          title="Selected product work."
+          description="Published case studies and projects in progress."
         />
       </Reveal>
       <div className="project-list">

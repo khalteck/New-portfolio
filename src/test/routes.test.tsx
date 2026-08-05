@@ -25,7 +25,7 @@ describe("application routes", () => {
   it("renders the homepage at the canonical root", () => {
     renderRoute("/");
     expect(
-      screen.getByRole("heading", { level: 1, name: /Senior Frontend\s*\/\s*Engineer/i })
+      screen.getByRole("heading", { level: 1, name: /Fullstack SaaS\s*\/\s*Engineer/i })
     ).toBeInTheDocument();
   });
 
@@ -56,7 +56,7 @@ describe("application routes", () => {
     expect(
       within(main).queryByRole("link", { name: /Live product|Source code/ })
     ).not.toBeInTheDocument();
-    expect(within(main).getByText(/create, read, update, and delete/i)).toBeInTheDocument();
+    expect(within(main).getByText(/episode creation, editing, publishing/i)).toBeInTheDocument();
   });
 
   it.each(["/projects/incoming-03", "/projects/not-a-project", "/unknown-route"])(
@@ -64,9 +64,9 @@ describe("application routes", () => {
     async (pathname) => {
       renderRoute(pathname);
 
-      expect(await screen.findByText("404 · Off route")).toBeInTheDocument();
+      expect(await screen.findByText("404 · Page not found")).toBeInTheDocument();
       expect(
-        screen.getByRole("heading", { level: 1, name: "This page left no forwarding address." })
+        screen.getByRole("heading", { level: 1, name: "This page is not available." })
       ).toHaveAttribute("tabindex", "-1");
       expect(screen.getByRole("link", { name: /Return home/ })).toHaveAttribute("href", "/");
     }
@@ -89,7 +89,7 @@ describe("route error boundary", () => {
     );
 
     expect(
-      screen.getByRole("heading", { level: 1, name: "The page hit an unexpected boundary." })
+      screen.getByRole("heading", { level: 1, name: "This page could not be loaded." })
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Return home" })).toHaveAttribute("href", "/");
   });
@@ -140,7 +140,7 @@ describe("route metadata and announcement components", () => {
 
     expect(screen.queryByText(/Navigated to/)).not.toBeInTheDocument();
     await user.click(screen.getByRole("link", { name: "Open case study" }));
-    expect(await screen.findByText("Navigated to RelayOps — Khalid Oyeneye")).toHaveAttribute(
+    expect(await screen.findByText("Navigated to RelayOps | Khalid Oyeneye")).toHaveAttribute(
       "aria-live",
       "polite"
     );
@@ -155,19 +155,23 @@ describe("route metadata and announcement components", () => {
       </MemoryRouter>
     );
 
-    await waitFor(() => expect(document.title).toBe("RelayOps — Khalid Oyeneye"));
+    await waitFor(() => expect(document.title).toBe("RelayOps | Khalid Oyeneye"));
     expect(document.head.querySelector('link[rel="canonical"]')).toHaveAttribute(
       "href",
       "https://khalidoyeneye.dev/projects/relayops"
     );
     const projectData = JSON.parse(
       document.head.querySelector<HTMLScriptElement>("#portfolio-structured-data")?.text ?? "{}"
-    ) as Record<string, unknown>;
-    expect(projectData).toMatchObject({
-      "@type": "SoftwareApplication",
-      name: "RelayOps",
-      codeRepository: "https://github.com/khalteck/RelayOps"
-    });
+    ) as { "@graph"?: Array<Record<string, unknown>> };
+    expect(projectData["@graph"]).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          "@type": "SoftwareSourceCode",
+          name: "RelayOps",
+          codeRepository: "https://github.com/khalteck/RelayOps"
+        })
+      ])
+    );
     expect(JSON.stringify(projectData)).not.toContain("incoming-03");
 
     unmount();
@@ -176,10 +180,19 @@ describe("route metadata and announcement components", () => {
         <RouteHead />
       </MemoryRouter>
     );
-    await waitFor(() => expect(document.title).toContain("Senior Frontend Engineer"));
+    await waitFor(() => expect(document.title).toContain("Fullstack SaaS Web and Mobile Engineer"));
     const personData = JSON.parse(
       document.head.querySelector<HTMLScriptElement>("#portfolio-structured-data")?.text ?? "{}"
-    ) as Record<string, unknown>;
-    expect(personData).toMatchObject({ "@type": "Person", name: "Khalid Oyeneye" });
+    ) as { "@graph"?: Array<Record<string, unknown>> };
+    expect(personData["@graph"]).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          "@type": "Person",
+          name: "Khalid Oyeneye",
+          areaServed: ["Nigeria", "Worldwide"]
+        }),
+        expect.objectContaining({ "@type": "WebSite", inLanguage: "en-NG" })
+      ])
+    );
   });
 });

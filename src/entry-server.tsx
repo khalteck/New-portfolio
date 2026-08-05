@@ -1,52 +1,35 @@
 import { PassThrough } from "node:stream";
 import { renderToPipeableStream } from "react-dom/server";
 import { App } from "./App";
-import { portfolio, publishedProjects } from "./data/portfolio";
-import { absoluteUrl, getRouteMetadata } from "./helpers/route-metadata";
+import {
+  absoluteUrl,
+  getRouteMetadata,
+  getStructuredData,
+  PUBLISHED_PROJECT_PATHS,
+  SITE_NAME
+} from "./helpers/route-metadata";
+
+export const getPrerenderRoutes = (): Array<{ url: string; output: string }> => [
+  { url: "/", output: "index.html" },
+  ...PUBLISHED_PROJECT_PATHS.map((url) => ({ url, output: `${url.slice(1)}/index.html` })),
+  { url: "/not-found", output: "404.html" }
+];
 
 const escapeAttribute = (value: string): string =>
   value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
-
-const structuredDataFor = (pathname: string) => {
-  const project = publishedProjects.find((candidate) => `/projects/${candidate.slug}` === pathname);
-  if (project) {
-    return {
-      "@context": "https://schema.org",
-      "@type": project.slug === "relayops" ? "SoftwareApplication" : "CreativeWork",
-      name: project.title,
-      description: project.shortDescription,
-      creator: { "@type": "Person", name: portfolio.profile.name },
-      dateCreated: project.year,
-      url: project.liveUrl,
-      codeRepository: project.sourceUrl,
-      programmingLanguage: project.technologies
-    };
-  }
-  if (pathname !== "/") return null;
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: portfolio.profile.name,
-    jobTitle: portfolio.profile.role,
-    email: `mailto:${portfolio.profile.email}`,
-    address: { "@type": "PostalAddress", addressLocality: "Lagos", addressCountry: "NG" },
-    sameAs: portfolio.socialLinks.map((social) => social.href),
-    url: absoluteUrl("/")
-  };
-};
 
 const renderHead = (pathname: string): string => {
   const metadata = getRouteMetadata(pathname);
   const canonical = absoluteUrl(metadata.canonicalPath);
   const image = absoluteUrl(metadata.image);
-  const structuredData = structuredDataFor(metadata.canonicalPath);
+  const structuredData = getStructuredData(metadata.canonicalPath);
   const jsonLd = structuredData
     ? JSON.stringify(structuredData).replaceAll("<", "\\u003c")
     : undefined;
   return [
     `<title>${escapeAttribute(metadata.title)}</title>`,
     `<meta name="description" content="${escapeAttribute(metadata.description)}">`,
+    `<meta name="author" content="${SITE_NAME}">`,
     `<meta name="robots" content="${metadata.robots}">`,
     `<link rel="canonical" href="${escapeAttribute(canonical)}">`,
     `<meta property="og:title" content="${escapeAttribute(metadata.title)}">`,
@@ -54,7 +37,14 @@ const renderHead = (pathname: string): string => {
     `<meta property="og:type" content="${metadata.type}">`,
     `<meta property="og:url" content="${escapeAttribute(canonical)}">`,
     `<meta property="og:image" content="${escapeAttribute(image)}">`,
+    `<meta property="og:image:alt" content="${escapeAttribute(metadata.imageAlt)}">`,
+    `<meta property="og:site_name" content="${SITE_NAME}">`,
+    '<meta property="og:locale" content="en_NG">',
     '<meta name="twitter:card" content="summary_large_image">',
+    `<meta name="twitter:title" content="${escapeAttribute(metadata.title)}">`,
+    `<meta name="twitter:description" content="${escapeAttribute(metadata.description)}">`,
+    `<meta name="twitter:image" content="${escapeAttribute(image)}">`,
+    `<meta name="twitter:image:alt" content="${escapeAttribute(metadata.imageAlt)}">`,
     jsonLd
       ? `<script id="portfolio-structured-data" type="application/ld+json">${jsonLd}</script>`
       : ""

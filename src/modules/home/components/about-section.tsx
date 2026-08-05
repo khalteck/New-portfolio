@@ -10,7 +10,7 @@ export function AboutSection() {
         <SectionTitle
           titleId="about-title"
           eyebrow="01 · About"
-          title="Precision in the interface. Depth underneath."
+          title="SaaS products, built end to end."
         />
       </Reveal>
       <div className="about-section__grid">

@@ -2,9 +2,9 @@
 
 ## Deployment model
 
-The portfolio is a static Vite application. The build also creates static HTML for `/`,
-`/projects/relayops`, and `/projects/tci-podcast`, then the React client hydrates those documents.
-There is no production Node/Express server, database, CMS, or runtime secret.
+The portfolio is a static Vite application. The build creates static HTML for `/` and every
+published project in `src/data/portfolio.ts`, then the React client hydrates those documents. There
+is no production Node/Express server, database, CMS, or runtime secret.
 
 The target host is Netlify and the canonical origin is `https://khalidoyeneye.dev`. The repository
 configuration declares `dist` as the publish directory, Node 24, pnpm 10.32.1, an SPA fallback,
@@ -20,8 +20,9 @@ on `revamp/v2`; the old site is preserved on `archive/v1` and tag `v1.0.0`.
 2. Confirm `archive/v1` and `v1.0.0` still point to the preserved legacy site.
 3. Review the diff for secrets, private screenshots, confidential product data, analytics IDs, and
    unverified claims.
-4. Confirm `src/data/portfolio.ts`, route metadata, sitemap, robots policy, and prerender route list
-   agree on exactly these public routes:
+4. Confirm `src/data/portfolio.ts`, route metadata, sitemap, and robots policy agree on exactly these
+   public routes. Client hydration, SSR, prerender, and static validation derive project paths from
+   the published collection automatically:
    - `/`
    - `/projects/relayops`
    - `/projects/tci-podcast`
@@ -38,13 +39,13 @@ pnpm --version
 pnpm install --frozen-lockfile
 ```
 
-Expected major versions are Node 24 and pnpm 10. The project currently requires no environment
-value. If a future public value is added, document it in `.env.example`; never place a credential or
-private value behind `VITE_`, because Vite exposes it to the browser.
+Expected major versions are Node 24 and pnpm 10. GA4 is optional: set
+`VITE_GA_MEASUREMENT_ID` in Netlify to the public `G-...` measurement ID to enable consent-gated
+route views and portfolio conversion events. Do not configure a secret with `VITE_`, because Vite
+exposes those values to the browser.
 
-Do not add analytics during deployment. A future analytics provider requires documented events,
-privacy/consent implications, environment configuration, and a matching Content Security Policy
-change before release.
+Before enabling GA4, approve the privacy notice and consent approach for every audience the site
+serves. The measurement ID is public, but the related Google account access must remain private.
 
 ## 3. Local quality gate
 
@@ -110,12 +111,13 @@ and that its settings do not override `netlify.toml` unexpectedly.
 
 Expected settings:
 
-| Setting           | Value                                                             |
-| ----------------- | ----------------------------------------------------------------- |
-| Build command     | `corepack enable && pnpm install --frozen-lockfile && pnpm build` |
-| Publish directory | `dist`                                                            |
-| Node              | `24`                                                              |
-| pnpm              | `10.32.1`                                                         |
+| Setting            | Value                                                             |
+| ------------------ | ----------------------------------------------------------------- |
+| Build command      | `corepack enable && pnpm install --frozen-lockfile && pnpm build` |
+| Publish directory  | `dist`                                                            |
+| Node               | `24`                                                              |
+| pnpm               | `10.32.1`                                                         |
+| GA4 measurement ID | Public `G-...` value in `VITE_GA_MEASUREMENT_ID` when approved    |
 
 The catch-all rewrite must use status `200`, target `/index.html`, and not force over existing
 prerendered files. Hashed `/assets/*` files should receive one-year immutable caching. HTML must
@@ -130,10 +132,34 @@ Verify these response headers on HTML and representative assets:
 - `X-Frame-Options: DENY`; and
 - expected `Cache-Control` by file class.
 
-The current CSP permits only same-origin scripts, fonts, connections, and ordinary images (plus
-`data:`/`blob:` image sources), blocks framing and objects, and allows inline style needed by the
-implemented styling/motion approach. Any external font, analytics, embed, form endpoint, or image
-host requires an explicit policy review rather than a wildcard.
+The current CSP permits Google Tag Manager and Google Analytics only for consent-gated GA4
+measurement. It otherwise blocks framing and objects and allows inline style needed by the
+implemented styling and motion approach. Any other external service requires an explicit policy
+review.
+
+## Owner deployment checklist
+
+Complete these items before the production promotion:
+
+- [ ] Create or select the GA4 property and Web data stream for `khalidoyeneye.dev`.
+- [ ] In the GA4 Web stream, disable automatic Page Views for both page loads and browser-history
+      changes. The application sends its own initial and client-route `page_view` events.
+- [ ] Add the public `G-...` ID to Netlify as `VITE_GA_MEASUREMENT_ID`. Decide whether deploy
+      previews should use the production stream, a separate test stream, or no analytics.
+- [ ] Review and approve the short analytics consent copy and any separate privacy notice required
+      for the audiences you serve.
+- [ ] After deployment, accept analytics once and confirm a single page view per route in GA4
+      DebugView or Realtime. Also confirm `contact_click`, `resume_view`, `project_open`,
+      `project_external`, `external_profile`, and `section_navigation` events.
+- [ ] Add a Google Search Console Domain property and complete its DNS TXT verification.
+- [ ] Submit `https://khalidoyeneye.dev/sitemap.xml`, inspect all three published URLs, and request
+      indexing after the live checks pass.
+- [ ] Run the deployed pages through Google's Rich Results Test and confirm the profile and project
+      JSON-LD matches visible content without critical errors.
+- [ ] Confirm the Netlify production domain, apex and `www` redirect, HTTPS certificate, and DNS are
+      correct before requesting indexing.
+- [ ] Recheck the production résumé, email, GitHub, LinkedIn, RelayOps live product, and source-code
+      links.
 
 ## 6. Promotion and domain verification
 

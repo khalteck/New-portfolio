@@ -84,12 +84,24 @@ export function ProjectCaseStudyView() {
             {project.liveUrl || project.sourceUrl ? (
               <div className="case-hero__actions">
                 {project.liveUrl ? (
-                  <a href={project.liveUrl} {...externalLinkProps} data-cursor="action">
+                  <a
+                    href={project.liveUrl}
+                    {...externalLinkProps}
+                    data-cursor="action"
+                    data-analytics-event="project_external"
+                    data-analytics-label="live_product"
+                  >
                     Live product <ArrowUpRight aria-hidden="true" />
                   </a>
                 ) : null}
                 {project.sourceUrl ? (
-                  <a href={project.sourceUrl} {...externalLinkProps} data-cursor="action">
+                  <a
+                    href={project.sourceUrl}
+                    {...externalLinkProps}
+                    data-cursor="action"
+                    data-analytics-event="project_external"
+                    data-analytics-label="source_code"
+                  >
                     Source code <ArrowUpRight aria-hidden="true" />
                   </a>
                 ) : null}
