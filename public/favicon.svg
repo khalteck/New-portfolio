@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Khalid Oyeneye portfolio</title>
+  <rect width="64" height="64" rx="14" fill="#0d0e0f"/>
+  <path d="M17 17h13v5h-8v20h8v5H17V17Zm30 0v30H34v-5h8V22h-8v-5h13Z" fill="#f2eee5"/>
+  <path d="m27 38 10-12" stroke="#b7ff4a" stroke-width="5" stroke-linecap="square"/>
+</svg>

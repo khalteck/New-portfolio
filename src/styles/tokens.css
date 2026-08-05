@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/barlow-condensed-600.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/barlow-condensed-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/barlow-condensed-800.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --canvas: #111310;
+  --surface: #191c18;
+  --surface-raised: #20241f;
+  --text: #f1efe7;
+  --text-muted: #9ca39a;
+  --text-faint: #8f978d;
+  --border: #343a33;
+  --border-bright: #555e52;
+  --accent: #beff4a;
+  --accent-soft: #dcffa0;
+  --on-accent: #10130d;
+  --focus: #d8ff8f;
+  --danger: #ff6b6b;
+  --success: #76d99c;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Manrope", Inter, ui-sans-serif, system-ui, sans-serif;
+  --container: min(100% - 3rem, 90rem);
+  --container-narrow: min(100% - 3rem, 75rem);
+  --micro: 180ms;
+  --short: 320ms;
+  --medium: 700ms;
+  --long: 1000ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --container: min(100% - 2rem, 90rem);
+    --container-narrow: min(100% - 2rem, 75rem);
+  }
+}

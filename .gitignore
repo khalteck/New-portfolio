@@ -1,0 +1,15 @@
+node_modules/
+*.tsbuildinfo
+dist/
+.prerender/
+coverage/
+reports/
+playwright-report/
+test-results/
+.lighthouseci/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+src/test/__snapshots__/*.received.*
