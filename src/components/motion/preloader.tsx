@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const SESSION_KEY = "khalid-portfolio-preloader-seen";
+const PRELOADER_DURATION_MS = 2_000;
 const useBrowserLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export function Preloader() {
@@ -15,7 +16,7 @@ export function Preloader() {
     }
 
     window.sessionStorage.setItem(SESSION_KEY, "true");
-    const timeout = window.setTimeout(() => setVisible(false), 1450);
+    const timeout = window.setTimeout(() => setVisible(false), PRELOADER_DURATION_MS);
     return () => window.clearTimeout(timeout);
   }, [reducedMotion]);
 
