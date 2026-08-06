@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { cn } from "@/helpers/cn";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
@@ -53,13 +54,29 @@ export function CustomCursor({ className, manageDocumentCursor = true }: CustomC
   return (
     <div
       ref={cursor}
-      className={["custom-cursor", className].filter(Boolean).join(" ")}
+      className={cn(
+        "group pointer-events-none fixed top-0 left-0 z-[9999] -mt-2.5 -ml-2.5 size-5 opacity-0 transition-opacity duration-200 will-change-transform data-[visible=true]:opacity-100 data-[state=action]:[&_svg]:scale-[2.1] data-[state=project]:[&_svg]:scale-[2.1] data-[state=technology]:[&_svg]:scale-150",
+        className
+      )}
       aria-hidden="true"
       data-state="default"
+      data-ui="custom-cursor"
     >
-      <svg viewBox="0 0 24 24" focusable="false">
-        <circle className="custom-cursor__ring" cx="12" cy="12" r="9" />
-        <path className="custom-cursor__mark" d="M12 7v10M7 12h10" />
+      <svg
+        className="block size-full overflow-visible transition-transform duration-300 ease-editorial-out"
+        viewBox="0 0 24 24"
+        focusable="false"
+      >
+        <circle
+          className="fill-[color-mix(in_srgb,var(--accent)_12%,transparent)] stroke-accent transition-[fill] duration-200 [stroke-width:1] group-data-[state=action]:fill-[color-mix(in_srgb,var(--accent)_28%,transparent)] group-data-[state=project]:fill-[color-mix(in_srgb,var(--accent)_28%,transparent)]"
+          cx="12"
+          cy="12"
+          r="9"
+        />
+        <path
+          className="fill-none stroke-accent opacity-0 transition-opacity duration-200 [stroke-linecap:round] [stroke-width:1.2] group-data-[state=action]:opacity-100 group-data-[state=project]:opacity-100"
+          d="M12 7v10M7 12h10"
+        />
       </svg>
     </div>
   );

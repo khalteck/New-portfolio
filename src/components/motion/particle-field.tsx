@@ -105,5 +105,12 @@ export function ParticleField() {
     };
   }, [reducedMotion]);
 
-  return <canvas ref={canvas} className="particle-field" aria-hidden="true" />;
+  return (
+    <canvas
+      ref={canvas}
+      className="pointer-events-none fixed inset-0 z-0 block max-w-full opacity-90"
+      aria-hidden="true"
+      data-ui="particle-field"
+    />
+  );
 }

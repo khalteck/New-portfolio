@@ -9,7 +9,7 @@ describe("scroll to top", () => {
     vi.spyOn(window, "scrollY", "get").mockReturnValue(0);
     render(<ScrollToTop />);
 
-    const button = document.querySelector<HTMLButtonElement>(".scroll-to-top");
+    const button = document.querySelector<HTMLButtonElement>('[data-ui="scroll-to-top"]');
     expect(button).toBeInTheDocument();
     expect(button).toHaveAttribute("aria-hidden", "true");
     expect(button).toHaveAttribute("tabindex", "-1");

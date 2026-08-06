@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { HomeView } from "@/modules/home";
 import { NotFoundView } from "./not-found.view";
 import { RouteErrorBoundary } from "./route-error-boundary";
+import { notFoundLayout } from "@/styles/classes";
 
 const ProjectCaseStudyView = lazy(
   async () => import("@/modules/projects/views/project-case-study.view")
@@ -15,7 +16,7 @@ export function AppRoutes() {
     <RouteErrorBoundary key={location.pathname}>
       <Suspense
         fallback={
-          <main className="route-loading" id="main-content" aria-live="polite">
+          <main className={notFoundLayout} id="main-content" aria-live="polite">
             Loading project…
           </main>
         }

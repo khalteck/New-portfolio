@@ -23,19 +23,45 @@ export function Preloader() {
   if (!visible) return null;
 
   return (
-    <div className="preloader" aria-hidden="true" data-testid="preloader">
-      <svg className="preloader__monogram" viewBox="0 0 360 190" focusable="false">
-        <text className="preloader__outline" x="50%" y="72%" textAnchor="middle">
+    <div
+      className="pointer-events-none fixed inset-0 z-[1000] grid animate-preloader-exit place-content-center bg-canvas motion-reduce:hidden"
+      aria-hidden="true"
+      data-testid="preloader"
+    >
+      <svg
+        className="block w-[clamp(12rem,34vw,24rem)] overflow-visible font-display text-[9.5rem] font-bold tracking-[0.04em] [&_text]:fill-transparent [&_text]:[paint-order:stroke_fill] [&_text]:[stroke-linecap:round] [&_text]:[stroke-linejoin:round] [&_text]:[stroke-width:1.35px]"
+        viewBox="0 0 360 190"
+        focusable="false"
+      >
+        <text
+          className="stroke-[color-mix(in_srgb,var(--text)_24%,transparent)]"
+          x="50%"
+          y="72%"
+          textAnchor="middle"
+          data-ui="preloader-outline"
+        >
           KO
         </text>
-        <text className="preloader__draw" x="50%" y="72%" textAnchor="middle">
+        <text
+          className="animate-preloader-outline stroke-accent [stroke-dasharray:720] [stroke-dashoffset:720]"
+          x="50%"
+          y="72%"
+          textAnchor="middle"
+          data-ui="preloader-draw"
+        >
           KO
         </text>
-        <text className="preloader__fill" x="50%" y="72%" textAnchor="middle">
+        <text
+          className="animate-preloader-fill stroke-copy opacity-0"
+          x="50%"
+          y="72%"
+          textAnchor="middle"
+          data-ui="preloader-fill"
+        >
           KO
         </text>
       </svg>
-      <div className="preloader__rule" />
+      <div className="mt-6 h-0.5 w-full origin-left scale-x-0 animate-preloader-rule bg-accent" />
     </div>
   );
 }

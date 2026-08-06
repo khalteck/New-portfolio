@@ -19,7 +19,7 @@ export function ResponsivePicture({
       <source type="image/webp" srcSet={image.webpSrcSet ?? image.webpSrc} sizes={image.sizes} />
       <img
         {...imageProps}
-        className={cn("responsive-picture", className)}
+        className={cn("h-auto w-full bg-surface-raised", className)}
         src={image.webpSrc}
         alt={image.alt}
         width={image.width}

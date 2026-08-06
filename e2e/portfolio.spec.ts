@@ -31,9 +31,12 @@ test.describe("portfolio routes", () => {
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1, name: /software engineer/i })).toBeVisible();
-    await expect(page.locator(".availability-line")).toContainText(/open to opportunities/i);
-    await expect(page.locator(".hero-metrics")).toContainText(/6\+\s*years of experience/i);
-    await expect(page.locator(".hero-metrics")).toContainText(/global\s*product delivery/i);
+    await expect(page.locator('[data-ui="availability"]')).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /currently listening/i })).toHaveCount(0);
+    await expect(page.getByRole("link", { name: /start a conversation/i })).toHaveAttribute(
+      "data-variant",
+      "secondary"
+    );
 
     const sectionOrder = await page
       .locator("#main-content > section, #contact")
@@ -48,7 +51,7 @@ test.describe("portfolio routes", () => {
     await page.goto("/");
     await page.locator("#work").scrollIntoViewIfNeeded();
 
-    await expect(page.locator(".project-row--incoming")).toHaveCount(0);
+    await expect(page.locator('[data-ui="incoming-project"]')).toHaveCount(0);
     await expect(page.locator("#work")).not.toContainText(/Project 05|Project 06/i);
   });
 
@@ -81,7 +84,7 @@ test.describe("portfolio routes", () => {
 
     await expect(page).toHaveURL(/\/#about$/);
     await expect(page.locator("#about-title")).toBeFocused();
-    await expect(page.locator(".page-transition")).toHaveCSS("visibility", "hidden");
+    await expect(page.locator('[data-ui="page-transition"]')).toHaveCSS("visibility", "hidden");
 
     await page
       .getByRole("navigation", { name: "Portfolio sections" })
@@ -91,13 +94,13 @@ test.describe("portfolio routes", () => {
       .click();
     await expect(page).toHaveURL(/\/#top$/);
     await expect(page.locator("#hero-title")).toBeFocused();
-    await expect(page.locator(".page-transition")).toHaveCSS("visibility", "hidden");
+    await expect(page.locator('[data-ui="page-transition"]')).toHaveCSS("visibility", "hidden");
 
     await page.locator("#stack").scrollIntoViewIfNeeded();
     await expect(
       page
         .getByRole("navigation", { name: "Portfolio sections" })
-        .getByRole("link", { name: "Stack" })
+        .getByRole("link", { name: "About" })
     ).toHaveAttribute("aria-current", "location");
   });
 
@@ -127,7 +130,7 @@ test.describe("portfolio routes", () => {
     await expect(
       page.getByRole("main").locator('a[href="https://relayops-frontend.onrender.com/"]')
     ).toHaveCount(0);
-    await expect(page.locator(".case-hero__actions")).toHaveCount(0);
+    await expect(page.locator('[data-ui="case-actions"]')).toHaveCount(0);
 
     await page.goto("/projects/afrogrids");
     await expect(page.getByRole("heading", { level: 1, name: "Afro-Grids" })).toBeVisible();
@@ -243,7 +246,8 @@ test.describe("responsive and motion preferences", () => {
     await page.locator("#experience").scrollIntoViewIfNeeded();
 
     const dock = page.getByRole("navigation", { name: "Portfolio sections" });
-    await expect(dock.getByRole("link", { name: "Experience" })).toHaveAttribute(
+    await expect(dock.getByRole("link")).toHaveCount(4);
+    await expect(dock.getByRole("link", { name: "About" })).toHaveAttribute(
       "aria-current",
       "location"
     );
@@ -254,6 +258,21 @@ test.describe("responsive and motion preferences", () => {
     expect(dockBox).not.toBeNull();
     expect(buttonBox).not.toBeNull();
     if (dockBox && buttonBox) expect(buttonBox.y + buttonBox.height).toBeLessThan(dockBox.y);
+  });
+
+  test("experience timeline fills as its entries move through the viewport", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto("/");
+
+    const progress = page.locator('[data-ui="experience-timeline-progress"]');
+    const scaleY = () =>
+      progress.evaluate(
+        (element) => new DOMMatrixReadOnly(getComputedStyle(element).transform).m22
+      );
+
+    await expect.poll(scaleY).toBeLessThan(0.05);
+    await page.locator("#work").scrollIntoViewIfNeeded();
+    await expect.poll(scaleY).toBeGreaterThan(0.95);
   });
 
   test("remains free of horizontal overflow at a 200%-zoom equivalent width", async ({ page }) => {
@@ -275,9 +294,16 @@ test.describe("responsive and motion preferences", () => {
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByTestId("preloader")).toHaveCount(0);
-    await expect(page.locator(".custom-cursor")).toHaveCount(0);
-    await expect(page.locator(".particle-field")).toHaveCount(1);
+    await expect(page.locator('[data-ui="custom-cursor"]')).toHaveCount(0);
+    await expect(page.locator('[data-ui="particle-field"]')).toHaveCount(1);
     await expect(page.locator("html")).not.toHaveClass(/has-custom-cursor/);
+    await expect
+      .poll(() =>
+        page
+          .locator('[data-ui="experience-timeline-progress"]')
+          .evaluate((element) => new DOMMatrixReadOnly(getComputedStyle(element).transform).m22)
+      )
+      .toBe(1);
     await expect
       .poll(() => page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior))
       .not.toBe("smooth");

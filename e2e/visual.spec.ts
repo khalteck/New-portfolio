@@ -9,9 +9,9 @@ async function prepareStableVisual(page: Page) {
 async function settlePage(page: Page) {
   await page.addStyleTag({
     content: `
-      .particle-field,
-      .custom-cursor { display: none !important; }
-      .reveal { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+      [data-ui="particle-field"],
+      [data-ui="custom-cursor"] { display: none !important; }
+      [data-ui="reveal"] { opacity: 1 !important; visibility: visible !important; transform: none !important; }
     `
   });
   await expect(page.getByRole("main")).toBeVisible();

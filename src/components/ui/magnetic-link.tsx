@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { cn } from "@/helpers/cn";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { actionLinkBase, actionLinkVariants } from "@/styles/classes";
 
 type MagneticLinkProps = ComponentPropsWithoutRef<"a"> & {
   variant?: "primary" | "secondary" | "text";
@@ -48,8 +49,9 @@ export function MagneticLink({
     <a
       {...props}
       ref={link}
-      className={cn("magnetic-link", `magnetic-link--${variant}`, className)}
+      className={cn(actionLinkBase, actionLinkVariants[variant], className)}
       data-cursor="action"
+      data-variant={variant}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >

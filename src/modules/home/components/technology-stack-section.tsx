@@ -34,6 +34,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { SectionTitle } from "@/components/ui/section-title";
 import { portfolio } from "@/data/portfolio";
 import type { TechnologyIconKey } from "@/types/portfolio";
+import { cn } from "@/helpers/cn";
 
 const icons = {
   code: Braces,
@@ -71,7 +72,11 @@ const technologyIcons: Record<TechnologyIconKey, ElementType> = {
 
 export function TechnologyStackSection() {
   return (
-    <section className="stack-section section-shell" id="stack" aria-labelledby="stack-title">
+    <section
+      className="relative z-10 w-full scroll-mt-16 border-y border-line bg-[color-mix(in_srgb,var(--surface)_88%,transparent)] px-[max(1.5rem,calc((100vw-90rem)/2))] py-[clamp(7rem,13vw,13rem)] md:pl-[max(6.5rem,calc((100vw-90rem)/2))] max-md:px-4"
+      id="stack"
+      aria-labelledby="stack-title"
+    >
       <Reveal>
         <SectionTitle
           titleId="stack-title"
@@ -80,22 +85,35 @@ export function TechnologyStackSection() {
           description="Technologies used across interfaces, data, services, and testing."
         />
       </Reveal>
-      <div className="technology-groups">
+      <div className="grid grid-cols-4 pt-[clamp(3rem,7vw,6rem)] max-lg:grid-cols-2 max-md:grid-cols-1">
         {portfolio.technologyGroups.map((group, groupIndex) => {
           const Icon = icons[group.icon];
           return (
             <Reveal key={group.title} delay={groupIndex * 0.05}>
-              <article className="technology-group">
-                <header>
-                  <Icon aria-hidden="true" />
-                  <h3>{group.title}</h3>
+              <article
+                className={cn(
+                  "min-h-[30rem] border-b border-l border-line p-8 max-lg:min-h-[25rem] max-md:min-h-0 max-md:border-r",
+                  groupIndex === portfolio.technologyGroups.length - 1 && "border-r",
+                  groupIndex % 2 === 1 && "max-lg:border-r"
+                )}
+              >
+                <header className="flex items-center justify-between border-b border-line pb-8">
+                  <Icon className="w-[1.15rem] text-accent" aria-hidden="true" />
+                  <h3 className="m-0 text-[0.72rem] tracking-[0.1em] uppercase">{group.title}</h3>
                 </header>
-                <ul>
+                <ul className="mt-8 list-none p-0">
                   {group.technologies.map((technology) => {
                     const TechnologyIcon = technologyIcons[technology.iconKey];
                     return (
-                      <li key={technology.name} data-cursor="technology">
-                        <TechnologyIcon aria-hidden="true" />
+                      <li
+                        className="group flex min-h-11 items-center gap-3 text-[0.9rem] text-muted transition-[color,padding-left] duration-300 ease-editorial-out hover:pl-1 hover:text-copy"
+                        key={technology.name}
+                        data-cursor="technology"
+                      >
+                        <TechnologyIcon
+                          className="size-4 shrink-0 text-faint opacity-70 transition-[color,opacity,transform] duration-300 ease-editorial-out group-hover:-translate-y-px group-hover:text-accent group-hover:opacity-100"
+                          aria-hidden="true"
+                        />
                         {technology.name}
                       </li>
                     );

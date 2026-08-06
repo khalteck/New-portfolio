@@ -5,12 +5,11 @@ import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
 import { MagneticLink } from "@/components/ui/magnetic-link";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
-import { ListeningNow } from "./listening-now";
+import { textLink } from "@/styles/classes";
 
 export function HeroSection() {
   const section = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
-  const visibleMetrics = portfolio.metrics.filter((metric) => metric.visible);
 
   useGSAP(
     () => {
@@ -33,43 +32,52 @@ export function HeroSection() {
   );
 
   return (
-    <section ref={section} className="hero-section" id="top" aria-labelledby="hero-title">
-      <div className="hero-section__topline">
-        <p className="availability-line" data-hero-reveal>
-          <span aria-hidden="true" />
-          {portfolio.profile.availability}
-        </p>
-      </div>
-
-      <div className="hero-section__title">
-        <h1 id="hero-title" tabIndex={-1}>
-          <span className="hero-line-mask">
-            <span className="hero-line hero-line--first" data-hero-reveal>
+    <section
+      ref={section}
+      className="relative z-10 mx-auto grid min-h-svh w-[calc(100%-3rem)] max-w-[90rem] grid-cols-12 content-start gap-x-6 overflow-hidden pt-[clamp(8rem,14vh,10.5rem)] pb-11 md:pl-20 max-md:min-h-0 max-md:w-[calc(100%-2rem)] max-md:grid-cols-1 max-md:pt-28 max-md:pb-20"
+      id="top"
+      aria-labelledby="hero-title"
+      data-ui="hero"
+    >
+      <div className="relative z-10 col-span-full">
+        <h1
+          className="grid grid-cols-12 font-display text-[clamp(5.8rem,12vw,12.5rem)] leading-[0.72] font-bold tracking-[-0.06em] uppercase max-md:grid-cols-1 max-md:text-[clamp(4rem,20vw,6.5rem)] max-md:leading-[0.78] max-[360px]:text-[4.25rem]"
+          id="hero-title"
+          tabIndex={-1}
+        >
+          <span className="col-span-10 block overflow-clip max-md:col-span-full">
+            <span className="block whitespace-nowrap max-md:whitespace-normal" data-hero-reveal>
               Software
             </span>
           </span>
-          <span className="hero-line-mask">
-            <span className="hero-line hero-line--second" data-hero-reveal>
+          <span className="col-span-10 col-start-3 block overflow-clip max-md:col-span-full max-md:col-start-1">
+            <span
+              className="block whitespace-nowrap text-transparent [-webkit-text-stroke:1.5px_var(--text)] forced-colors:text-[CanvasText] forced-colors:[-webkit-text-stroke:0] max-md:whitespace-normal"
+              data-hero-reveal
+            >
               Engineer
             </span>
           </span>
         </h1>
       </div>
 
-      <div className="hero-section__lower">
-        <div className="hero-section__introduction" data-hero-reveal>
-          <p>
-            I’m <strong>{portfolio.profile.name}</strong>. {portfolio.profile.summary}
+      <div className="relative z-10 col-span-7 col-start-6 mt-[clamp(3rem,7vh,6rem)] border-t border-white/15 pt-6 max-lg:col-span-8 max-lg:col-start-5 max-md:col-span-full max-md:col-start-1 max-md:mt-10 max-md:pt-5">
+        <div data-hero-reveal>
+          <p className="mb-8 max-w-[43rem] text-[clamp(1.05rem,2vw,1.38rem)] text-muted max-md:mb-6">
+            I’m <strong className="text-copy">{portfolio.profile.name}</strong>.{" "}
+            {portfolio.profile.summary}
           </p>
-          <div className="hero-section__actions">
+          <div className="flex flex-wrap items-center gap-5 max-md:flex-col max-md:items-stretch max-md:gap-3">
             <MagneticLink
+              className="max-md:w-full"
               href={`mailto:${portfolio.profile.email}?subject=Portfolio%20enquiry`}
+              variant="secondary"
               data-analytics-event="contact_click"
             >
               Start a conversation <ArrowRight aria-hidden="true" />
             </MagneticLink>
             <a
-              className="text-link"
+              className={`${textLink} max-md:w-full max-md:justify-center`}
               href={portfolio.profile.resumeUrl}
               target="_blank"
               rel="noreferrer"
@@ -79,21 +87,14 @@ export function HeroSection() {
             </a>
           </div>
         </div>
-
-        <div className="hero-section__aside" data-hero-reveal>
-          <div className="hero-metrics">
-            {visibleMetrics.map((metric) => (
-              <div key={metric.label} title={metric.basis}>
-                <strong>{metric.value}</strong>
-                <span>{metric.label}</span>
-              </div>
-            ))}
-          </div>
-          <ListeningNow />
-        </div>
       </div>
 
-      <a className="hero-scroll" href="#about" aria-label="Scroll to about" data-hero-reveal>
+      <a
+        className="relative z-10 col-span-3 mt-[-2.5rem] inline-flex items-center gap-2 self-end text-[0.65rem] font-extrabold tracking-[0.12em] text-muted uppercase no-underline [&_svg]:w-3.5 max-md:hidden"
+        href="#about"
+        aria-label="Scroll to about"
+        data-hero-reveal
+      >
         Scroll <ArrowDownRight aria-hidden="true" />
       </a>
     </section>

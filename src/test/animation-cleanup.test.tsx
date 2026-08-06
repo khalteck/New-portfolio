@@ -34,8 +34,8 @@ describe("ambient motion cleanup", () => {
       </>
     );
 
-    expect(container.querySelector(".custom-cursor")).not.toBeInTheDocument();
-    expect(container.querySelector(".particle-field")).toBeInTheDocument();
+    expect(container.querySelector('[data-ui="custom-cursor"]')).not.toBeInTheDocument();
+    expect(container.querySelector('[data-ui="particle-field"]')).toBeInTheDocument();
     expect(document.documentElement).not.toHaveClass("has-custom-cursor");
   });
 
@@ -46,7 +46,7 @@ describe("ambient motion cleanup", () => {
     const rootRemoveSpy = vi.spyOn(document.documentElement, "removeEventListener");
     const { container, unmount } = render(<CustomCursor />);
 
-    expect(container.querySelector(".custom-cursor")).toBeInTheDocument();
+    expect(container.querySelector('[data-ui="custom-cursor"]')).toBeInTheDocument();
     expect(document.documentElement).toHaveClass("has-custom-cursor");
     window.dispatchEvent(new MouseEvent("pointermove", { clientX: 100, clientY: 120 }));
     unmount();

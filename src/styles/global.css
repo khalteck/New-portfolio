@@ -1,168 +1,130 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-width: 320px;
+    background: var(--canvas);
+    scroll-padding-top: 4rem;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: clip;
+    background: var(--canvas);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.25em;
+  }
+
+  img,
+  svg,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  figure,
+  h1,
+  h2,
+  h3,
+  p,
+  ul,
+  ol,
+  dl,
+  dd {
+    margin-top: 0;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 5px;
+  }
+
+  h1[tabindex="-1"]:focus,
+  h2[tabindex="-1"]:focus {
+    outline: 0;
+  }
 }
 
-html {
-  min-width: 320px;
-  background: var(--canvas);
-  scroll-padding-top: 4rem;
+@keyframes preloader-outline {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-  overflow-x: clip;
-  background: var(--canvas);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.65;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+@keyframes preloader-fill {
+  to {
+    fill: var(--text);
+    opacity: 1;
+    stroke-width: 0.65px;
+  }
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
+@keyframes preloader-rule {
+  to {
+    transform: scaleX(1);
+  }
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
+@keyframes preloader-exit {
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.25em;
+@media (pointer: fine) and (min-width: 1024px) {
+  .has-custom-cursor body,
+  .has-custom-cursor a,
+  .has-custom-cursor button,
+  .has-custom-cursor summary {
+    cursor: none;
+  }
 }
 
-img,
-svg,
-canvas {
-  display: block;
-  max-width: 100%;
-}
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
 
-figure,
-h1,
-h2,
-h3,
-p,
-ul,
-ol,
-dl,
-dd {
-  margin-top: 0;
-}
-
-::selection {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 5px;
-}
-
-h1[tabindex="-1"]:focus,
-h2[tabindex="-1"]:focus {
-  outline: 0;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.noscript-message {
-  position: fixed;
-  z-index: 1000;
-  inset: auto 1rem 1rem;
-  margin: 0;
-  padding: 1rem;
-  border: 1px solid var(--border-bright);
-  background: var(--surface);
-}
-
-.skip-link {
-  position: fixed;
-  z-index: 10000;
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.75rem 1rem;
-  transform: translateY(-160%);
-  background: var(--accent);
-  color: var(--on-accent);
-  font-weight: 800;
-  text-decoration: none;
-  transition: transform var(--micro) ease;
-}
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
-.section-shell {
-  width: var(--container);
-  margin-inline: auto;
-  padding-block: clamp(7rem, 13vw, 13rem);
-  scroll-margin-top: 4rem;
-}
-
-.eyebrow,
-.status-label {
-  color: var(--accent);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  line-height: 1.3;
-  text-transform: uppercase;
-}
-
-.text-link {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--text);
-  font-size: 0.84rem;
-  font-weight: 700;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.text-link::after {
-  content: "";
-  position: absolute;
-}
-
-.text-link svg {
-  width: 1rem;
-  transition: transform var(--short) var(--ease-out);
-}
-
-.text-link:hover svg,
-.text-link:focus-visible svg {
-  transform: translate(0.2rem, 0.2rem);
-}
-
-.responsive-picture {
-  width: 100%;
-  height: auto;
-  background: var(--surface-raised);
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

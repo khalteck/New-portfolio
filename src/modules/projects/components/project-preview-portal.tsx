@@ -58,7 +58,7 @@ export function ProjectPreviewPortal({ project, x, y }: ProjectPreviewPortalProp
   return createPortal(
     <div
       ref={element}
-      className="project-preview-portal"
+      className="pointer-events-none fixed top-[-9rem] left-[-13rem] z-80 w-[min(26rem,32vw)] overflow-hidden border border-line-bright bg-surface-raised shadow-[0_2rem_5rem_rgb(0_0_0/35%)] will-change-transform max-md:hidden [@media(pointer:coarse)]:hidden [&_img]:aspect-[16/10] [&_img]:object-cover [&>span]:block [&>span]:px-3.5 [&>span]:py-3 [&>span]:text-[0.62rem] [&>span]:tracking-[0.12em] [&>span]:text-muted [&>span]:uppercase"
       style={{ transform: `translate3d(${x}px, ${y}px, 0)` }}
       aria-hidden="true"
     >

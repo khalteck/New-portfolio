@@ -1,4 +1,11 @@
 import { Component, type ErrorInfo, type PropsWithChildren, type ReactNode } from "react";
+import {
+  actionLinkBase,
+  actionLinkVariants,
+  eyebrowClass,
+  notFoundHeading,
+  notFoundLayout
+} from "@/styles/classes";
 
 interface RouteErrorBoundaryState {
   error?: Error;
@@ -18,11 +25,13 @@ export class RouteErrorBoundary extends Component<PropsWithChildren, RouteErrorB
   render(): ReactNode {
     if (this.state.error) {
       return (
-        <main className="not-found" id="main-content">
-          <p className="eyebrow">Unexpected error</p>
-          <h1 tabIndex={-1}>This page could not be loaded.</h1>
-          <p>Reload the page or return to the portfolio.</p>
-          <a className="magnetic-link magnetic-link--primary" href="/">
+        <main className={notFoundLayout} id="main-content">
+          <p className={eyebrowClass}>Unexpected error</p>
+          <h1 className={notFoundHeading} tabIndex={-1}>
+            This page could not be loaded.
+          </h1>
+          <p className="text-muted">Reload the page or return to the portfolio.</p>
+          <a className={`${actionLinkBase} ${actionLinkVariants.primary}`} href="/">
             <span>Return home</span>
           </a>
         </main>

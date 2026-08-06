@@ -47,8 +47,9 @@ structured-data entry, or outcome claim.
 ## Architecture
 
 - React 19, React Router 7, Vite 7, and strict TypeScript provide the application and route layer.
-- Tailwind CSS 4 and semantic CSS custom properties implement the charcoal, warm off-white,
-  muted-gray, and electric-green editorial system.
+- Tailwind CSS 4 utilities implement component presentation, backed by root-level semantic tokens
+  for the charcoal, warm off-white, muted-gray, and electric-green editorial system. Authored CSS
+  is limited to fonts, tokens, document defaults, accessibility behavior, and shared keyframes.
 - `src/data/portfolio.ts` is the single publishable-content source. Types in
   `src/types/portfolio.ts` separate `PublishedProject` from non-routable `IncomingProject` data.
 - GSAP and ScrollTrigger own coordinated reveals and route layers; Lenis has one smooth-scroll

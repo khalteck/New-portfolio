@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getAnalyticsMeasurementId, OPEN_ANALYTICS_PREFERENCES_EVENT } from "@/helpers/analytics";
 import { getRouteMetadata } from "@/helpers/route-metadata";
+import { eyebrowClass } from "@/styles/classes";
 
 type AnalyticsConsent = "granted" | "denied";
 
@@ -131,17 +132,32 @@ export function GoogleAnalytics() {
   };
 
   return (
-    <aside className="analytics-consent" aria-labelledby={titleId}>
+    <aside
+      className="fixed right-4 bottom-4 z-[400] grid w-[min(calc(100%-2rem),27rem)] gap-5 rounded-[1.25rem] border border-white/15 bg-[linear-gradient(145deg,rgb(255_255_255/10%),transparent_42%),rgb(24_28_23/84%)] p-5 shadow-[0_1.5rem_5rem_rgb(0_0_0/38%)] backdrop-blur-[24px] backdrop-saturate-150 max-md:right-3 max-md:bottom-[calc(5.5rem+env(safe-area-inset-bottom))] max-md:w-[calc(100%-1.5rem)]"
+      aria-labelledby={titleId}
+    >
       <div>
-        <p className="eyebrow">Optional analytics</p>
-        <h2 id={titleId}>Your privacy choice</h2>
-        <p>Allow anonymous usage data to help improve this portfolio.</p>
+        <p className={eyebrowClass}>Optional analytics</p>
+        <h2 className="mt-2 mb-1 font-display text-[2rem] leading-none uppercase" id={titleId}>
+          Your privacy choice
+        </h2>
+        <p className="mb-0 text-[0.82rem] text-muted">
+          Allow anonymous usage data to help improve this portfolio.
+        </p>
       </div>
-      <div className="analytics-consent__actions">
-        <button type="button" onClick={() => chooseConsent("denied")}>
+      <div className="grid grid-cols-2 gap-2.5">
+        <button
+          className="min-h-11 cursor-pointer rounded-full border border-line-bright bg-transparent text-[0.68rem] font-extrabold tracking-[0.08em] text-copy uppercase"
+          type="button"
+          onClick={() => chooseConsent("denied")}
+        >
           Decline
         </button>
-        <button type="button" onClick={() => chooseConsent("granted")}>
+        <button
+          className="min-h-11 cursor-pointer rounded-full border border-accent bg-accent text-[0.68rem] font-extrabold tracking-[0.08em] text-on-accent uppercase"
+          type="button"
+          onClick={() => chooseConsent("granted")}
+        >
           Allow
         </button>
       </div>

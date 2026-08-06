@@ -2,7 +2,6 @@ import { useRef, type PropsWithChildren } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { cn } from "@/helpers/cn";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface RevealProps extends PropsWithChildren {
@@ -41,7 +40,7 @@ export function Reveal({ children, className, delay = 0, y = 32 }: RevealProps) 
   );
 
   return (
-    <div ref={element} className={cn("reveal", className)}>
+    <div ref={element} className={className} data-ui="reveal">
       {children}
     </div>
   );

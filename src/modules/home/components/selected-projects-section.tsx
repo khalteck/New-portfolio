@@ -44,7 +44,11 @@ export function SelectedProjectsSection() {
   };
 
   return (
-    <section className="projects-section section-shell" id="work" aria-labelledby="projects-title">
+    <section
+      className="relative z-10 w-full scroll-mt-16 border-t border-line bg-[color-mix(in_srgb,var(--surface)_88%,transparent)] px-[max(1.5rem,calc((100vw-90rem)/2))] py-[clamp(7rem,13vw,13rem)] md:pl-[max(6.5rem,calc((100vw-90rem)/2))] max-md:px-4"
+      id="work"
+      aria-labelledby="projects-title"
+    >
       <Reveal>
         <SectionTitle
           titleId="projects-title"
@@ -57,9 +61,12 @@ export function SelectedProjectsSection() {
           }
         />
       </Reveal>
-      <div className="project-list">
+      <div className="pt-[clamp(3rem,7vw,6rem)]">
         {visibleProjects.map((project) => (
-          <Reveal key={project.status === "published" ? project.slug : project.id}>
+          <Reveal
+            className="[&:last-child_article]:border-b [&:last-child_article]:border-line"
+            key={project.status === "published" ? project.slug : project.id}
+          >
             <ProjectRow
               project={project}
               onPreview={handlePreview}

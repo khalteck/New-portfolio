@@ -23,23 +23,26 @@ describe("homepage", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: "Software Engineer" })
     ).toBeInTheDocument();
-    expect(document.querySelector(".availability-line")).toHaveTextContent(
-      /Open to opportunities/i
-    );
-    expect(screen.getByRole("link", { name: /Start a conversation/i })).toHaveAttribute(
-      "href",
-      expect.stringMatching(/^mailto:/)
-    );
+    expect(document.querySelector('[data-ui="availability"]')).not.toBeInTheDocument();
+    const conversationLink = screen.getByRole("link", { name: /Start a conversation/i });
+    expect(conversationLink).toHaveAttribute("href", expect.stringMatching(/^mailto:/));
+    expect(conversationLink).toHaveAttribute("data-variant", "secondary");
     expect(screen.getByRole("link", { name: /View resume/i })).toHaveAttribute(
       "href",
       "/khalid-oyeneye-resume.pdf"
     );
+    expect(screen.queryByRole("button", { name: /currently listening/i })).not.toBeInTheDocument();
 
     const main = screen.getByRole("main");
     expect(
       Array.from(main.children).map((element) => element.id || element.tagName.toLowerCase())
     ).toEqual(["top", "about", "stack", "experience", "work"]);
     expect(screen.getByRole("heading", { name: "Experience across borders." })).toBeInTheDocument();
+    expect(document.querySelector('[data-ui="experience-timeline"]')).toHaveAttribute(
+      "aria-hidden",
+      "true"
+    );
+    expect(document.querySelectorAll('[data-ui="experience-node"]')).toHaveLength(4);
     expect(screen.getByRole("contentinfo")).toHaveAttribute("id", "contact");
 
     const stack = screen.getByRole("region", { name: "Production tools and practices." });

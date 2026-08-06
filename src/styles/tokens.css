@@ -30,6 +30,31 @@
   font-display: swap;
 }
 
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-copy: var(--text);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-line: var(--border);
+  --color-line-bright: var(--border-bright);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-focus: var(--focus);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --font-display: var(--type-display);
+  --font-body: var(--type-body);
+  --ease-editorial-out: var(--ease-out);
+  --ease-editorial-in-out: var(--ease-in-out);
+  --animate-preloader-exit: preloader-exit 180ms 1.82s ease forwards;
+  --animate-preloader-outline: preloader-outline 0.95s 0.08s var(--ease-out) forwards;
+  --animate-preloader-fill: preloader-fill 0.45s 0.88s ease forwards;
+  --animate-preloader-rule: preloader-rule 0.65s 0.72s var(--ease-out) forwards;
+}
+
 :root {
   color-scheme: dark;
   --canvas: #111310;
@@ -46,8 +71,10 @@
   --focus: #d8ff8f;
   --danger: #ff6b6b;
   --success: #76d99c;
-  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-body: "Manrope", Inter, ui-sans-serif, system-ui, sans-serif;
+  --type-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --type-body: "Manrope", Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--type-display);
+  --font-body: var(--type-body);
   --container: min(100% - 3rem, 90rem);
   --container-narrow: min(100% - 3rem, 75rem);
   --micro: 180ms;

@@ -41,7 +41,12 @@ export function PageTransition() {
   );
 
   return (
-    <div ref={container} className="page-transition" aria-hidden="true">
+    <div
+      ref={container}
+      className="pointer-events-none invisible fixed inset-0 z-[900] motion-reduce:hidden [&_span]:absolute [&_span]:inset-0 [&_span]:origin-left [&_span]:scale-x-0 [&_span]:bg-surface-raised [&_span:last-child]:bg-accent"
+      aria-hidden="true"
+      data-ui="page-transition"
+    >
       <span />
       <span />
     </div>

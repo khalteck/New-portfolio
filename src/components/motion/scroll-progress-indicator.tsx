@@ -26,8 +26,12 @@ export function ScrollProgressIndicator() {
   }, []);
 
   return (
-    <div className="scroll-progress" aria-hidden="true">
-      <span ref={fill} />
+    <div
+      className="fixed top-28 right-1.5 z-[60] h-[calc(100vh-14rem)] w-0.5 bg-line max-lg:hidden"
+      aria-hidden="true"
+      data-ui="scroll-progress"
+    >
+      <span ref={fill} className="block h-full w-full origin-top scale-y-0 bg-accent" />
     </div>
   );
 }

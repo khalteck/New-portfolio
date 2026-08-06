@@ -27,7 +27,7 @@ describe("application shell", () => {
       "#main-content"
     );
     expect(screen.getByRole("navigation", { name: "Portfolio sections" })).toBeInTheDocument();
-    const siteHeader = container.querySelector<HTMLElement>(".site-navigation");
+    const siteHeader = container.querySelector<HTMLElement>('[data-ui="site-navigation"]');
     expect(siteHeader).not.toBeNull();
     if (siteHeader) {
       expect(within(siteHeader).getByRole("link", { name: "Résumé" })).toHaveAttribute(
