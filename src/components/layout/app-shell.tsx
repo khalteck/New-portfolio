@@ -13,6 +13,7 @@ import { RouteHead } from "./route-head";
 import { SkipLink } from "./skip-link";
 import { StickyContact } from "./sticky-contact";
 import { SectionNavigation } from "../navigation/section-navigation";
+import { ScrollToTop } from "../navigation/scroll-to-top";
 
 export function AppShell() {
   return (
@@ -30,6 +31,7 @@ export function AppShell() {
       <StickyContact />
       <SiteNavigation />
       <SectionNavigation />
+      <ScrollToTop />
       <AppRoutes />
     </SmoothScrollProvider>
   );

@@ -27,10 +27,41 @@ export interface Capability {
   description: string;
 }
 
+export type TechnologyIconKey =
+  | "accessibility"
+  | "cicd"
+  | "expo"
+  | "express"
+  | "firebase"
+  | "git"
+  | "javascript"
+  | "mongodb"
+  | "nextjs"
+  | "nodejs"
+  | "performance"
+  | "playwright"
+  | "react"
+  | "rest"
+  | "redux"
+  | "socketio"
+  | "tailwind"
+  | "tanstack-query"
+  | "typescript"
+  | "url-state"
+  | "vite"
+  | "vitest"
+  | "zod"
+  | "zustand";
+
+export interface Technology {
+  name: string;
+  iconKey: TechnologyIconKey;
+}
+
 export interface TechnologyGroup {
   title: string;
   icon: "code" | "state" | "server" | "quality";
-  technologies: readonly string[];
+  technologies: readonly Technology[];
 }
 
 export interface Experience {

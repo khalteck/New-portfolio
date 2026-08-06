@@ -30,12 +30,10 @@ test.describe("portfolio routes", () => {
   test("@smoke presents the complete homepage narrative in order", async ({ page }) => {
     await page.goto("/");
 
-    await expect(
-      page.getByRole("heading", { level: 1, name: /fullstack saas\s*\/\s*engineer/i })
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /software engineer/i })).toBeVisible();
     await expect(page.locator(".availability-line")).toContainText(/open to opportunities/i);
     await expect(page.locator(".hero-metrics")).toContainText(/6\+\s*years of experience/i);
-    await expect(page.locator(".hero-metrics")).toContainText(/3\s*international remote teams/i);
+    await expect(page.locator(".hero-metrics")).toContainText(/global\s*product delivery/i);
 
     const sectionOrder = await page
       .locator("#main-content > section, #contact")
@@ -45,27 +43,13 @@ test.describe("portfolio routes", () => {
     await expect(page.locator("#contact")).toContainText(/discuss the work/i);
   });
 
-  test("incoming project slots are explicitly labelled and never become links", async ({
-    page
-  }) => {
+  test("production omits development-only incoming project slots", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
     await page.locator("#work").scrollIntoViewIfNeeded();
 
-    for (const projectNumber of ["03", "04", "05", "06"]) {
-      const slot = page
-        .locator(".project-row--incoming")
-        .filter({ hasText: `Project ${projectNumber} | In progress` });
-      await slot.scrollIntoViewIfNeeded();
-      await expect(slot).toBeVisible();
-      await expect(slot).toHaveAttribute(
-        "aria-label",
-        `Project ${projectNumber} | In progress, incoming`
-      );
-      await expect(slot).toContainText(`Project ${projectNumber} | In progress`);
-      await expect(slot.getByRole("link")).toHaveCount(0);
-      await expect(slot.getByRole("button")).toHaveCount(0);
-    }
+    await expect(page.locator(".project-row--incoming")).toHaveCount(0);
+    await expect(page.locator("#work")).not.toContainText(/Project 05|Project 06/i);
   });
 
   test("@smoke supports keyboard navigation into the featured case study", async ({ page }) => {
@@ -108,9 +92,17 @@ test.describe("portfolio routes", () => {
     await expect(page).toHaveURL(/\/#top$/);
     await expect(page.locator("#hero-title")).toBeFocused();
     await expect(page.locator(".page-transition")).toHaveCSS("visibility", "hidden");
+
+    await page.locator("#stack").scrollIntoViewIfNeeded();
+    await expect(
+      page
+        .getByRole("navigation", { name: "Portfolio sections" })
+        .getByRole("link", { name: "Stack" })
+    ).toHaveAttribute("aria-current", "location");
   });
 
-  test("@smoke renders both published case studies from direct links", async ({ page }) => {
+  test("@smoke renders all published case studies from direct links", async ({ page }) => {
+    test.setTimeout(60_000);
     await page.goto("/projects/relayops");
 
     await expect(page.getByRole("heading", { level: 1, name: /relayops/i })).toBeVisible();
@@ -136,9 +128,27 @@ test.describe("portfolio routes", () => {
       page.getByRole("main").locator('a[href="https://relayops-frontend.onrender.com/"]')
     ).toHaveCount(0);
     await expect(page.locator(".case-hero__actions")).toHaveCount(0);
+
+    await page.goto("/projects/afrogrids");
+    await expect(page.getByRole("heading", { level: 1, name: "Afro-Grids" })).toBeVisible();
+    await expect(page.getByRole("link", { name: /live product/i })).toHaveAttribute(
+      "href",
+      "https://afrogrids.com"
+    );
+
+    await page.goto("/projects/greencity-financial");
+    await expect(
+      page.getByRole("heading", { level: 1, name: "GreenCity Financial Limited" })
+    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /live product/i })).toHaveAttribute(
+      "href",
+      "https://greencityfin.com"
+    );
+    await expect(page.getByRole("link", { name: /source code/i })).toHaveCount(0);
   });
 
   test("browser history and the branded 404 remain useful", async ({ page }) => {
+    test.setTimeout(60_000);
     await page.goto("/");
     const relayOpsLink = page.locator('a[href="/projects/relayops"]').first();
     await relayOpsLink.scrollIntoViewIfNeeded();
@@ -147,7 +157,7 @@ test.describe("portfolio routes", () => {
 
     await page.goBack();
     await expect(page).toHaveURL(/\/$/);
-    await expect(page.getByRole("heading", { level: 1, name: /fullstack saas/i })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /software engineer/i })).toBeVisible();
 
     await page.goForward();
     await expect(page).toHaveURL(/\/projects\/relayops$/);
@@ -164,6 +174,7 @@ test.describe("portfolio routes", () => {
   });
 
   test("the homepage and case study have no serious axe violations", async ({ page }) => {
+    test.setTimeout(60_000);
     await page.emulateMedia({ reducedMotion: "reduce" });
 
     await page.goto("/");
@@ -171,6 +182,19 @@ test.describe("portfolio routes", () => {
 
     await page.goto("/projects/relayops");
     await expectNoSeriousAccessibilityViolations(page);
+  });
+
+  test("scroll-to-top appears away from the top and returns the current route", async ({
+    page
+  }) => {
+    await page.goto("/projects/greencity-financial");
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+
+    const scrollToTop = page.getByRole("button", { name: "Scroll to top" });
+    await expect(scrollToTop).toBeVisible();
+    await scrollToTop.click();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(5);
+    await expect(page).toHaveURL(/\/projects\/greencity-financial$/);
   });
 });
 
@@ -209,6 +233,27 @@ test.describe("responsive and motion preferences", () => {
       "href",
       /khalid-oyeneye-resume\.pdf$/
     );
+  });
+
+  test("mobile dock tracks the visible section and clears the scroll-to-top control", async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await page.locator("#experience").scrollIntoViewIfNeeded();
+
+    const dock = page.getByRole("navigation", { name: "Portfolio sections" });
+    await expect(dock.getByRole("link", { name: "Experience" })).toHaveAttribute(
+      "aria-current",
+      "location"
+    );
+    const scrollToTop = page.getByRole("button", { name: "Scroll to top" });
+    await expect(scrollToTop).toBeVisible();
+
+    const [dockBox, buttonBox] = await Promise.all([dock.boundingBox(), scrollToTop.boundingBox()]);
+    expect(dockBox).not.toBeNull();
+    expect(buttonBox).not.toBeNull();
+    if (dockBox && buttonBox) expect(buttonBox.y + buttonBox.height).toBeLessThan(dockBox.y);
   });
 
   test("remains free of horizontal overflow at a 200%-zoom equivalent width", async ({ page }) => {

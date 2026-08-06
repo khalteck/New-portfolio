@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionTitle } from "@/components/ui/section-title";
-import { portfolio } from "@/data/portfolio";
+import { portfolio, publishedProjects } from "@/data/portfolio";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { ProjectPreviewPortal } from "@/modules/projects/components/project-preview-portal";
@@ -15,6 +15,7 @@ export function SelectedProjectsSection() {
   const positionFrame = useRef(0);
   const reducedMotion = useReducedMotion();
   const constrainedPointer = useMediaQuery("(max-width: 767px), (pointer: coarse)");
+  const visibleProjects = import.meta.env.DEV ? portfolio.projects : publishedProjects;
 
   useEffect(
     () => () => {
@@ -49,11 +50,15 @@ export function SelectedProjectsSection() {
           titleId="projects-title"
           eyebrow="04 · Selected work"
           title="Selected product work."
-          description="Published case studies and projects in progress."
+          description={
+            import.meta.env.DEV
+              ? "Published case studies and projects in progress."
+              : "Published case studies across SaaS, media, art, and financial services."
+          }
         />
       </Reveal>
       <div className="project-list">
-        {portfolio.projects.map((project) => (
+        {visibleProjects.map((project) => (
           <Reveal key={project.status === "published" ? project.slug : project.id}>
             <ProjectRow
               project={project}

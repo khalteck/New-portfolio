@@ -19,7 +19,8 @@ The homepage follows this sequence:
 2. about and capabilities;
 3. technology stack grouped by responsibility;
 4. experience with four résumé-backed roles;
-5. selected projects with two published case studies and four in-progress slots; and
+5. selected projects with four published case studies plus two development-only in-progress slots;
+   and
 6. contact footer with location, email, social profiles, résumé, and analytics preferences.
 
 There is no contact-form simulation, CMS, backend, theme switcher, portrait, or unverified social
@@ -30,15 +31,18 @@ study.
 
 ### Public routes
 
-| Route                   | Purpose                                                          |
-| ----------------------- | ---------------------------------------------------------------- |
-| `/`                     | Complete portfolio narrative and selected-project index          |
-| `/projects/relayops`    | 2026 full-stack incident-operations case study with public links |
-| `/projects/tci-podcast` | React/Redux Toolkit/Firebase client and admin-CMS case study     |
-| `*`                     | Accessible branded 404 with a route home                         |
+| Route                           | Purpose                                                          |
+| ------------------------------- | ---------------------------------------------------------------- |
+| `/`                             | Complete portfolio narrative and selected-project index          |
+| `/projects/relayops`            | 2026 full-stack incident-operations case study with public links |
+| `/projects/tci-podcast`         | React/Redux Toolkit/Firebase client and admin-CMS case study     |
+| `/projects/afrogrids`           | Fullstack storytelling platform and custom Firebase CMS          |
+| `/projects/greencity-financial` | Financial-services platform and live data integrations           |
+| `*`                             | Accessible branded 404 with a route home                         |
 
-Only these three real routes are prerendered and included in the sitemap. Incoming projects 03 to 06
-have no slug, link, metadata, structured-data entry, or outcome claim.
+Only these five real routes are prerendered and included in the sitemap. Incoming projects 05 and 06
+appear only on the local Vite development site and have no production card, slug, link, metadata,
+structured-data entry, or outcome claim.
 
 ## Architecture
 
@@ -169,7 +173,7 @@ treatment, personal copy, logo, imagery, cursor artwork, or source code is repro
 
 ## Known boundaries
 
-- Projects 03 to 06 are intentionally labeled editorial placeholders, not completed work.
+- Projects 05 and 06 are development-only editorial placeholders and are omitted from production.
 - TCI Podcast intentionally omits unreliable live/source links, an unverified year, and invented
   results.
 - RelayOps screenshots use demonstration data; reported coverage applies only to the named critical

@@ -45,12 +45,12 @@ export function HeroSection() {
         <h1 id="hero-title" tabIndex={-1}>
           <span className="hero-line-mask">
             <span className="hero-line hero-line--first" data-hero-reveal>
-              Fullstack SaaS
+              Software
             </span>
           </span>
           <span className="hero-line-mask">
             <span className="hero-line hero-line--second" data-hero-reveal>
-              <em>/</em> Engineer
+              Engineer
             </span>
           </span>
         </h1>

@@ -5,7 +5,7 @@
 
 ## Context
 
-The portfolio is a React/Vite frontend with three stable public routes. Case studies need shareable
+The portfolio is a React/Vite frontend with five stable public routes. Case studies need shareable
 direct URLs, route-specific metadata, useful initial markup, browser navigation, and static hosting.
 Adding a runtime server or adopting a different meta-framework would conflict with the requested
 architecture and increase operational scope.
@@ -16,8 +16,9 @@ The existing release model targets Netlify and the canonical domain `khalidoyene
 
 - Keep React Router as the client route owner.
 - Build the normal Vite client bundle plus a temporary SSR bundle used only by a prerender script.
-- Generate static HTML for `/`, `/projects/relayops`, and `/projects/tci-podcast` at build time, then
-  hydrate with the client entry in browsers.
+- Generate static HTML for `/`, `/projects/relayops`, `/projects/tci-podcast`,
+  `/projects/afrogrids`, and `/projects/greencity-financial` at build time, then hydrate with the
+  client entry in browsers.
 - Keep the route allowlist explicit. Incoming projects and 404 variants do not generate public
   static pages or sitemap entries.
 - Deploy only `dist` to Netlify; do not run Node/Express in production.

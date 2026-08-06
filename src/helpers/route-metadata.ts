@@ -34,10 +34,7 @@ export const getRouteMetadata = (pathname: string): RouteMetadata => {
       title: `${project.title} | Khalid Oyeneye`,
       description: project.shortDescription,
       canonicalPath: `/projects/${project.slug}`,
-      image:
-        project.slug === "relayops"
-          ? "/images/projects/relayops/social-preview.png"
-          : "/images/projects/tci-podcast/tci-podcast-1440.webp",
+      image: project.preview.webpSrc,
       imageAlt: `${project.title} project case study by Khalid Oyeneye`,
       type: "article",
       robots: "index, follow, max-image-preview:large"

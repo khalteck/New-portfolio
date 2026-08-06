@@ -51,6 +51,51 @@ const tciPreview: ProjectImage = {
     "/images/projects/tci-podcast/tci-podcast-640.webp 640w, /images/projects/tci-podcast/tci-podcast-960.webp 960w, /images/projects/tci-podcast/tci-podcast-1440.webp 1440w, /images/projects/tci-podcast/tci-podcast.webp 1860w"
 };
 
+const projectImage = (
+  slug: "afrogrids" | "greencity-financial",
+  name: string,
+  width: number,
+  height: number,
+  alt: string,
+  variants: readonly number[],
+  caption?: string
+): ProjectImage => ({
+  src: `/images/projects/${slug}/${name}.avif`,
+  webpSrc: `/images/projects/${slug}/${name}.webp`,
+  width,
+  height,
+  alt,
+  sizes: "(max-width: 767px) 92vw, (max-width: 1199px) 86vw, 1120px",
+  avifSrcSet:
+    variants.length > 1
+      ? variants
+          .map((variant) => {
+            const suffix = variant === width ? "" : `-${variant}`;
+            return `/images/projects/${slug}/${name}${suffix}.avif ${variant}w`;
+          })
+          .join(", ")
+      : undefined,
+  webpSrcSet:
+    variants.length > 1
+      ? variants
+          .map((variant) => {
+            const suffix = variant === width ? "" : `-${variant}`;
+            return `/images/projects/${slug}/${name}${suffix}.webp ${variant}w`;
+          })
+          .join(", ")
+      : undefined,
+  caption
+});
+
+const socialPreview = (slug: "afrogrids" | "greencity-financial", alt: string): ProjectImage => ({
+  src: `/images/projects/${slug}/social-preview.avif`,
+  webpSrc: `/images/projects/${slug}/social-preview.webp`,
+  width: 1200,
+  height: 630,
+  alt,
+  sizes: "(max-width: 767px) 92vw, 560px"
+});
+
 export const portfolio: PortfolioContent = {
   profile: {
     name: "Khalid Oyeneye",
@@ -74,8 +119,8 @@ export const portfolio: PortfolioContent = {
       visible: true
     },
     {
-      value: "3",
-      label: "International remote teams",
+      value: "Global",
+      label: "Product delivery",
       basis: "Resume-verified remote roles with teams in the United States, Sweden, and Hungary.",
       visible: true
     }
@@ -104,32 +149,53 @@ export const portfolio: PortfolioContent = {
   ],
   technologyGroups: [
     {
-      title: "Frontend",
+      title: "Frontend & Mobile",
       icon: "code",
       technologies: [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "Vite",
-        "Next.js",
-        "Tailwind CSS",
-        "React Native / Expo"
+        { name: "React", iconKey: "react" },
+        { name: "React Native", iconKey: "react" },
+        { name: "TypeScript", iconKey: "typescript" },
+        { name: "JavaScript", iconKey: "javascript" },
+        { name: "Vite", iconKey: "vite" },
+        { name: "Next.js", iconKey: "nextjs" },
+        { name: "Tailwind CSS", iconKey: "tailwind" },
+        { name: "Expo", iconKey: "expo" }
       ]
     },
     {
-      title: "State & data",
-      icon: "state",
-      technologies: ["Redux Toolkit", "TanStack Query", "Zustand", "REST APIs", "URL state"]
-    },
-    {
-      title: "Full-stack & realtime",
+      title: "Backend & APIs",
       icon: "server",
-      technologies: ["Node.js", "Express", "MongoDB", "Firebase", "Socket.IO", "Zod"]
+      technologies: [
+        { name: "Node.js", iconKey: "nodejs" },
+        { name: "Express", iconKey: "express" },
+        { name: "REST APIs", iconKey: "rest" },
+        { name: "Firebase", iconKey: "firebase" },
+        { name: "Socket.IO", iconKey: "socketio" },
+        { name: "Zod", iconKey: "zod" }
+      ]
     },
     {
-      title: "Quality & delivery",
+      title: "Data & State",
+      icon: "state",
+      technologies: [
+        { name: "MongoDB", iconKey: "mongodb" },
+        { name: "Redux Toolkit", iconKey: "redux" },
+        { name: "TanStack Query", iconKey: "tanstack-query" },
+        { name: "Zustand", iconKey: "zustand" },
+        { name: "URL state", iconKey: "url-state" }
+      ]
+    },
+    {
+      title: "Testing & Delivery",
       icon: "quality",
-      technologies: ["Vitest", "Playwright", "Accessibility", "Performance", "Git", "CI/CD"]
+      technologies: [
+        { name: "Vitest", iconKey: "vitest" },
+        { name: "Playwright", iconKey: "playwright" },
+        { name: "Accessibility", iconKey: "accessibility" },
+        { name: "Performance", iconKey: "performance" },
+        { name: "Git", iconKey: "git" },
+        { name: "CI/CD", iconKey: "cicd" }
+      ]
     }
   ],
   experiences: [
@@ -171,11 +237,11 @@ export const portfolio: PortfolioContent = {
     {
       company: "Iroko Events International",
       location: "Budapest, Hungary · Remote",
-      title: "Frontend Developer",
+      title: "Fullstack Web Developer",
       start: "Feb 2022",
       end: "Jan 2023",
       summary:
-        "Built the public voting experience and administration tools with React and Firebase.",
+        "Built the React and Firebase voting product, administration workflows, and supporting services.",
       achievements: [
         "Resume-reported voter participation increased by 50%.",
         "Resume-reported admin effort fell by 70% and voting errors by 95%."
@@ -185,15 +251,16 @@ export const portfolio: PortfolioContent = {
     {
       company: "Agrofeed Integrated Services",
       location: "Lagos, Nigeria",
-      title: "Frontend Developer",
+      title: "Fullstack Web Developer",
       start: "Nov 2019",
       end: "Jan 2022",
-      summary: "Built and maintained the company website across product and business requirements.",
+      summary:
+        "Built and maintained the company web platform, using Firebase for server-side functionality.",
       achievements: [
         "Resume-reported sales increased by 20% after the company website launch.",
         "Resume-reported search ranking improved by 100% through SEO work."
       ],
-      technologies: ["HTML", "CSS", "JavaScript", "SEO", "Responsive design"]
+      technologies: ["HTML", "CSS", "JavaScript", "Firebase", "SEO", "Responsive design"]
     }
   ],
   projects: [
@@ -358,7 +425,169 @@ export const portfolio: PortfolioContent = {
       sourceNote:
         "Verified from the existing portfolio, current résumé, and retained product screenshot. Unreliable public links are omitted."
     },
-    ...["03", "04", "05", "06"].map((number) => ({
+    {
+      status: "published",
+      number: "03",
+      slug: "afrogrids",
+      title: "Afro-Grids",
+      role: "Fullstack web development · CMS architecture",
+      shortDescription:
+        "A digital storytelling platform with a custom CMS for artworks, publications, press, submissions, and evolving editorial content.",
+      overview:
+        "Afro-Grids examines digital colonialism, internet infrastructure, and alternative futures through storytelling and art. I built the public platform and its authenticated content system so the editorial experience can evolve without code changes.",
+      technologies: [
+        "React",
+        "Vite",
+        "Firebase Auth",
+        "Firestore",
+        "Firebase Storage",
+        "TanStack Query",
+        "Zustand",
+        "Rich text editing"
+      ],
+      preview: socialPreview(
+        "afrogrids",
+        "Afro-Grids landing page with its illustrated internet infrastructure artwork"
+      ),
+      gallery: [
+        projectImage(
+          "afrogrids",
+          "landing",
+          1440,
+          900,
+          "Afro-Grids landing page with illustrated folklore and undersea cable imagery",
+          [640, 960, 1440],
+          "The public entry point combines art, research, and nonlinear storytelling."
+        ),
+        projectImage(
+          "afrogrids",
+          "storytelling",
+          1440,
+          1288,
+          "Afro-Grids Bones of the Sea storytelling and book trailer page",
+          [640, 960, 1440],
+          "The publication experience supports long-form narrative, video, and downloadable material."
+        ),
+        projectImage(
+          "afrogrids",
+          "press",
+          1440,
+          720,
+          "Afro-Grids press page presenting interviews and international coverage",
+          [640, 960, 1440],
+          "Structured press content is managed through the same editorial platform."
+        )
+      ],
+      problem: [
+        "A research-led art project needed to present several connected media formats without flattening its visual identity.",
+        "Artworks, publications, press, awards, keynotes, and submissions needed to remain editable after launch."
+      ],
+      solution: [
+        "A responsive React experience gives each content type a distinct public presentation while sharing navigation and accessibility foundations.",
+        "An authenticated Firebase CMS models page content, lists, media, rich text, settings, and submissions for controlled editorial updates."
+      ],
+      responsibilities: [
+        "Built the public React and Vite application and responsive interaction system.",
+        "Designed the Firestore content model and Firebase Storage media workflow.",
+        "Built authenticated administration for pages, artworks, publications, press, keynotes, awards, settings, and submissions.",
+        "Added rich-text sanitization, client caching, analytics, and operational content fallbacks."
+      ],
+      challenges: [
+        "Preserving an art-directed experience while making dynamic content responsive and maintainable.",
+        "Keeping public rendering safe when editors can publish rich text and externally hosted media.",
+        "Coordinating authentication, storage, Firestore updates, analytics, and submission workflows."
+      ],
+      outcomes: [
+        "Delivered a public storytelling platform backed by a purpose-built editorial system.",
+        "Enabled non-developer management of the project’s major content and media surfaces.",
+        "Kept protected CMS views separate from the public application and portfolio evidence."
+      ],
+      liveUrl: "https://afrogrids.com",
+      sourceNote:
+        "Technical scope verified from the local Afro-Grids source repository. Public screenshots were captured from afrogrids.com on 6 August 2026; protected administration screens and source links are intentionally omitted."
+    },
+    {
+      status: "published",
+      number: "04",
+      slug: "greencity-financial",
+      title: "GreenCity Financial Limited",
+      role: "Fullstack web development · Financial data integrations",
+      shortDescription:
+        "A financial-services platform combining wealth products with dynamic rates, market indices, news, analytics, and lead workflows.",
+      overview:
+        "GreenCity Financial Limited needed a credible public platform for its wealth and asset-management services alongside current financial information. I built the product experience and data integrations that bring rates, indices, news, and client journeys into one responsive application.",
+      technologies: [
+        "React 19",
+        "Vite",
+        "Mantine",
+        "Tailwind CSS",
+        "PHP endpoints",
+        "Axios",
+        "Market data APIs",
+        "PWA"
+      ],
+      preview: socialPreview(
+        "greencity-financial",
+        "GreenCity Financial landing page with a market indices dashboard"
+      ),
+      gallery: [
+        projectImage(
+          "greencity-financial",
+          "landing",
+          1440,
+          900,
+          "GreenCity Financial landing page with wealth messaging and market data",
+          [640, 960, 1440],
+          "The landing experience combines brand positioning, market context, and a direct client pathway."
+        ),
+        projectImage(
+          "greencity-financial",
+          "markets",
+          640,
+          640,
+          "GreenCity Financial market panel showing indices and digital asset rates",
+          [640],
+          "A compact market surface integrates independently fetched indices with partial-failure resilience."
+        ),
+        projectImage(
+          "greencity-financial",
+          "businesses",
+          1440,
+          654,
+          "GreenCity Financial wealth management and asset management services",
+          [640, 960, 1440],
+          "The service architecture directs visitors into the appropriate wealth or asset-management journey."
+        )
+      ],
+      problem: [
+        "The public site needed to communicate regulated financial services without becoming a static brochure.",
+        "CBN and FX rates, market indices, and news arrive from separate services with different availability and response shapes."
+      ],
+      solution: [
+        "A responsive React application connects the company narrative, service lines, market context, news, and client enquiry paths.",
+        "Dedicated data adapters normalize third-party feeds, cache responses, and preserve the usable parts of the interface when one provider fails."
+      ],
+      responsibilities: [
+        "Built the responsive public experience and reusable service presentation.",
+        "Integrated CBN and FX rates, global and Nigerian indices, digital assets, and dynamic news.",
+        "Implemented API caching, loading, empty, and partial-failure states across independent data sources.",
+        "Added PWA behavior, analytics events, and the Wealth Control Check lead workflow."
+      ],
+      challenges: [
+        "Normalizing financial data with inconsistent symbols, schedules, and availability.",
+        "Keeping data surfaces informative when individual providers time out or return partial results.",
+        "Balancing financial-services credibility with a clear, responsive conversion path."
+      ],
+      outcomes: [
+        "Delivered a unified public platform for GreenCity’s services, market information, news, and lead journeys.",
+        "Reduced dependence on manually updated market content through dynamic data integrations and caching.",
+        "Provided resilient empty and partial-data states without presenting fabricated values."
+      ],
+      liveUrl: "https://greencityfin.com",
+      sourceNote:
+        "Technical scope verified from the local GreenCity source and production build. Public screenshots were captured on 6 August 2026; GreenCity’s Cloudflare protection prevented automated live capture, so the portfolio uses the genuine local production build and public data responses without mocked values."
+    },
+    ...["05", "06"].map((number) => ({
       status: "incoming" as const,
       number,
       id: `incoming-${number}`,

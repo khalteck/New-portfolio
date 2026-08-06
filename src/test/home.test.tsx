@@ -21,7 +21,7 @@ describe("homepage", () => {
     renderHome();
 
     expect(
-      screen.getByRole("heading", { level: 1, name: /Fullstack SaaS\s*\/\s*Engineer/i })
+      screen.getByRole("heading", { level: 1, name: "Software Engineer" })
     ).toBeInTheDocument();
     expect(document.querySelector(".availability-line")).toHaveTextContent(
       /Open to opportunities/i
@@ -41,9 +41,16 @@ describe("homepage", () => {
     ).toEqual(["top", "about", "stack", "experience", "work"]);
     expect(screen.getByRole("heading", { name: "Experience across borders." })).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toHaveAttribute("id", "contact");
+
+    const stack = screen.getByRole("region", { name: "Production tools and practices." });
+    expect(
+      within(stack)
+        .getAllByRole("listitem")
+        .every((item) => item.querySelector("svg"))
+    ).toBe(true);
   });
 
-  it("provides functional paths only for the two published projects", () => {
+  it("provides functional paths only for the four published projects", () => {
     renderHome();
 
     expect(screen.getByRole("link", { name: "View RelayOps case study" })).toHaveAttribute(
@@ -54,8 +61,15 @@ describe("homepage", () => {
       "href",
       "/projects/tci-podcast"
     );
+    expect(screen.getByRole("link", { name: "View Afro-Grids case study" })).toHaveAttribute(
+      "href",
+      "/projects/afrogrids"
+    );
+    expect(
+      screen.getByRole("link", { name: "View GreenCity Financial Limited case study" })
+    ).toHaveAttribute("href", "/projects/greencity-financial");
 
-    for (const number of ["03", "04", "05", "06"]) {
+    for (const number of ["05", "06"]) {
       const slot = screen.getByRole("article", {
         name: `Project ${number} | In progress, incoming`
       });
@@ -75,6 +89,10 @@ describe("homepage", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: /The Chronicles of an Immigrant podcast website/i })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /Afro-Grids landing page/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /GreenCity Financial landing page/i })
     ).toBeInTheDocument();
   });
 

@@ -29,6 +29,8 @@ describe("session preloader", () => {
     render(<Preloader />);
 
     expect(screen.getByTestId("preloader")).toHaveTextContent("KO");
+    expect(document.querySelector(".preloader__outline")).toBeInTheDocument();
+    expect(document.querySelector(".preloader__draw")).toBeInTheDocument();
     expect(sessionStorage.getItem(sessionKey)).toBe("true");
 
     void act(() => vi.advanceTimersByTime(1_999));

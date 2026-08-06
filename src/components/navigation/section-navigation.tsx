@@ -1,5 +1,6 @@
 import { BriefcaseBusiness, FolderKanban, House, Layers3, Mail, UserRound } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import type { MouseEvent } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useActiveSection } from "@/hooks/use-active-section";
 
 const sectionNavigationItems = [
@@ -14,8 +15,30 @@ const observedSectionIds = sectionNavigationItems.map((item) => item.id);
 
 export function SectionNavigation() {
   const location = useLocation();
-  const activeSection = useActiveSection(observedSectionIds);
+  const navigate = useNavigate();
+  const activeSection = useActiveSection(observedSectionIds, location.pathname);
   const onHomePage = location.pathname === "/";
+
+  const handleSectionClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (!onHomePage) return;
+
+    event.preventDefault();
+    const hash = `#${id}`;
+    void navigate(
+      { pathname: "/", hash },
+      {
+        replace: location.hash === hash,
+        state: { skipPageTransition: true }
+      }
+    );
+
+    const target = document.getElementById(id);
+    if (!target) return;
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth";
+    target.scrollIntoView({ behavior, block: "start" });
+  };
 
   return (
     <nav className="section-navigation" aria-label="Portfolio sections">
@@ -29,6 +52,7 @@ export function SectionNavigation() {
                 state={{ skipPageTransition: true }}
                 aria-current={isCurrent ? "location" : undefined}
                 aria-label={label}
+                onClick={(event) => handleSectionClick(event, id)}
                 data-analytics-event="section_navigation"
                 data-analytics-label={id}
               >

@@ -25,7 +25,7 @@ describe("application routes", () => {
   it("renders the homepage at the canonical root", () => {
     renderRoute("/");
     expect(
-      screen.getByRole("heading", { level: 1, name: /Fullstack SaaS\s*\/\s*Engineer/i })
+      screen.getByRole("heading", { level: 1, name: "Software Engineer" })
     ).toBeInTheDocument();
   });
 
@@ -57,6 +57,18 @@ describe("application routes", () => {
       within(main).queryByRole("link", { name: /Live product|Source code/ })
     ).not.toBeInTheDocument();
     expect(within(main).getByText(/episode creation, editing, publishing/i)).toBeInTheDocument();
+  });
+
+  it.each([
+    ["/projects/afrogrids", "Afro-Grids", "https://afrogrids.com"],
+    ["/projects/greencity-financial", "GreenCity Financial Limited", "https://greencityfin.com"]
+  ])("renders the published %s case study", async (pathname, title, liveUrl) => {
+    renderRoute(pathname);
+
+    await screen.findByRole("heading", { level: 1, name: title });
+    expect(screen.getByRole("link", { name: /Live product/ })).toHaveAttribute("href", liveUrl);
+    expect(screen.queryByRole("link", { name: /Source code/ })).not.toBeInTheDocument();
+    expect(screen.getByLabelText(`${title} gallery`)).toBeInTheDocument();
   });
 
   it.each(["/projects/incoming-03", "/projects/not-a-project", "/unknown-route"])(
