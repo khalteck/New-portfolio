@@ -28,7 +28,10 @@ for (const route of routes) {
   const result = await render(route.url);
   const document = template
     .replace(/\s*<title>.*?<\/title>/s, "")
-    .replace(/\s*<link rel="canonical"[^>]*>/s, "")
+    .replace(/\s*<meta\s+name="description"[^>]*>/s, "")
+    .replace(/\s*<meta\s+name="author"[^>]*>/s, "")
+    .replace(/\s*<meta\s+name="robots"[^>]*>/s, "")
+    .replace(/\s*<link\s+rel="canonical"[^>]*>/s, "")
     .replace("<!--app-head-->", result.head)
     .replace('<div id="root"></div>', `<div id="root">${result.html}</div>`);
 

@@ -10,6 +10,12 @@ The target host is Netlify and the canonical origin is `https://khalidoyeneye.de
 configuration declares `dist` as the publish directory, Node 24, pnpm 10.32.1, an SPA fallback,
 immutable caching for hashed assets, and static security headers.
 
+The source `index.html` intentionally carries `noindex, follow` because the repository was once
+published directly through GitHub Pages. The production prerender replaces that tag with each
+route's real robots policy and canonical URL. A small early host check also forwards visits from a
+legacy `github.io` project page to the equivalent path on the canonical origin. GitHub Pages should
+still be disabled in the repository settings so the retired host stops returning `200` entirely.
+
 This document is a procedure, not a claim that v2 is deployed. At the time of the rebuild, v2 lives
 on `revamp/v2`; the old site is preserved on `archive/v1` and tag `v1.0.0`.
 
@@ -156,6 +162,8 @@ Complete these items before the production promotion:
       DebugView or Realtime. Also confirm `contact_click`, `resume_view`, `project_open`,
       `project_external`, `external_profile`, and `section_navigation` events.
 - [ ] Add a Google Search Console Domain property and complete its DNS TXT verification.
+- [ ] Disable GitHub Pages for this repository; verify the retired project-page host no longer
+      serves a `200` copy of the source tree.
 - [ ] Submit `https://khalidoyeneye.dev/sitemap.xml`, inspect all five published URLs, and request
       indexing after the live checks pass.
 - [ ] Run the deployed pages through Google's Rich Results Test and confirm the profile and project

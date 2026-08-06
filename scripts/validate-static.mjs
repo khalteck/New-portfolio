@@ -10,8 +10,10 @@ const { getPrerenderRoutes } = await import(pathToFileURL(serverEntry).href);
 if (typeof getPrerenderRoutes !== "function")
   throw new Error("SSR bundle does not export getPrerenderRoutes().");
 
+const canonicalOrigin = "https://khalidoyeneye.dev";
+const routes = getPrerenderRoutes();
 const required = [
-  ...getPrerenderRoutes().map(({ output }) => output),
+  ...routes.map(({ output }) => output),
   "khalid-oyeneye-resume.pdf",
   "robots.txt",
   "sitemap.xml",
@@ -35,8 +37,32 @@ const documents = await Promise.all(
 );
 
 for (const [file, html] of documents) {
+  const route = routes.find(({ output }) => output === file);
+  if (!route) throw new Error(`${file} does not have a prerender route.`);
+
   if (!html.includes('id="root">')) {
     throw new Error(`${file} is missing prerendered content.`);
+  }
+  const expectedCanonical = new URL(route.url, canonicalOrigin).toString();
+  const canonicals = [...html.matchAll(/<link\s+rel="canonical"\s+href="([^"]+)"\s*\/?>/gi)].map(
+    (match) => match[1]
+  );
+  if (canonicals.length !== 1 || canonicals[0] !== expectedCanonical) {
+    throw new Error(
+      `${file} must contain exactly one canonical URL for ${expectedCanonical}; found ${canonicals.join(", ") || "none"}.`
+    );
+  }
+  for (const name of ["description", "author"]) {
+    const matches = [...html.matchAll(new RegExp(`<meta\\s+name="${name}"`, "gi"))];
+    if (matches.length !== 1) {
+      throw new Error(`${file} must contain exactly one ${name} meta tag.`);
+    }
+  }
+  const robotsTags = [...html.matchAll(/<meta\s+name="robots"\s+content="([^"]+)"\s*\/?>/gi)].map(
+    (match) => match[1]
+  );
+  if (robotsTags.length !== 1) {
+    throw new Error(`${file} must contain exactly one robots meta tag.`);
   }
   if (file !== "404.html" && !html.includes("application/ld+json")) {
     throw new Error(`${file} is missing structured data.`);
@@ -110,6 +136,16 @@ if (initialTransfer > 1.5 * 1024 * 1024) {
 
 const sitemap = await readFile(resolveDist("sitemap.xml"), "utf8");
 if (sitemap.includes("incoming")) throw new Error("Sitemap contains an incoming-project route.");
+for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+  if (!match[1].startsWith(`${canonicalOrigin}/`)) {
+    throw new Error(`Sitemap contains a non-canonical origin: ${match[1]}`);
+  }
+}
+
+const robots = await readFile(resolveDist("robots.txt"), "utf8");
+if (!robots.includes(`Sitemap: ${canonicalOrigin}/sitemap.xml`)) {
+  throw new Error("robots.txt does not advertise the canonical sitemap URL.");
+}
 
 console.log(
   `Static validation passed: ${(initialJavaScript / 1024).toFixed(1)} KiB initial JS gzip, ${(initialTransfer / 1024).toFixed(1)} KiB initial transfer.`
