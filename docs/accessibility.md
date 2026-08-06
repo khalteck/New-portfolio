@@ -19,14 +19,15 @@ be marked passed until it has run against the exact release commit and productio
   their placeholder status in text.
 - External links have descriptive names and safe new-tab attributes. Email and résumé actions are
   plain links that work without application state.
-- A native modal `dialog` owns the navigation drawer. It contains focus, closes on Escape or
-  backdrop interaction, locks background scrolling, and restores focus to the menu trigger.
+- A labelled fixed section navigator remains available on every route. It uses normal links and
+  moves focus to the destination heading after navigation.
 - Visible focus is never removed and uses a high-contrast accent treatment that does not depend on
   color alone.
 - Product images have intrinsic dimensions and useful alt text. Decorative ambience and transition
   layers are hidden from assistive technology.
 - Route content is meaningful without animation. Reduced motion removes the preloader delay,
-  smooth scrolling, pointer tracking, particles, magnetic movement, and long wipes.
+  smooth scrolling, pointer tracking, magnetic movement, and long wipes. Particles remain visible
+  as a static background.
 - Mobile/touch layouts use inline project images instead of hover emulation. Pointer-only cursor
   state is supplementary.
 - The layout is designed for 320 CSS pixels, 200% zoom, landscape mobile, and keyboard use without
@@ -34,19 +35,16 @@ be marked passed until it has run against the exact release commit and productio
 
 ## Keyboard map
 
-| Context               | Key/input           | Expected behavior                                                         |
-| --------------------- | ------------------- | ------------------------------------------------------------------------- |
-| Page                  | `Tab`               | Moves through visible interactive elements in DOM/reading order           |
-| Page                  | `Shift+Tab`         | Moves backward without entering hidden transition or ambience layers      |
-| Skip link             | `Enter`             | Moves focus to primary content                                            |
-| Menu trigger          | `Enter` / `Space`   | Opens the drawer and moves focus into its modal context                   |
-| Open drawer           | `Tab` / `Shift+Tab` | Remains within dialog controls                                            |
-| Open drawer           | `Escape`            | Closes the drawer and restores focus to the trigger                       |
-| Drawer section link   | `Enter`             | Closes the drawer and moves to the target home section, from any route    |
-| Published project     | `Tab`, `Enter`      | Shows a focus-associated preview where supported and opens its case study |
-| Incoming project      | —                   | Receives no focus because it is intentionally not an action               |
-| Case-study back       | `Enter`             | Returns through useful browser history with a safe home fallback          |
-| External/contact link | `Enter`             | Opens the verified target; purpose is discernible from accessible text    |
+| Context               | Key/input      | Expected behavior                                                         |
+| --------------------- | -------------- | ------------------------------------------------------------------------- |
+| Page                  | `Tab`          | Moves through visible interactive elements in DOM/reading order           |
+| Page                  | `Shift+Tab`    | Moves backward without entering hidden transition or ambience layers      |
+| Skip link             | `Enter`        | Moves focus to primary content                                            |
+| Section dock link     | `Enter`        | Moves to the target home section from any route and focuses its heading   |
+| Published project     | `Tab`, `Enter` | Shows a focus-associated preview where supported and opens its case study |
+| Incoming project      | None           | Receives no focus because it is intentionally not an action               |
+| Case-study back       | `Enter`        | Returns through useful browser history with a safe home fallback          |
+| External/contact link | `Enter`        | Opens the verified target; purpose is discernible from accessible text    |
 
 The custom cursor, particle canvas, progress rail, and page-transition layers must never become
 focusable.

@@ -15,8 +15,8 @@ export function ExperienceSection() {
         <SectionTitle
           titleId="experience-title"
           eyebrow="03 · Experience"
-          title="Built with teams across borders."
-          description="Professional experience and impact sourced from the current résumé."
+          title="Experience across borders."
+          description="Roles and outcomes from my current résumé."
         />
       </Reveal>
       <div className="experience-list">
@@ -39,7 +39,7 @@ export function ExperienceSection() {
               <div className="experience-row__role">
                 <strong>{experience.title}</strong>
                 <span>
-                  {experience.start} — {experience.end}
+                  {experience.start} to {experience.end}
                 </span>
               </div>
               <div className="experience-row__detail">

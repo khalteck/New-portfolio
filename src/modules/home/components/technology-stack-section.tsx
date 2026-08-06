@@ -17,8 +17,8 @@ export function TechnologyStackSection() {
         <SectionTitle
           titleId="stack-title"
           eyebrow="02 · Stack"
-          title="Tools chosen for the system, not the trend."
-          description="A verified working stack across interface architecture, data flow, product services, and delivery quality."
+          title="Production tools and practices."
+          description="Technologies used across interfaces, data, services, and testing."
         />
       </Reveal>
       <div className="technology-groups">

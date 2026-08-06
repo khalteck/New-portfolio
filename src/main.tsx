@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { App } from "./App";
+import { PUBLISHED_PROJECT_PATHS } from "./helpers/route-metadata";
 import "./styles/index.css";
 
 const root = document.getElementById("root");
@@ -13,7 +14,7 @@ const application = (
 );
 
 const normalizedPath = window.location.pathname.replace(/\/$/, "") || "/";
-const prerenderedRoutes = new Set(["/", "/projects/relayops", "/projects/tci-podcast"]);
+const prerenderedRoutes = new Set(["/", ...PUBLISHED_PROJECT_PATHS]);
 
 if (root.hasChildNodes() && prerenderedRoutes.has(normalizedPath)) {
   hydrateRoot(root, application);

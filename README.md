@@ -1,9 +1,9 @@
-# Khalid Oyeneye — Portfolio v2
+# Khalid Oyeneye Portfolio v2
 
-A type-led, motion-aware portfolio for [Khalid Oyeneye](https://github.com/khalteck), a Senior
-Frontend Engineer based in Lagos, Nigeria. The experience is designed to help recruiters and
-technical decision-makers evaluate Khalid's frontend architecture, product engineering, delivery,
-and leadership work quickly, then move directly to a case study, résumé, or email conversation.
+A type-led, motion-aware portfolio for [Khalid Oyeneye](https://github.com/khalteck), a fullstack
+SaaS engineer. The experience helps recruiters and technical decision-makers evaluate Khalid's
+web, mobile, backend, product engineering, and delivery work, then move directly to a case study,
+résumé, or email conversation.
 
 > **Release status:** v2 is developed on `revamp/v2`. The previous portfolio is preserved on
 > `archive/v1` and at tag `v1.0.0`. `https://khalidoyeneye.dev` is the production target, but this
@@ -13,19 +13,20 @@ and leadership work quickly, then move directly to a case study, résumé, or em
 
 ## Experience
 
-The homepage follows one deliberate narrative:
+The homepage follows this sequence:
 
-1. hero — `SENIOR FRONTEND / ENGINEER`, availability, verified career metrics, and contact/work CTAs;
-2. philosophy — Khalid's approach to clear, fast, trustworthy software;
-3. about — product-engineering and technical-leadership context;
-4. technology stack — verified tools grouped by responsibility;
-5. experience — four résumé-backed roles and employer-bound impact claims;
-6. selected projects — RelayOps, TCI Podcast, and four explicit incoming placeholders; and
-7. contact footer — email, GitHub, LinkedIn, résumé, and discreet design-reference credit.
+1. hero with role, availability, career metrics, and contact actions;
+2. about and capabilities;
+3. technology stack grouped by responsibility;
+4. experience with four résumé-backed roles;
+5. selected projects with two published case studies and four in-progress slots; and
+6. contact footer with location, email, social profiles, résumé, and analytics preferences.
 
-There is no contact-form simulation, analytics, CMS, backend, theme switcher, portrait, or
-unverified social channel. The primary conversion path is a plain `mailto:` link. The secondary path
-opens the RelayOps case study.
+There is no contact-form simulation, CMS, backend, theme switcher, portrait, or unverified social
+channel. Google Analytics 4 is optional, requires a public measurement ID, and loads only after
+visitor consent.
+The primary conversion path is a plain `mailto:` link. The secondary path opens the RelayOps case
+study.
 
 ### Public routes
 
@@ -36,7 +37,7 @@ opens the RelayOps case study.
 | `/projects/tci-podcast` | React/Redux Toolkit/Firebase client and admin-CMS case study     |
 | `*`                     | Accessible branded 404 with a route home                         |
 
-Only these three real routes are prerendered and included in the sitemap. Incoming projects 03–06
+Only these three real routes are prerendered and included in the sitemap. Incoming projects 03 to 06
 have no slug, link, metadata, structured-data entry, or outcome claim.
 
 ## Architecture
@@ -46,8 +47,9 @@ have no slug, link, metadata, structured-data entry, or outcome claim.
   muted-gray, and electric-green editorial system.
 - `src/data/portfolio.ts` is the single publishable-content source. Types in
   `src/types/portfolio.ts` separate `PublishedProject` from non-routable `IncomingProject` data.
-- GSAP and ScrollTrigger own coordinated reveals and route layers; Lenis has one optional smooth
-  scroll lifecycle; CSS owns simple hover/focus transitions.
+- GSAP and ScrollTrigger own coordinated reveals and route layers; Lenis has one smooth-scroll
+  lifecycle; CSS owns simple hover and focus transitions. The fixed section dock bypasses route
+  layers so section links scroll without a transition wipe.
 - The production build creates the Vite client bundle, an SSR rendering bundle used only at build
   time, and static HTML for each real route. React then hydrates those pages in the browser.
 - Netlify serves the generated static output, uses an SPA fallback for unknown client routes, caches
@@ -70,9 +72,9 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Vite defaults to `http://localhost:5173`. No environment value is currently required; see
-`.env.example`. Never put a secret in a `VITE_` variable because Vite exposes those values to the
-browser bundle.
+Vite defaults to `http://localhost:5173`. Analytics is optional; add `VITE_GA_MEASUREMENT_ID` to
+enable the consent prompt, manual route views, and portfolio conversion events. Never put a secret
+in a `VITE_` variable because Vite exposes those values to the browser bundle.
 
 ### Commands
 
@@ -120,16 +122,17 @@ alt text.
 
 ## Motion, accessibility, and performance
 
-Motion is progressive enhancement. Final text exists before animation runs. Pointer-follow previews,
-the custom cursor, particles, magnetic movement, Lenis scrolling, the delayed preloader, and long
-wipes are absent for reduced-motion users; pointer-specific effects are also omitted for coarse
-pointers and narrow layouts. See [`docs/motion-system.md`](docs/motion-system.md).
+Motion is progressive enhancement. Final text exists before animation runs. Pointer previews, the
+custom cursor, magnetic movement, Lenis scrolling, the delayed preloader, and transition wipes are
+absent for reduced-motion users. The particle field remains visible but static. Pointer-specific
+effects are also omitted for coarse pointers and narrow layouts. See
+[`docs/motion-system.md`](docs/motion-system.md).
 
 The accessibility target is WCAG 2.2 AA. The application includes landmarks, a skip link, logical
-route headings, visible focus, a native modal dialog for navigation, focus restoration, a polite
-route announcer, keyboard-accessible project rows, responsive inline media, and safe external-link
-attributes. Automated checks support, but do not replace, the manual assistive-technology checklist
-in [`docs/accessibility.md`](docs/accessibility.md).
+route headings, visible focus, a fixed labelled section navigator, a polite route announcer,
+keyboard-accessible project rows, responsive inline media, and safe external-link attributes.
+Automated checks support, but do not replace, the manual assistive-technology checklist in
+[`docs/accessibility.md`](docs/accessibility.md).
 
 Configured quality budgets are:
 
@@ -166,12 +169,11 @@ treatment, personal copy, logo, imagery, cursor artwork, or source code is repro
 
 ## Known boundaries
 
-- Projects 03–06 are intentionally labeled editorial placeholders, not completed work.
+- Projects 03 to 06 are intentionally labeled editorial placeholders, not completed work.
 - TCI Podcast intentionally omits unreliable live/source links, an unverified year, and invented
   results.
 - RelayOps screenshots use demonstration data; reported coverage applies only to the named critical
   surfaces.
-- The portfolio has no analytics by default. Any future provider requires a privacy and consent
-  review before code or identifiers are added.
+- GA4 is disabled until `VITE_GA_MEASUREMENT_ID` is configured and the visitor allows analytics.
 - Production deployment, DNS state, cross-browser results, Lighthouse measurements, and CI status
   must be verified against the exact release commit; this README does not claim them as complete.

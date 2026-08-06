@@ -33,9 +33,8 @@ export function HeroSection() {
   );
 
   return (
-    <section ref={section} className="hero-section" aria-labelledby="hero-title">
+    <section ref={section} className="hero-section" id="top" aria-labelledby="hero-title">
       <div className="hero-section__topline">
-        <p data-hero-reveal>{portfolio.profile.location}</p>
         <p className="availability-line" data-hero-reveal>
           <span aria-hidden="true" />
           {portfolio.profile.availability}
@@ -46,7 +45,7 @@ export function HeroSection() {
         <h1 id="hero-title" tabIndex={-1}>
           <span className="hero-line-mask">
             <span className="hero-line hero-line--first" data-hero-reveal>
-              Senior Frontend
+              Fullstack SaaS
             </span>
           </span>
           <span className="hero-line-mask">
@@ -63,7 +62,10 @@ export function HeroSection() {
             I’m <strong>{portfolio.profile.name}</strong>. {portfolio.profile.summary}
           </p>
           <div className="hero-section__actions">
-            <MagneticLink href={`mailto:${portfolio.profile.email}?subject=Portfolio%20enquiry`}>
+            <MagneticLink
+              href={`mailto:${portfolio.profile.email}?subject=Portfolio%20enquiry`}
+              data-analytics-event="contact_click"
+            >
               Start a conversation <ArrowRight aria-hidden="true" />
             </MagneticLink>
             <a
@@ -71,6 +73,7 @@ export function HeroSection() {
               href={portfolio.profile.resumeUrl}
               target="_blank"
               rel="noreferrer"
+              data-analytics-event="resume_view"
             >
               View resume <ArrowDownRight aria-hidden="true" />
             </a>
@@ -90,12 +93,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <a
-        className="hero-scroll"
-        href="#philosophy"
-        aria-label="Scroll to engineering philosophy"
-        data-hero-reveal
-      >
+      <a className="hero-scroll" href="#about" aria-label="Scroll to about" data-hero-reveal>
         Scroll <ArrowDownRight aria-hidden="true" />
       </a>
     </section>

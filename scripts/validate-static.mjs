@@ -1,14 +1,17 @@
 import { access, readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { gzipSync } from "node:zlib";
 
 const root = process.cwd();
 const dist = path.resolve(root, "dist");
+const serverEntry = path.resolve(root, ".prerender/entry-server.js");
+const { getPrerenderRoutes } = await import(pathToFileURL(serverEntry).href);
+if (typeof getPrerenderRoutes !== "function")
+  throw new Error("SSR bundle does not export getPrerenderRoutes().");
+
 const required = [
-  "index.html",
-  "404.html",
-  "projects/relayops/index.html",
-  "projects/tci-podcast/index.html",
+  ...getPrerenderRoutes().map(({ output }) => output),
   "khalid-oyeneye-resume.pdf",
   "robots.txt",
   "sitemap.xml",

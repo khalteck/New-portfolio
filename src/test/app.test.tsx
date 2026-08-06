@@ -26,7 +26,7 @@ describe("application shell", () => {
       "href",
       "#main-content"
     );
-    expect(screen.getByRole("button", { name: "Menu" })).toHaveAttribute("aria-haspopup", "dialog");
+    expect(screen.getByRole("navigation", { name: "Portfolio sections" })).toBeInTheDocument();
     const siteHeader = container.querySelector<HTMLElement>(".site-navigation");
     expect(siteHeader).not.toBeNull();
     if (siteHeader) {
@@ -37,14 +37,14 @@ describe("application shell", () => {
     }
     expect(screen.getAllByRole("main")).toHaveLength(1);
 
-    await waitFor(() => expect(document.title).toBe("TCI Podcast — Khalid Oyeneye"));
+    await waitFor(() => expect(document.title).toBe("TCI Podcast | Khalid Oyeneye"));
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it("uses the branded route state for an unknown static location", async () => {
     render(<App staticLocation="/unpublished" />);
 
-    expect(await screen.findByText("404 · Off route")).toBeInTheDocument();
+    expect(await screen.findByText("404 · Page not found")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Return home/ })).toHaveAttribute("href", "/");
   });
 });

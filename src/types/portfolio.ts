@@ -94,7 +94,6 @@ export interface PortfolioContent {
   profile: Profile;
   socialLinks: readonly SocialLink[];
   metrics: readonly Metric[];
-  philosophy: string;
   about: readonly string[];
   capabilities: readonly Capability[];
   technologyGroups: readonly TechnologyGroup[];
@@ -107,6 +106,7 @@ export interface RouteMetadata {
   description: string;
   canonicalPath: string;
   image: string;
+  imageAlt: string;
   type: "website" | "article";
-  robots: "index, follow" | "noindex, nofollow";
+  robots: "index, follow, max-image-preview:large" | "noindex, nofollow";
 }

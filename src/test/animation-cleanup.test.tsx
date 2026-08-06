@@ -24,8 +24,9 @@ const mockMedia = ({ finePointer = false, reducedMotion = false } = {}) => {
 };
 
 describe("ambient motion cleanup", () => {
-  it("does not mount cursor or particles for reduced-motion users", () => {
+  it("keeps static particles but omits the custom cursor for reduced-motion users", () => {
     mockMedia({ finePointer: true, reducedMotion: true });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
     const { container } = render(
       <>
         <CustomCursor />
@@ -34,7 +35,7 @@ describe("ambient motion cleanup", () => {
     );
 
     expect(container.querySelector(".custom-cursor")).not.toBeInTheDocument();
-    expect(container.querySelector(".particle-field")).not.toBeInTheDocument();
+    expect(container.querySelector(".particle-field")).toBeInTheDocument();
     expect(document.documentElement).not.toHaveClass("has-custom-cursor");
   });
 
@@ -47,6 +48,7 @@ describe("ambient motion cleanup", () => {
 
     expect(container.querySelector(".custom-cursor")).toBeInTheDocument();
     expect(document.documentElement).toHaveClass("has-custom-cursor");
+    window.dispatchEvent(new MouseEvent("pointermove", { clientX: 100, clientY: 120 }));
     unmount();
 
     expect(document.documentElement).not.toHaveClass("has-custom-cursor");

@@ -6,6 +6,7 @@ export function StickyContact() {
       className="sticky-contact"
       href={`mailto:${portfolio.profile.email}?subject=Portfolio%20enquiry`}
       data-cursor="action"
+      data-analytics-event="contact_click"
     >
       {portfolio.profile.email}
     </a>

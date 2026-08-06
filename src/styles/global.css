@@ -7,11 +7,7 @@
 html {
   min-width: 320px;
   background: var(--canvas);
-  scroll-padding-top: 5rem;
-}
-
-html.drawer-open {
-  overflow: hidden;
+  scroll-padding-top: 4rem;
 }
 
 body {
@@ -75,6 +71,11 @@ dd {
   outline-offset: 5px;
 }
 
+h1[tabindex="-1"]:focus,
+h2[tabindex="-1"]:focus {
+  outline: 0;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -119,6 +120,7 @@ dd {
   width: var(--container);
   margin-inline: auto;
   padding-block: clamp(7rem, 13vw, 13rem);
+  scroll-margin-top: 4rem;
 }
 
 .eyebrow,

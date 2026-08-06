@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface Particle {
@@ -8,6 +7,7 @@ interface Particle {
   speed: number;
   radius: number;
   opacity: number;
+  cycle: number;
 }
 
 const seededValue = (index: number, offset: number): number => {
@@ -18,10 +18,9 @@ const seededValue = (index: number, offset: number): number => {
 export function ParticleField() {
   const canvas = useRef<HTMLCanvasElement>(null);
   const reducedMotion = useReducedMotion();
-  const constrained = useMediaQuery("(max-width: 1023px), (pointer: coarse)");
 
   useEffect(() => {
-    if (reducedMotion || constrained || !canvas.current) return;
+    if (!canvas.current) return;
     const element = canvas.current;
     const context = element.getContext("2d");
     if (!context) return;
@@ -29,13 +28,16 @@ export function ParticleField() {
     let frame = 0;
     let width = 0;
     let height = 0;
-    let running = !document.hidden;
-    const particles: Particle[] = Array.from({ length: 76 }, (_, index) => ({
+    let previousTime = 0;
+    let running = !document.hidden && !reducedMotion;
+    const particleCount = window.matchMedia("(max-width: 767px)").matches ? 52 : 96;
+    const particles: Particle[] = Array.from({ length: particleCount }, (_, index) => ({
       x: seededValue(index, 1),
       y: seededValue(index, 2),
-      speed: 0.000035 + seededValue(index, 3) * 0.00011,
+      speed: 28 + seededValue(index, 3) * 22,
       radius: 0.45 + seededValue(index, 4) * 1.15,
-      opacity: 0.14 + seededValue(index, 5) * 0.42
+      opacity: 0.16 + seededValue(index, 5) * 0.38,
+      cycle: 0
     }));
 
     const resize = () => {
@@ -49,10 +51,20 @@ export function ParticleField() {
       context.setTransform(scale, 0, 0, scale, 0, 0);
     };
 
-    const draw = () => {
+    const resetParticle = (particle: Particle, index: number) => {
+      particle.cycle += 1;
+      particle.x = seededValue(index + particle.cycle * particles.length, 7);
+      particle.y = -0.015 - seededValue(index + particle.cycle, 8) * 0.08;
+    };
+
+    const draw = (time: number) => {
+      frame = 0;
+      const elapsed = previousTime ? Math.min((time - previousTime) / 1000, 0.05) : 0;
+      previousTime = time;
       context.clearRect(0, 0, width, height);
-      particles.forEach((particle) => {
-        particle.y = (particle.y + particle.speed) % 1;
+      particles.forEach((particle, index) => {
+        if (!reducedMotion) particle.y += (particle.speed * elapsed) / height;
+        if (particle.y > 1.02) resetParticle(particle, index);
         const x = particle.x * width;
         const y = particle.y * height;
         context.beginPath();
@@ -60,30 +72,38 @@ export function ParticleField() {
         context.arc(x, y, particle.radius, 0, Math.PI * 2);
         context.fill();
       });
-      if (running) frame = window.requestAnimationFrame(draw);
+      if (running && !frame) frame = window.requestAnimationFrame(draw);
     };
 
     const handleVisibility = () => {
-      running = !document.hidden;
-      if (running && !frame) frame = window.requestAnimationFrame(draw);
+      running = !document.hidden && !reducedMotion;
+      if (running && !frame) {
+        previousTime = 0;
+        frame = window.requestAnimationFrame(draw);
+      }
       if (!running && frame) {
         window.cancelAnimationFrame(frame);
         frame = 0;
       }
     };
 
+    const handleResize = () => {
+      resize();
+      if (reducedMotion) draw(0);
+    };
+
     resize();
-    draw();
-    window.addEventListener("resize", resize);
+    if (reducedMotion) draw(0);
+    else frame = window.requestAnimationFrame(draw);
+    window.addEventListener("resize", handleResize);
     document.addEventListener("visibilitychange", handleVisibility);
     return () => {
       running = false;
       if (frame) window.cancelAnimationFrame(frame);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, [constrained, reducedMotion]);
+  }, [reducedMotion]);
 
-  if (reducedMotion || constrained) return null;
   return <canvas ref={canvas} className="particle-field" aria-hidden="true" />;
 }

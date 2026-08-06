@@ -21,10 +21,10 @@ describe("homepage", () => {
     renderHome();
 
     expect(
-      screen.getByRole("heading", { level: 1, name: /Senior Frontend\s*\/\s*Engineer/i })
+      screen.getByRole("heading", { level: 1, name: /Fullstack SaaS\s*\/\s*Engineer/i })
     ).toBeInTheDocument();
     expect(document.querySelector(".availability-line")).toHaveTextContent(
-      /Open to strong remote frontend roles/i
+      /Open to opportunities/i
     );
     expect(screen.getByRole("link", { name: /Start a conversation/i })).toHaveAttribute(
       "href",
@@ -38,7 +38,8 @@ describe("homepage", () => {
     const main = screen.getByRole("main");
     expect(
       Array.from(main.children).map((element) => element.id || element.tagName.toLowerCase())
-    ).toEqual(["section", "philosophy", "about", "stack", "experience", "work"]);
+    ).toEqual(["top", "about", "stack", "experience", "work"]);
+    expect(screen.getByRole("heading", { name: "Experience across borders." })).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toHaveAttribute("id", "contact");
   });
 
@@ -56,7 +57,7 @@ describe("homepage", () => {
 
     for (const number of ["03", "04", "05", "06"]) {
       const slot = screen.getByRole("article", {
-        name: `Project ${number} — Incoming, incoming`
+        name: `Project ${number} | In progress, incoming`
       });
       expect(within(slot).queryByRole("link")).not.toBeInTheDocument();
       expect(within(slot).queryByRole("button")).not.toBeInTheDocument();
