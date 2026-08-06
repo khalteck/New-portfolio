@@ -24,16 +24,17 @@ export function Preloader() {
 
   return (
     <div className="preloader" aria-hidden="true" data-testid="preloader">
-      <div className="preloader__word" aria-label="KO">
-        {[..."KO"].map((letter, index) => (
-          <span
-            key={`${letter}-${index}`}
-            style={{ "--letter-index": index } as React.CSSProperties}
-          >
-            {letter}
-          </span>
-        ))}
-      </div>
+      <svg className="preloader__monogram" viewBox="0 0 360 190" focusable="false">
+        <text className="preloader__outline" x="50%" y="72%" textAnchor="middle">
+          KO
+        </text>
+        <text className="preloader__draw" x="50%" y="72%" textAnchor="middle">
+          KO
+        </text>
+        <text className="preloader__fill" x="50%" y="72%" textAnchor="middle">
+          KO
+        </text>
+      </svg>
       <div className="preloader__rule" />
     </div>
   );

@@ -26,6 +26,8 @@ on `revamp/v2`; the old site is preserved on `archive/v1` and tag `v1.0.0`.
    - `/`
    - `/projects/relayops`
    - `/projects/tci-podcast`
+   - `/projects/afrogrids`
+   - `/projects/greencity-financial`
 5. Verify the résumé file and public contact/social links. TCI Podcast must still omit its unreliable
    live/source links. Incoming projects must remain non-routable.
 6. Verify RelayOps URLs and preserve the scope/verification date of its technical claims.
@@ -98,6 +100,8 @@ Smoke-test direct loads and refreshes at:
 /
 /projects/relayops
 /projects/tci-podcast
+/projects/afrogrids
+/projects/greencity-financial
 /projects/not-a-real-project
 ```
 
@@ -152,7 +156,7 @@ Complete these items before the production promotion:
       DebugView or Realtime. Also confirm `contact_click`, `resume_view`, `project_open`,
       `project_external`, `external_profile`, and `section_navigation` events.
 - [ ] Add a Google Search Console Domain property and complete its DNS TXT verification.
-- [ ] Submit `https://khalidoyeneye.dev/sitemap.xml`, inspect all three published URLs, and request
+- [ ] Submit `https://khalidoyeneye.dev/sitemap.xml`, inspect all five published URLs, and request
       indexing after the live checks pass.
 - [ ] Run the deployed pages through Google's Rich Results Test and confirm the profile and project
       JSON-LD matches visible content without critical errors.
@@ -160,6 +164,14 @@ Complete these items before the production promotion:
       correct before requesting indexing.
 - [ ] Recheck the production résumé, email, GitHub, LinkedIn, RelayOps live product, and source-code
       links.
+- [ ] Open `/projects/relayops`, `/projects/tci-podcast`, `/projects/afrogrids`, and
+      `/projects/greencity-financial` directly and confirm each case study, canonical URL, social
+      preview, and external product link.
+- [ ] On desktop and mobile, verify dock highlighting while scrolling, transition-free Home and
+      section navigation, the mobile safe-area layout, and the scroll-to-top control on home,
+      project, and not-found routes.
+- [ ] Check Chromium, Firefox, and WebKit with motion enabled and reduced. Confirm the KO outline is
+      visible immediately on a fresh session and the loader clears at two seconds.
 
 ## 6. Promotion and domain verification
 

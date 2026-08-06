@@ -610,10 +610,16 @@
     padding-left var(--short) var(--ease-out);
 }
 
-.technology-group li span {
-  color: var(--accent);
-  opacity: 0;
-  transition: opacity var(--micro) ease;
+.technology-group li > svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 0.95rem;
+  color: var(--text-faint);
+  opacity: 0.72;
+  transition:
+    color var(--micro) ease,
+    opacity var(--micro) ease,
+    transform var(--short) var(--ease-out);
 }
 
 .technology-group li:hover {
@@ -621,8 +627,10 @@
   color: var(--text);
 }
 
-.technology-group li:hover span {
+.technology-group li:hover > svg {
+  color: var(--accent);
   opacity: 1;
+  transform: translateY(-1px);
 }
 
 .experience-list {
@@ -1028,6 +1036,52 @@
   text-transform: uppercase;
 }
 
+.scroll-to-top {
+  position: fixed;
+  z-index: 125;
+  right: 2.75rem;
+  bottom: 1.25rem;
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgb(255 255 255 / 12%), transparent 48%), rgb(24 28 23 / 62%);
+  box-shadow:
+    0 0.8rem 2.5rem rgb(0 0 0 / 24%),
+    inset 0 1px rgb(255 255 255 / 10%);
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.65rem) scale(0.92);
+  transition:
+    opacity var(--short) ease,
+    transform var(--short) var(--ease-out),
+    border-color var(--micro) ease,
+    color var(--micro) ease;
+  backdrop-filter: blur(22px) saturate(155%);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+}
+
+.scroll-to-top[data-visible="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top:hover,
+.scroll-to-top:focus-visible {
+  border-color: rgb(190 255 74 / 42%);
+  color: var(--accent);
+}
+
+.scroll-to-top svg {
+  width: 1rem;
+  stroke-width: 1.8;
+}
+
 .scroll-progress {
   position: fixed;
   z-index: 60;
@@ -1386,6 +1440,14 @@
 }
 
 @media (max-width: 767px) {
+  .scroll-to-top {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: calc(5.75rem + env(safe-area-inset-bottom));
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 0.95rem;
+  }
+
   .section-navigation {
     top: auto;
     right: max(0.75rem, env(safe-area-inset-right));

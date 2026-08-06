@@ -1,28 +1,57 @@
 import { useEffect, useState } from "react";
 
-export const useActiveSection = (sectionIds: readonly string[]): string => {
-  const [activeSection, setActiveSection] = useState("");
+export const useActiveSection = (sectionIds: readonly string[], activationKey = ""): string => {
+  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? "");
 
   useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
+    let frameId = 0;
+    const updateActiveSection = () => {
+      frameId = 0;
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter((section): section is HTMLElement => Boolean(section));
+      if (sections.length === 0) return;
 
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section));
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const viewportHeight = window.innerHeight;
+      const documentHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+      );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveSection(visible.target.id);
-      },
-      { rootMargin: "-20% 0px -65%", threshold: [0.05, 0.2, 0.5] }
-    );
+      let nextSection = sections[0]!.id;
+      if (scrollTop + viewportHeight >= documentHeight - 2) {
+        nextSection = sections.at(-1)?.id ?? nextSection;
+      } else if (scrollTop > 2) {
+        const activationLine = viewportHeight * 0.3;
+        for (const section of sections) {
+          if (section.getBoundingClientRect().top > activationLine) break;
+          nextSection = section.id;
+        }
+      }
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [sectionIds]);
+      setActiveSection((current) => (current === nextSection ? current : nextSection));
+    };
+
+    const scheduleUpdate = () => {
+      if (frameId) return;
+      frameId = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    updateActiveSection();
+    const mutationObserver = new MutationObserver(scheduleUpdate);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      mutationObserver.disconnect();
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
+    };
+  }, [activationKey, sectionIds]);
 
   return activeSection;
 };

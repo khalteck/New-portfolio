@@ -28,7 +28,7 @@ describe("portfolio content", () => {
     expect(portfolio.metrics.filter(({ visible }) => visible)).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ value: "6+", label: "Years of experience" }),
-        expect.objectContaining({ value: "3", label: "International remote teams" })
+        expect.objectContaining({ value: "Global", label: "Product delivery" })
       ])
     );
   });
@@ -55,15 +55,23 @@ describe("portfolio content", () => {
       .flatMap(({ achievements }) => achievements);
 
     expect(iroko?.achievements.join(" ")).toMatch(/50%.*70%.*95%/);
+    expect(iroko).toMatchObject({ title: "Fullstack Web Developer" });
     expect(agrofeed?.achievements.join(" ")).toMatch(/20%.*100%/);
+    expect(agrofeed).toMatchObject({ title: "Fullstack Web Developer" });
+    expect(agrofeed?.technologies).toContain("Firebase");
     expect(otherClaims.join(" ")).not.toMatch(/50%|70%|95%|20%|100%/);
   });
 
-  it("publishes only RelayOps and TCI Podcast while keeping four placeholders inert", () => {
-    expect(publishedProjects.map(({ slug }) => slug)).toEqual(["relayops", "tci-podcast"]);
+  it("publishes four case studies while keeping two placeholders inert", () => {
+    expect(publishedProjects.map(({ slug }) => slug)).toEqual([
+      "relayops",
+      "tci-podcast",
+      "afrogrids",
+      "greencity-financial"
+    ]);
 
     const incoming = portfolio.projects.filter((project) => project.status === "incoming");
-    expect(incoming.map(({ number }) => number)).toEqual(["03", "04", "05", "06"]);
+    expect(incoming.map(({ number }) => number)).toEqual(["05", "06"]);
     expect(incoming.every(({ title }) => title.endsWith("| In progress"))).toBe(true);
     expect(hasOnlySafeIncomingProjects()).toBe(true);
 
@@ -105,17 +113,37 @@ describe("portfolio content", () => {
     expect(tciPodcast).not.toHaveProperty("year");
     expect(tciPodcast).not.toHaveProperty("liveUrl");
     expect(tciPodcast).not.toHaveProperty("sourceUrl");
-    expect(getPublishedProject("incoming-03")).toBeUndefined();
+    const afrogrids = getPublishedProject("afrogrids");
+    const greenCity = getPublishedProject("greencity-financial");
+    expect(afrogrids).toMatchObject({ liveUrl: "https://afrogrids.com", number: "03" });
+    expect(afrogrids).not.toHaveProperty("sourceUrl");
+    expect(greenCity).toMatchObject({ liveUrl: "https://greencityfin.com", number: "04" });
+    expect(greenCity).not.toHaveProperty("sourceUrl");
+    expect(getPublishedProject("incoming-05")).toBeUndefined();
     expect(getPublishedProject(undefined)).toBeUndefined();
+  });
+
+  it("assigns one icon to every technology without duplicating tools", () => {
+    const technologies = portfolio.technologyGroups.flatMap((group) => group.technologies);
+    expect(technologies.every(({ name, iconKey }) => Boolean(name && iconKey))).toBe(true);
+    expect(new Set(technologies.map(({ name }) => name)).size).toBe(technologies.length);
   });
 
   it("provides cyclic previous and next navigation for real projects only", () => {
     expect(getAdjacentProjects("relayops")).toMatchObject({
-      previous: { slug: "tci-podcast" },
+      previous: { slug: "greencity-financial" },
       next: { slug: "tci-podcast" }
     });
     expect(getAdjacentProjects("tci-podcast")).toMatchObject({
       previous: { slug: "relayops" },
+      next: { slug: "afrogrids" }
+    });
+    expect(getAdjacentProjects("afrogrids")).toMatchObject({
+      previous: { slug: "tci-podcast" },
+      next: { slug: "greencity-financial" }
+    });
+    expect(getAdjacentProjects("greencity-financial")).toMatchObject({
+      previous: { slug: "afrogrids" },
       next: { slug: "relayops" }
     });
     expect(getAdjacentProjects("not-published")).toBeUndefined();
@@ -123,8 +151,13 @@ describe("portfolio content", () => {
 });
 
 describe("route metadata and shared helpers", () => {
-  it("returns route-specific metadata only for the three public routes", () => {
-    expect(PUBLISHED_PROJECT_PATHS).toEqual(["/projects/relayops", "/projects/tci-podcast"]);
+  it("returns route-specific metadata only for published routes", () => {
+    expect(PUBLISHED_PROJECT_PATHS).toEqual([
+      "/projects/relayops",
+      "/projects/tci-podcast",
+      "/projects/afrogrids",
+      "/projects/greencity-financial"
+    ]);
     expect(getRouteMetadata("/")).toMatchObject({
       title: "Khalid Oyeneye | Fullstack SaaS Web and Mobile Engineer",
       canonicalPath: "/",
@@ -133,18 +166,26 @@ describe("route metadata and shared helpers", () => {
     expect(getRouteMetadata("/projects/relayops/")).toMatchObject({
       title: "RelayOps | Khalid Oyeneye",
       canonicalPath: "/projects/relayops",
-      image: "/images/projects/relayops/social-preview.png",
+      image: "/images/projects/relayops/social-preview.webp",
       type: "article"
     });
     expect(getRouteMetadata("/projects/tci-podcast")).toMatchObject({
       title: "TCI Podcast | Khalid Oyeneye",
       canonicalPath: "/projects/tci-podcast",
-      image: "/images/projects/tci-podcast/tci-podcast-1440.webp",
+      image: "/images/projects/tci-podcast/tci-podcast.webp",
       type: "article"
     });
-    expect(getRouteMetadata("/projects/incoming-03")).toMatchObject({
+    expect(getRouteMetadata("/projects/afrogrids")).toMatchObject({
+      image: "/images/projects/afrogrids/social-preview.webp",
+      canonicalPath: "/projects/afrogrids"
+    });
+    expect(getRouteMetadata("/projects/greencity-financial")).toMatchObject({
+      image: "/images/projects/greencity-financial/social-preview.webp",
+      canonicalPath: "/projects/greencity-financial"
+    });
+    expect(getRouteMetadata("/projects/incoming-05")).toMatchObject({
       title: "Page not found | Khalid Oyeneye",
-      canonicalPath: "/projects/incoming-03",
+      canonicalPath: "/projects/incoming-05",
       type: "website"
     });
   });

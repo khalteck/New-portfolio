@@ -6,24 +6,42 @@
   place-content: center;
   background: var(--canvas);
   pointer-events: none;
-  animation: preloader-failsafe 0s 2s forwards;
+  animation: preloader-exit 180ms 1.82s ease forwards;
 }
 
-.preloader__word {
-  display: flex;
-  overflow: hidden;
-  color: var(--text);
+.preloader__monogram {
+  display: block;
+  width: clamp(12rem, 34vw, 24rem);
+  overflow: visible;
   font-family: var(--font-display);
-  font-size: clamp(4rem, 12vw, 10rem);
+  font-size: 9.5rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 0.8;
+  letter-spacing: 0.04em;
 }
 
-.preloader__word span {
-  transform: translateY(110%);
-  animation: preloader-letter 0.65s var(--ease-out) forwards;
-  animation-delay: calc(var(--letter-index) * 80ms);
+.preloader__monogram text {
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.35px;
+  paint-order: stroke fill;
+}
+
+.preloader__outline {
+  stroke: color-mix(in srgb, var(--text) 24%, transparent);
+}
+
+.preloader__draw {
+  stroke: var(--accent);
+  stroke-dasharray: 720;
+  stroke-dashoffset: 720;
+  animation: preloader-outline 0.95s 0.08s var(--ease-out) forwards;
+}
+
+.preloader__fill {
+  stroke: var(--text);
+  opacity: 0;
+  animation: preloader-fill 0.45s 0.88s ease forwards;
 }
 
 .preloader__rule {
@@ -33,7 +51,7 @@
   transform: scaleX(0);
   transform-origin: left;
   background: var(--accent);
-  animation: preloader-rule 0.8s 0.35s var(--ease-out) forwards;
+  animation: preloader-rule 0.65s 0.72s var(--ease-out) forwards;
 }
 
 .page-transition {
@@ -139,9 +157,17 @@ main,
   }
 }
 
-@keyframes preloader-letter {
+@keyframes preloader-outline {
   to {
-    transform: translateY(0);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes preloader-fill {
+  to {
+    fill: var(--text);
+    opacity: 1;
+    stroke-width: 0.65px;
   }
 }
 
@@ -151,8 +177,9 @@ main,
   }
 }
 
-@keyframes preloader-failsafe {
+@keyframes preloader-exit {
   to {
+    opacity: 0;
     visibility: hidden;
   }
 }
