@@ -1,8 +1,8 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { X } from "lucide-react";
 import { getAnalyticsMeasurementId, OPEN_ANALYTICS_PREFERENCES_EVENT } from "@/helpers/analytics";
 import { getRouteMetadata } from "@/helpers/route-metadata";
-import { eyebrowClass } from "@/styles/classes";
 
 type AnalyticsConsent = "granted" | "denied";
 
@@ -56,23 +56,42 @@ const updateGoogleConsent = (consent: AnalyticsConsent) => {
 
 export function GoogleAnalytics() {
   const location = useLocation();
-  const titleId = useId();
   const measurementId = getAnalyticsMeasurementId();
   const [mounted, setMounted] = useState(false);
   const [consent, setConsent] = useState<AnalyticsConsent | undefined>(() =>
     typeof window === "undefined" ? undefined : readConsent()
   );
-  const [preferencesOpen, setPreferencesOpen] = useState(() => !consent);
+  const [noticeOpen, setNoticeOpen] = useState(() => !consent);
   const initialized = useRef(false);
   const lastPageView = useRef("");
 
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
-    const openPreferences = () => setPreferencesOpen(true);
+    const openPreferences = () => setNoticeOpen(true);
     window.addEventListener(OPEN_ANALYTICS_PREFERENCES_EVENT, openPreferences);
     return () => window.removeEventListener(OPEN_ANALYTICS_PREFERENCES_EVENT, openPreferences);
   }, []);
+
+  useEffect(() => {
+    if (!noticeOpen || consent === "granted") return;
+
+    // Continuing to use the site (scrolling, clicking, typing) counts as accepting the notice.
+    const acceptByStaying = () => {
+      storeConsent("granted");
+      setConsent("granted");
+      setNoticeOpen(false);
+    };
+
+    window.addEventListener("pointerdown", acceptByStaying);
+    window.addEventListener("keydown", acceptByStaying);
+    window.addEventListener("scroll", acceptByStaying, { passive: true });
+    return () => {
+      window.removeEventListener("pointerdown", acceptByStaying);
+      window.removeEventListener("keydown", acceptByStaying);
+      window.removeEventListener("scroll", acceptByStaying);
+    };
+  }, [noticeOpen, consent]);
 
   useEffect(() => {
     if (!measurementId || consent !== "granted") return;
@@ -122,45 +141,30 @@ export function GoogleAnalytics() {
     return () => document.removeEventListener("click", trackClick);
   }, [consent, measurementId]);
 
-  if (!mounted || !measurementId || !preferencesOpen) return null;
+  if (!mounted || !measurementId || !noticeOpen) return null;
 
-  const chooseConsent = (nextConsent: AnalyticsConsent) => {
-    storeConsent(nextConsent);
-    setConsent(nextConsent);
-    setPreferencesOpen(false);
-    if (nextConsent === "denied" && initialized.current) updateGoogleConsent("denied");
+  const dismissNotice = () => {
+    storeConsent("granted");
+    setConsent("granted");
+    setNoticeOpen(false);
   };
 
   return (
-    <aside
-      className="fixed right-4 bottom-4 z-[400] grid w-[min(calc(100%-2rem),27rem)] gap-5 rounded-[1.25rem] border border-white/15 bg-[linear-gradient(145deg,rgb(255_255_255/10%),transparent_42%),rgb(24_28_23/84%)] p-5 shadow-[0_1.5rem_5rem_rgb(0_0_0/38%)] backdrop-blur-[24px] backdrop-saturate-150 max-md:right-3 max-md:bottom-[calc(5.5rem+env(safe-area-inset-bottom))] max-md:w-[calc(100%-1.5rem)]"
-      aria-labelledby={titleId}
+    <div
+      className="fixed inset-x-0 bottom-0 z-[400] flex items-center justify-center gap-3 border-t border-line-bright bg-[rgb(24_28_23/92%)] px-4 py-2.5 text-[0.72rem] text-muted backdrop-blur-[20px] backdrop-saturate-150 max-md:pb-[calc(0.65rem+env(safe-area-inset-bottom))]"
+      role="status"
     >
-      <div>
-        <p className={eyebrowClass}>Optional analytics</p>
-        <h2 className="mt-2 mb-1 font-display text-[2rem] leading-none uppercase" id={titleId}>
-          Your privacy choice
-        </h2>
-        <p className="mb-0 text-[0.82rem] text-muted">
-          Allow anonymous usage data to help improve this portfolio.
-        </p>
-      </div>
-      <div className="grid grid-cols-2 gap-2.5">
-        <button
-          className="min-h-11 cursor-pointer rounded-full border border-line-bright bg-transparent text-[0.68rem] font-extrabold tracking-[0.08em] text-copy uppercase"
-          type="button"
-          onClick={() => chooseConsent("denied")}
-        >
-          Decline
-        </button>
-        <button
-          className="min-h-11 cursor-pointer rounded-full border border-accent bg-accent text-[0.68rem] font-extrabold tracking-[0.08em] text-on-accent uppercase"
-          type="button"
-          onClick={() => chooseConsent("granted")}
-        >
-          Allow
-        </button>
-      </div>
-    </aside>
+      <p className="m-0">
+        By staying on this site, you accept our privacy policy and use of analytics.
+      </p>
+      <button
+        className="grid size-6 shrink-0 cursor-pointer place-items-center rounded-full border border-line-bright bg-transparent text-copy [&_svg]:w-3.5"
+        type="button"
+        aria-label="Dismiss privacy notice"
+        onClick={dismissNotice}
+      >
+        <X aria-hidden="true" />
+      </button>
+    </div>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect, type PropsWithChildren } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { setLenisInstance } from "./lenis-instance";
 
 export function SmoothScrollProvider({ children }: PropsWithChildren) {
   const reducedMotion = useReducedMotion();
@@ -37,8 +38,10 @@ export function SmoothScrollProvider({ children }: PropsWithChildren) {
       gsap.ticker.lagSmoothing(0);
       document.addEventListener("visibilitychange", handleVisibility);
       ScrollTrigger.refresh();
+      setLenisInstance(lenis);
 
       cleanup = () => {
+        setLenisInstance(null);
         document.removeEventListener("visibilitychange", handleVisibility);
         gsap.ticker.remove(tick);
         gsap.ticker.lagSmoothing(500, 33);

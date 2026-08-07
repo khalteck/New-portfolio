@@ -75,7 +75,7 @@ export function ProjectCaseStudyView() {
               {project.year ? <span>{project.year}</span> : null}
             </div>
             <h1
-              className="mt-3 mb-[clamp(3rem,6vw,6rem)] font-display text-[clamp(6rem,17vw,17rem)] leading-[0.78] font-bold tracking-[-0.06em] uppercase max-md:text-[clamp(5rem,28vw,9rem)]"
+              className="mt-3 mb-[clamp(3rem,6vw,6rem)] font-display text-[clamp(3.6rem,7.2vw,7.2rem)] leading-[0.88] font-bold tracking-[-0.035em] uppercase max-md:text-[clamp(3.2rem,17vw,5rem)]"
               tabIndex={-1}
             >
               {project.title}

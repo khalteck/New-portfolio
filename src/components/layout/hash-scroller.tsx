@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { NavigationType, useLocation, useNavigationType } from "react-router-dom";
+import { getLenisInstance } from "@/components/motion/lenis-instance";
 
 export function HashScroller() {
   const location = useLocation();
@@ -10,9 +11,14 @@ export function HashScroller() {
 
     if (!location.hash) {
       if (navigationType === NavigationType.Push) {
-        frameId = window.requestAnimationFrame(() =>
-          window.scrollTo({ top: 0, left: 0, behavior: "auto" })
-        );
+        frameId = window.requestAnimationFrame(() => {
+          const lenis = getLenisInstance();
+          if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+          } else {
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+          }
+        });
       }
       return () => window.cancelAnimationFrame(frameId);
     }

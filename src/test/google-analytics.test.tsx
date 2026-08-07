@@ -17,23 +17,18 @@ describe("Google Analytics consent", () => {
     vi.unstubAllEnvs();
   });
 
-  it("does not load Google Analytics before the visitor allows it", async () => {
-    const user = userEvent.setup();
+  it("does not load Google Analytics before the visitor accepts the notice", async () => {
     render(
       <MemoryRouter>
         <GoogleAnalytics />
       </MemoryRouter>
     );
 
-    expect(await screen.findByRole("heading", { name: "Your privacy choice" })).toBeInTheDocument();
-    expect(document.head.querySelector('script[data-portfolio-analytics="true"]')).toBeNull();
-
-    await user.click(screen.getByRole("button", { name: "Decline" }));
-    expect(window.localStorage.getItem("khalid-portfolio-analytics-consent")).toBe("denied");
+    expect(await screen.findByText(/by staying on this site, you accept/i)).toBeInTheDocument();
     expect(document.head.querySelector('script[data-portfolio-analytics="true"]')).toBeNull();
   });
 
-  it("loads the tag and queues one route view after consent", async () => {
+  it("loads the tag and queues one route view once the visitor accepts", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter>
@@ -41,7 +36,7 @@ describe("Google Analytics consent", () => {
       </MemoryRouter>
     );
 
-    await user.click(await screen.findByRole("button", { name: "Allow" }));
+    await user.click(await screen.findByRole("button", { name: "Dismiss privacy notice" }));
 
     await waitFor(() =>
       expect(document.head.querySelector('script[data-portfolio-analytics="true"]')).not.toBeNull()
@@ -53,6 +48,22 @@ describe("Google Analytics consent", () => {
         expect.arrayContaining(["consent", "update"]),
         expect.arrayContaining(["event", "page_view"])
       ])
+    );
+  });
+
+  it("accepts consent when the visitor keeps interacting with the site instead of closing the notice", async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter>
+        <GoogleAnalytics />
+      </MemoryRouter>
+    );
+
+    await screen.findByText(/by staying on this site, you accept/i);
+    await user.keyboard("{Tab}");
+
+    await waitFor(() =>
+      expect(window.localStorage.getItem("khalid-portfolio-analytics-consent")).toBe("granted")
     );
   });
 });
