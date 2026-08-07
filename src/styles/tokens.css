@@ -53,6 +53,7 @@
   --animate-preloader-outline: preloader-outline 0.95s 0.08s var(--ease-out) forwards;
   --animate-preloader-fill: preloader-fill 0.45s 0.88s ease forwards;
   --animate-preloader-rule: preloader-rule 0.65s 0.72s var(--ease-out) forwards;
+  --animate-scroll-cue: scroll-cue 1.8s ease-in-out infinite;
 }
 
 :root {

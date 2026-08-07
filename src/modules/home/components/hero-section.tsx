@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ArrowDownRight, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowDownRight, ArrowRight } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
 import { MagneticLink } from "@/components/ui/magnetic-link";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
@@ -34,12 +34,12 @@ export function HeroSection() {
   return (
     <section
       ref={section}
-      className="relative z-10 mx-auto grid min-h-svh w-[calc(100%-3rem)] max-w-[90rem] grid-cols-12 content-start gap-x-6 overflow-hidden pt-[clamp(8rem,14vh,10.5rem)] pb-11 md:pl-20 max-md:min-h-0 max-md:w-[calc(100%-2rem)] max-md:grid-cols-1 max-md:pt-28 max-md:pb-20"
+      className="relative z-10 mx-auto grid min-h-svh w-[calc(100%-3rem)] max-w-[90rem] grid-cols-12 content-start gap-x-6 overflow-hidden pt-[clamp(8rem,14vh,10.5rem)] pb-11 md:pl-20 max-md:min-h-dvh max-md:w-[calc(100%-2rem)] max-md:grid-cols-1 max-md:grid-rows-[auto_auto_1fr] max-md:pt-28 max-md:pb-8"
       id="top"
       aria-labelledby="hero-title"
       data-ui="hero"
     >
-      <div className="relative z-10 col-span-full">
+      <div className="relative z-10 col-span-full mt-20 max-md:mt-12">
         <h1
           className="grid grid-cols-12 font-display text-[clamp(5.8rem,12vw,12.5rem)] leading-[0.72] font-bold tracking-[-0.06em] uppercase max-md:grid-cols-1 max-md:text-[clamp(4rem,20vw,6.5rem)] max-md:leading-[0.78] max-[360px]:text-[4.25rem]"
           id="hero-title"
@@ -90,12 +90,14 @@ export function HeroSection() {
       </div>
 
       <a
-        className="relative z-10 col-span-3 mt-[-2.5rem] inline-flex items-center gap-2 self-end text-[0.65rem] font-extrabold tracking-[0.12em] text-muted uppercase no-underline [&_svg]:w-3.5 max-md:hidden"
+        className="relative z-10 col-span-3 mt-[-2.5rem] mx-auto md:mx-0 mb-14 md:mb-0 inline-flex w-fit items-end self-end text-[0.65rem] font-extrabold tracking-[0.12em] text-muted uppercase no-underline max-md:col-span-full max-md:mt-8 max-md:min-h-11"
         href="#about"
-        aria-label="Scroll to about"
+        aria-label="Scroll down to about"
         data-hero-reveal
       >
-        Scroll <ArrowDownRight aria-hidden="true" />
+        <span className="inline-flex animate-scroll-cue items-center gap-2 motion-reduce:animate-none [&_svg]:w-3.5">
+          Scroll down <ArrowDown aria-hidden="true" />
+        </span>
       </a>
     </section>
   );

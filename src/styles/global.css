@@ -105,6 +105,17 @@
   }
 }
 
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(0.35rem);
+  }
+}
+
 @media (pointer: fine) and (min-width: 1024px) {
   .has-custom-cursor body,
   .has-custom-cursor a,

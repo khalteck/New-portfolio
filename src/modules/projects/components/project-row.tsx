@@ -62,7 +62,7 @@ export function ProjectRow({ project, onPreview, onPointerMove }: ProjectRowProp
       >
         <span className="text-[0.68rem] font-extrabold text-accent">{project.number}</span>
         <div className="max-md:col-start-2">
-          <span className={eyebrowClass}>Selected project</span>
+          <span className={`${eyebrowClass} max-md:hidden`}>Selected project</span>
           <h3 className="mt-3 mb-0 font-display text-[clamp(2.8rem,5vw,5.7rem)] leading-[0.86] font-semibold tracking-[-0.03em] uppercase transition-colors duration-200 group-hover:text-transparent group-hover:[-webkit-text-stroke:1px_var(--accent)] group-focus-visible:text-transparent group-focus-visible:[-webkit-text-stroke:1px_var(--accent)] forced-colors:group-hover:text-[LinkText] forced-colors:group-hover:[-webkit-text-stroke:0] forced-colors:group-focus-visible:text-[LinkText] forced-colors:group-focus-visible:[-webkit-text-stroke:0]">
             {project.title}
           </h3>
