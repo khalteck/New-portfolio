@@ -57,7 +57,7 @@ export function SelectedProjectsSection() {
           description={
             import.meta.env.DEV
               ? "Published case studies and projects in progress."
-              : "Published case studies across SaaS, media, art, and financial services."
+              : "Published case studies across SaaS, education, media, art, and financial services."
           }
         />
       </Reveal>

@@ -52,7 +52,7 @@ const tciPreview: ProjectImage = {
 };
 
 const projectImage = (
-  slug: "afrogrids" | "greencity-financial",
+  slug: "afrogrids" | "greencity-financial" | "mfbi",
   name: string,
   width: number,
   height: number,
@@ -87,7 +87,10 @@ const projectImage = (
   caption
 });
 
-const socialPreview = (slug: "afrogrids" | "greencity-financial", alt: string): ProjectImage => ({
+const socialPreview = (
+  slug: "afrogrids" | "greencity-financial" | "mfbi",
+  alt: string
+): ProjectImage => ({
   src: `/images/projects/${slug}/social-preview.avif`,
   webpSrc: `/images/projects/${slug}/social-preview.webp`,
   width: 1200,
@@ -587,7 +590,134 @@ export const portfolio: PortfolioContent = {
       sourceNote:
         "Technical scope verified from the local GreenCity source and production build. Public screenshots were captured on 6 August 2026; GreenCity’s Cloudflare protection prevented automated live capture, so the portfolio uses the genuine local production build and public data responses without mocked values."
     },
-    ...["05", "06"].map((number) => ({
+    {
+      status: "published",
+      number: "05",
+      slug: "mfbi",
+      title: "Marriage & Family Bible Institute",
+      year: "2026",
+      role: "Product architecture · Fullstack engineering · Platform delivery",
+      shortDescription:
+        "A production learning and commerce platform unifying enrollment, payments, structured courses, progress, certificates, resources, and multi-role administration.",
+      overview:
+        "Marriage & Family Bible Institute brings its public programme, enrollment journey, learning environment, commerce workflows, and operational administration into one production platform. I built the system across its public experience, protected portals, backend automation, data model, and deployment.",
+      technologies: [
+        "React 18",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Firebase Auth",
+        "Firestore",
+        "Cloud Functions",
+        "Stripe",
+        "Resend",
+        "TanStack Query",
+        "Zustand",
+        "PWA",
+        "Vitest"
+      ],
+      preview: socialPreview(
+        "mfbi",
+        "Marriage & Family Bible Institute dark landing page with its featured certificate course"
+      ),
+      gallery: [
+        projectImage(
+          "mfbi",
+          "student-dashboard-dark",
+          1440,
+          1389,
+          "MFBI student dashboard with learning progress, certificates, resources, and couple account access",
+          [640, 960, 1440],
+          "The protected student workspace combines continuation context, progress analytics, certificates, resources, and linked couple access using demonstration data."
+        ),
+        projectImage(
+          "mfbi",
+          "landing-dark",
+          1440,
+          4086,
+          "Marriage & Family Bible Institute landing page in dark mode",
+          [640, 960, 1440],
+          "The dark public experience connects the programme narrative, course catalogue, credentials, and student stories."
+        ),
+        projectImage(
+          "mfbi",
+          "landing-light",
+          1440,
+          4862,
+          "Marriage & Family Bible Institute landing page in light mode",
+          [640, 960, 1440],
+          "The complete landing journey in its responsive light theme."
+        ),
+        projectImage(
+          "mfbi",
+          "course-catalog-light",
+          1440,
+          3815,
+          "MFBI public course catalogue in light mode",
+          [640, 960, 1440],
+          "A filterable public catalogue introduces available courses and the broader curriculum."
+        ),
+        projectImage(
+          "mfbi",
+          "course-catalog-dark",
+          1440,
+          3815,
+          "MFBI public course catalogue in dark mode",
+          [640, 960, 1440],
+          "The same catalogue remains legible and consistent in the product’s dark theme."
+        ),
+        projectImage(
+          "mfbi",
+          "course-detail-light",
+          1440,
+          2061,
+          "Human and AI-Robot Marriage public course details in light mode",
+          [640, 960, 1440],
+          "Public course details expose outcomes, format, and lesson structure before enrollment."
+        ),
+        projectImage(
+          "mfbi",
+          "course-detail-dark",
+          1440,
+          2061,
+          "Human and AI-Robot Marriage public course details in dark mode",
+          [640, 960, 1440],
+          "Course information and curriculum structure adapted to the dark interface."
+        )
+      ],
+      problem: [
+        "The institute needed more than a public course website: enrollment, payment, protected learning, downloadable resources, support, and administration all had to operate as one coherent product.",
+        "Individual, couple, organization-student, organization-admin, and platform-admin journeys required distinct capabilities without weakening subscription, course, progress, or data boundaries."
+      ],
+      solution: [
+        "A pnpm monorepo separates the React application, Firebase Cloud Functions, and shared TypeScript contracts while keeping frontend and backend models aligned.",
+        "The public experience leads into Stripe-backed enrollment and resource purchases, while protected portals coordinate course chapters, reading and video completion, quizzes, progress, certificates, resources, invitations, and reporting.",
+        "Firebase Authentication, Firestore and Storage rules, callable functions, webhook processing, scheduled retries, and transactional email automation keep privileged operations behind explicit server and data boundaries."
+      ],
+      responsibilities: [
+        "Architected and built the responsive public site and the student, platform-admin, and organization-admin applications.",
+        "Designed the course-management workflow for structured chapters, rich text, video, quizzes, exercises, media, faculty, and downloadable resources.",
+        "Implemented authentication, subscription gates, role capabilities, organization membership, couple-account invitations, and protected data access.",
+        "Built Stripe enrollment and resource-purchase flows, webhook reconciliation, purchase records, subscription lifecycle handling, and failure states.",
+        "Delivered automated certificates, transactional Resend email, scheduled retries and reports, PWA behavior, deployment recovery, Firebase configuration, and production delivery."
+      ],
+      challenges: [
+        "Enforcing role, ownership, organization, couple, purchase, and active-subscription rules consistently across navigation, Firestore, Storage, and Cloud Functions.",
+        "Keeping Stripe payment intents, recurring subscription events, user entitlements, purchases, and webhook-processing records synchronized through asynchronous callbacks.",
+        "Calculating dependable course completion across reading, video, and quiz pages while preserving resumable progress and issuing a certificate only when completion requirements are met.",
+        "Supporting a large set of public and protected routes with theme parity, responsive layouts, lazy loading, recoverable deployments, and useful loading, empty, and failure states."
+      ],
+      outcomes: [
+        "Delivered a deployed end-to-end platform spanning discovery, enrollment, payment, learning, completion, certification, resources, support, and administration.",
+        "Created dedicated student, platform-admin, and organization-admin experiences over shared course, user, progress, certificate, and resource data.",
+        "Automated subscription activation, resource access, invitations, transactional email, certificate issuance, retries, cleanup, and scheduled reporting through Firebase Functions.",
+        "Added focused tests for course UX, reading and quiz progress, invitation and email behavior, deployment safeguards, and source-policy boundaries."
+      ],
+      liveUrl: "https://mfbinstitute.org/",
+      sourceNote:
+        "Technical scope verified from the clean local MFBI monorepo, Firebase configuration, security rules, deployment documentation, and the live service on 11 August 2026. Public screenshots were captured from mfbinstitute.org; the authenticated student dashboard was supplied by the project owner and uses demonstration identities. The private source repository is intentionally omitted, and no adoption or commercial-impact metrics are claimed."
+    },
+    ...["06"].map((number) => ({
       status: "incoming" as const,
       number,
       id: `incoming-${number}`,

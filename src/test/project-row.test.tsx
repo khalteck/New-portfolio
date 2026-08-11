@@ -6,7 +6,7 @@ import { portfolio } from "@/data/portfolio";
 import { ProjectRow } from "@/modules/projects/components/project-row";
 
 const relayOps = portfolio.projects[0];
-const incoming = portfolio.projects[4];
+const incoming = portfolio.projects[5];
 
 describe("project row input equivalents", () => {
   it("opens and closes the published preview for keyboard focus", async () => {
@@ -65,7 +65,7 @@ describe("project row input equivalents", () => {
       </MemoryRouter>
     );
 
-    const slot = screen.getByRole("article", { name: /Project 05 \| In progress, incoming/i });
+    const slot = screen.getByRole("article", { name: /Project 06 \| In progress, incoming/i });
     expect(slot).toBeInTheDocument();
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
     expect(screen.queryByRole("button")).not.toBeInTheDocument();

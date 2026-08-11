@@ -53,7 +53,7 @@ describe("homepage", () => {
     ).toBe(true);
   });
 
-  it("provides functional paths only for the four published projects", () => {
+  it("provides functional paths only for the five published projects", () => {
     renderHome();
 
     expect(screen.getByRole("link", { name: "View RelayOps case study" })).toHaveAttribute(
@@ -71,8 +71,11 @@ describe("homepage", () => {
     expect(
       screen.getByRole("link", { name: "View GreenCity Financial Limited case study" })
     ).toHaveAttribute("href", "/projects/greencity-financial");
+    expect(
+      screen.getByRole("link", { name: "View Marriage & Family Bible Institute case study" })
+    ).toHaveAttribute("href", "/projects/mfbi");
 
-    for (const number of ["05", "06"]) {
+    for (const number of ["06"]) {
       const slot = screen.getByRole("article", {
         name: `Project ${number} | In progress, incoming`
       });
@@ -96,6 +99,9 @@ describe("homepage", () => {
     expect(screen.getByRole("img", { name: /Afro-Grids landing page/i })).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: /GreenCity Financial landing page/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /Marriage & Family Bible Institute dark landing page/i })
     ).toBeInTheDocument();
   });
 

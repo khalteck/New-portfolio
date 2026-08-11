@@ -62,16 +62,17 @@ describe("portfolio content", () => {
     expect(otherClaims.join(" ")).not.toMatch(/50%|70%|95%|20%|100%/);
   });
 
-  it("publishes four case studies while keeping two placeholders inert", () => {
+  it("publishes five case studies while keeping one placeholder inert", () => {
     expect(publishedProjects.map(({ slug }) => slug)).toEqual([
       "relayops",
       "tci-podcast",
       "afrogrids",
-      "greencity-financial"
+      "greencity-financial",
+      "mfbi"
     ]);
 
     const incoming = portfolio.projects.filter((project) => project.status === "incoming");
-    expect(incoming.map(({ number }) => number)).toEqual(["05", "06"]);
+    expect(incoming.map(({ number }) => number)).toEqual(["06"]);
     expect(incoming.every(({ title }) => title.endsWith("| In progress"))).toBe(true);
     expect(hasOnlySafeIncomingProjects()).toBe(true);
 
@@ -115,11 +116,24 @@ describe("portfolio content", () => {
     expect(tciPodcast).not.toHaveProperty("sourceUrl");
     const afrogrids = getPublishedProject("afrogrids");
     const greenCity = getPublishedProject("greencity-financial");
+    const mfbi = getPublishedProject("mfbi");
     expect(afrogrids).toMatchObject({ liveUrl: "https://afrogrids.com", number: "03" });
     expect(afrogrids).not.toHaveProperty("sourceUrl");
     expect(greenCity).toMatchObject({ liveUrl: "https://greencityfin.com", number: "04" });
     expect(greenCity).not.toHaveProperty("sourceUrl");
-    expect(getPublishedProject("incoming-05")).toBeUndefined();
+    expect(mfbi).toMatchObject({
+      liveUrl: "https://mfbinstitute.org/",
+      number: "05",
+      year: "2026"
+    });
+    expect(mfbi?.technologies).toEqual(
+      expect.arrayContaining(["React 18", "TypeScript", "Firestore", "Cloud Functions", "Stripe"])
+    );
+    expect(mfbi?.outcomes.join(" ")).toMatch(/deployed end-to-end platform/i);
+    expect(mfbi?.outcomes.join(" ")).not.toMatch(/adoption|revenue|enrollment growth/i);
+    expect(mfbi?.gallery[0]?.src).toBe("/images/projects/mfbi/student-dashboard-dark.avif");
+    expect(mfbi).not.toHaveProperty("sourceUrl");
+    expect(getPublishedProject("incoming-06")).toBeUndefined();
     expect(getPublishedProject(undefined)).toBeUndefined();
   });
 
@@ -131,7 +145,7 @@ describe("portfolio content", () => {
 
   it("provides cyclic previous and next navigation for real projects only", () => {
     expect(getAdjacentProjects("relayops")).toMatchObject({
-      previous: { slug: "greencity-financial" },
+      previous: { slug: "mfbi" },
       next: { slug: "tci-podcast" }
     });
     expect(getAdjacentProjects("tci-podcast")).toMatchObject({
@@ -144,6 +158,10 @@ describe("portfolio content", () => {
     });
     expect(getAdjacentProjects("greencity-financial")).toMatchObject({
       previous: { slug: "afrogrids" },
+      next: { slug: "mfbi" }
+    });
+    expect(getAdjacentProjects("mfbi")).toMatchObject({
+      previous: { slug: "greencity-financial" },
       next: { slug: "relayops" }
     });
     expect(getAdjacentProjects("not-published")).toBeUndefined();
@@ -156,7 +174,8 @@ describe("route metadata and shared helpers", () => {
       "/projects/relayops",
       "/projects/tci-podcast",
       "/projects/afrogrids",
-      "/projects/greencity-financial"
+      "/projects/greencity-financial",
+      "/projects/mfbi"
     ]);
     expect(getRouteMetadata("/")).toMatchObject({
       title: "Khalid Oyeneye | Fullstack SaaS Web and Mobile Engineer",
@@ -183,9 +202,15 @@ describe("route metadata and shared helpers", () => {
       image: "/images/projects/greencity-financial/social-preview.webp",
       canonicalPath: "/projects/greencity-financial"
     });
-    expect(getRouteMetadata("/projects/incoming-05")).toMatchObject({
+    expect(getRouteMetadata("/projects/mfbi")).toMatchObject({
+      title: "Marriage & Family Bible Institute | Khalid Oyeneye",
+      image: "/images/projects/mfbi/social-preview.webp",
+      canonicalPath: "/projects/mfbi",
+      type: "article"
+    });
+    expect(getRouteMetadata("/projects/incoming-06")).toMatchObject({
       title: "Page not found | Khalid Oyeneye",
-      canonicalPath: "/projects/incoming-05",
+      canonicalPath: "/projects/incoming-06",
       type: "website"
     });
   });

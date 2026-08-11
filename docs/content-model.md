@@ -14,15 +14,16 @@ claims.
 
 Use the narrowest available source and preserve its limitations.
 
-| Content                              | Approved source                                                                | Publication rule                                                                                          |
-| ------------------------------------ | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| Identity, email, location, education | `Resume.pdf` retained in the repository                                        | Match the résumé; the public UI intentionally omits the phone number                                      |
-| Employment, dates, role achievements | `Resume.pdf`                                                                   | Keep figures with their matching employer and label reported figures as résumé-reported where appropriate |
-| GitHub and LinkedIn                  | Links embedded in the résumé/current portfolio                                 | Publish only these verified social channels                                                               |
-| RelayOps architecture and links      | Public RelayOps repository, tracked docs/reports, and checked Render endpoints | Date the verification; distinguish scoped artifacts from whole-product or current-CI claims               |
-| TCI Podcast work                     | Resume, retained portfolio copy, and retained screenshot                       | No year, live/source URL, or quantitative outcome until re-verified                                       |
-| Incoming projects                    | No evidence supplied yet                                                       | Publish only an explicit inert placeholder                                                                |
-| Visual-reference attribution         | Tajmirul Islam's public site and MIT repository                                | Credit inspiration; do not copy identity, copy, media, logo, cursor artwork, or source                    |
+| Content                              | Approved source                                                                   | Publication rule                                                                                          |
+| ------------------------------------ | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Identity, email, location, education | `Resume.pdf` retained in the repository                                           | Match the résumé; the public UI intentionally omits the phone number                                      |
+| Employment, dates, role achievements | `Resume.pdf`                                                                      | Keep figures with their matching employer and label reported figures as résumé-reported where appropriate |
+| GitHub and LinkedIn                  | Links embedded in the résumé/current portfolio                                    | Publish only these verified social channels                                                               |
+| RelayOps architecture and links      | Public RelayOps repository, tracked docs/reports, and checked Render endpoints    | Date the verification; distinguish scoped artifacts from whole-product or current-CI claims               |
+| TCI Podcast work                     | Resume, retained portfolio copy, and retained screenshot                          | No year, live/source URL, or quantitative outcome until re-verified                                       |
+| MFBI platform and live imagery       | Clean local MFBI monorepo, Firebase configuration, deployment docs, and live site | Publish the live URL and verified delivery scope; omit the private source and unsupported impact metrics  |
+| Incoming projects                    | No evidence supplied yet                                                          | Publish only an explicit inert placeholder                                                                |
+| Visual-reference attribution         | Tajmirul Islam's public site and MIT repository                                   | Credit inspiration; do not copy identity, copy, media, logo, cursor artwork, or source                    |
 
 The current résumé-backed facts are:
 
@@ -147,6 +148,11 @@ Current publication constraints:
 - **TCI Podcast:** omit `year`, `liveUrl`, and `sourceUrl`. Its defensible scope is the React/Redux
   Toolkit/Firebase listener experience and admin CMS, episode CRUD, pagination, and audio playback.
   Do not invent metrics or imply the retained screenshot proves a currently available service.
+- **Marriage & Family Bible Institute:** `year: "2026"`; the live product is permitted and the
+  private source URL is omitted. Claims may cover the verified public, student, platform-admin,
+  and organization-admin experiences; course, payment, progress, certificate, resource,
+  invitation, email, and Firebase delivery workflows; and focused tracked tests. Do not claim
+  adoption, revenue, enrollment growth, or other commercial impact without separate evidence.
 
 Previous/next navigation is calculated only from published projects. An unknown slug and any
 incoming-project identifier resolve to the 404 experience.
@@ -189,7 +195,9 @@ text that does not repeat its caption.
 Do not publish private dashboards, credentials, personal data, internal analytics, confidential
 client material, or screenshots without permission. RelayOps media uses seeded demonstration data.
 The TCI image is the retained, previously public composite; it does not authorize a source link or
-performance claim.
+performance claim. The MFBI authenticated dashboard was supplied by the project owner for portfolio
+publication and uses demonstration identities; the remaining MFBI images are public live-site
+captures from 11 August 2026.
 
 ## Editorial review checklist
 

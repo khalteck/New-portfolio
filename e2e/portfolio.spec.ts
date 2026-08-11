@@ -52,7 +52,10 @@ test.describe("portfolio routes", () => {
     await page.locator("#work").scrollIntoViewIfNeeded();
 
     await expect(page.locator('[data-ui="incoming-project"]')).toHaveCount(0);
-    await expect(page.locator("#work")).not.toContainText(/Project 05|Project 06/i);
+    await expect(page.locator("#work")).not.toContainText(/Project 06/i);
+    await expect(
+      page.getByRole("link", { name: "View Marriage & Family Bible Institute case study" })
+    ).toBeVisible();
   });
 
   test("@smoke supports keyboard navigation into the featured case study", async ({ page }) => {
@@ -104,6 +107,35 @@ test.describe("portfolio routes", () => {
     ).toHaveAttribute("aria-current", "location");
   });
 
+  test("the homepage KO mark morphs with scrolling, pauses, and resets at the top", async ({
+    page
+  }) => {
+    await page.goto("/");
+    const mark = page.locator('[data-ui="scroll-morph-mark"]');
+    await expect(mark).toHaveAttribute("data-mark", "ko");
+
+    await page.evaluate(() => window.scrollTo(0, 520));
+    await expect(mark).toHaveAttribute("data-mark", "spark");
+    const restingState = await mark.evaluate((element) => ({
+      mark: element.getAttribute("data-mark"),
+      progress: element.getAttribute("data-progress")
+    }));
+
+    await page.waitForTimeout(350);
+    await expect
+      .poll(() =>
+        mark.evaluate((element) => ({
+          mark: element.getAttribute("data-mark"),
+          progress: element.getAttribute("data-progress")
+        }))
+      )
+      .toEqual(restingState);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(mark).toHaveAttribute("data-mark", "ko");
+    await expect(mark).toHaveAttribute("data-progress", "0");
+  });
+
   test("@smoke renders all published case studies from direct links", async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto("/projects/relayops");
@@ -148,6 +180,20 @@ test.describe("portfolio routes", () => {
       "https://greencityfin.com"
     );
     await expect(page.getByRole("link", { name: /source code/i })).toHaveCount(0);
+
+    await page.goto("/projects/mfbi");
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Marriage & Family Bible Institute" })
+    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /live product/i })).toHaveAttribute(
+      "href",
+      "https://mfbinstitute.org/"
+    );
+    await expect(page.getByRole("heading", { name: "Engineering challenges" })).toBeVisible();
+    await expect(
+      page.locator('[aria-label="Marriage & Family Bible Institute gallery"]')
+    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /source code/i })).toHaveCount(0);
   });
 
   test("browser history and the branded 404 remain useful", async ({ page }) => {
@@ -184,6 +230,9 @@ test.describe("portfolio routes", () => {
     await expectNoSeriousAccessibilityViolations(page);
 
     await page.goto("/projects/relayops");
+    await expectNoSeriousAccessibilityViolations(page);
+
+    await page.goto("/projects/mfbi");
     await expectNoSeriousAccessibilityViolations(page);
   });
 

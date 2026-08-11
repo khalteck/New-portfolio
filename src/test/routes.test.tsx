@@ -61,7 +61,8 @@ describe("application routes", () => {
 
   it.each([
     ["/projects/afrogrids", "Afro-Grids", "https://afrogrids.com"],
-    ["/projects/greencity-financial", "GreenCity Financial Limited", "https://greencityfin.com"]
+    ["/projects/greencity-financial", "GreenCity Financial Limited", "https://greencityfin.com"],
+    ["/projects/mfbi", "Marriage & Family Bible Institute", "https://mfbinstitute.org/"]
   ])("renders the published %s case study", async (pathname, title, liveUrl) => {
     renderRoute(pathname);
 
