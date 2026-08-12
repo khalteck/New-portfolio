@@ -1,81 +1,16 @@
-import { useEffect, useRef, type RefCallback } from "react";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import type { RefCallback, RefObject } from "react";
 
-const markNames = ["ko", "orbit", "spark", "constellation", "circuit", "frame"] as const;
-const introDistance = 180;
-const illustrationDistance = 360;
+export type MarkElement = HTMLSpanElement | SVGGElement;
 
-type MarkElement = HTMLSpanElement | SVGGElement;
+interface ScrollMorphMarkProps {
+  rootRef: RefObject<HTMLSpanElement | null>;
+  setMarkRef: (index: number) => RefCallback<MarkElement>;
+}
 
-export function ScrollMorphMark({ active }: { active: boolean }) {
-  const root = useRef<HTMLSpanElement>(null);
-  const marks = useRef<Array<MarkElement | null>>([]);
-  const reducedMotion = useReducedMotion();
-
-  const setMarkRef =
-    (index: number): RefCallback<MarkElement> =>
-    (element) => {
-      marks.current[index] = element;
-    };
-
-  useEffect(() => {
-    let frame = 0;
-
-    const renderMark = () => {
-      frame = 0;
-      const scrollPosition = active && !reducedMotion ? Math.max(0, window.scrollY) : 0;
-      let current = 0;
-      let next = 0;
-      let blend = 0;
-
-      if (scrollPosition > 0) {
-        if (scrollPosition < introDistance) {
-          next = 1;
-          blend = scrollPosition / introDistance;
-        } else {
-          const sequence = (scrollPosition - introDistance) / illustrationDistance;
-          const sequenceIndex = Math.floor(sequence);
-          const illustrationCount = markNames.length - 1;
-          current = 1 + (sequenceIndex % illustrationCount);
-          next = 1 + ((sequenceIndex + 1) % illustrationCount);
-          blend = sequence - sequenceIndex;
-        }
-      }
-
-      marks.current.forEach((mark, index) => {
-        if (!mark) return;
-        const opacity = index === current ? 1 - blend : index === next ? blend : 0;
-        const scale = 0.82 + opacity * 0.18;
-        const rotation = index === current ? -blend * 5 : index === next ? (1 - blend) * 5 : 0;
-        mark.style.opacity = opacity.toFixed(3);
-        mark.style.transform = `scale(${scale.toFixed(3)}) rotate(${rotation.toFixed(2)}deg)`;
-      });
-
-      if (root.current) {
-        const dominantIndex = blend >= 0.5 ? next : current;
-        root.current.dataset.mark = markNames[dominantIndex];
-        root.current.dataset.progress = scrollPosition.toFixed(0);
-      }
-    };
-
-    const scheduleRender = () => {
-      if (!frame) frame = window.requestAnimationFrame(renderMark);
-    };
-
-    renderMark();
-    window.addEventListener("scroll", scheduleRender, { passive: true });
-    window.addEventListener("resize", scheduleRender);
-
-    return () => {
-      window.removeEventListener("scroll", scheduleRender);
-      window.removeEventListener("resize", scheduleRender);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, [active, reducedMotion]);
-
+export function ScrollMorphMark({ rootRef, setMarkRef }: ScrollMorphMarkProps) {
   return (
     <span
-      ref={root}
+      ref={rootRef}
       className="relative block h-6 w-8 shrink-0 text-current"
       aria-hidden="true"
       data-mark="ko"

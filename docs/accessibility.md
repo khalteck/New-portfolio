@@ -27,7 +27,8 @@ be marked passed until it has run against the exact release commit and productio
   layers are hidden from assistive technology.
 - Route content is meaningful without animation. Reduced motion removes the preloader delay,
   smooth scrolling, pointer tracking, magnetic movement, and long wipes. Particles remain visible
-  as a static background.
+  as a static background. The decorative homepage header character journey is an intentional
+  exception and remains tied to native scroll position without receiving focus or pointer input.
 - Mobile/touch layouts use inline project images instead of hover emulation. Pointer-only cursor
   state is supplementary.
 - The layout is designed for 320 CSS pixels, 200% zoom, landscape mobile, and keyboard use without
@@ -131,7 +132,8 @@ conformance. Visual snapshots do not replace semantics or assistive-technology c
 
 - [ ] Enable operating-system reduced motion before loading each route.
 - [ ] Confirm content appears immediately with native scrolling and without the preloader, custom
-      cursor, particles, image tracking, magnetic movement, or long route wipes.
+      cursor, animated particles, image tracking, magnetic movement, or long route wipes; confirm
+      the documented header-character exception remains scroll-linked and does not block controls.
 - [ ] Confirm hover, focus, color, cursor shape, and movement never provide unique information.
 - [ ] Check muted text, rules, accent text, focus rings, and accent-on-charcoal contrast with a
       contrast analyzer.
@@ -150,6 +152,8 @@ conformance. Visual snapshots do not replace semantics or assistive-technology c
 - A native `dialog` still requires cross-browser manual verification, especially on older embedded
   browsers.
 - Animated text and pointer-preview behavior require human review even when automated tests pass.
+- The always-enabled decorative header character journey is a deliberate exception to the broader
+  reduced-motion policy and should be reassessed during accessibility review.
 - External content, PDF viewer behavior, and the RelayOps live application are outside this site's
   accessibility boundary; link purpose and handoff remain this site's responsibility.
 - WCAG 2.2 AA is a target. Record real audit results and unresolved defects in the release handoff;

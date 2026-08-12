@@ -107,33 +107,90 @@ test.describe("portfolio routes", () => {
     ).toHaveAttribute("aria-current", "location");
   });
 
-  test("the homepage KO mark morphs with scrolling, pauses, and resets at the top", async ({
-    page
-  }) => {
+  test("the header characters run, rest at Résumé, and reverse into KO", async ({ page }) => {
     await page.goto("/");
     const mark = page.locator('[data-ui="scroll-morph-mark"]');
+    const stage = page.locator('[data-ui="header-animation"]');
+    const man = page.locator('[data-ui="header-man"]');
+    const dog = page.locator('[data-ui="header-dog"]');
     await expect(mark).toHaveAttribute("data-mark", "ko");
+    await expect(stage).toHaveAttribute("data-state", "merged");
+
+    await page.evaluate(() => window.scrollTo(0, 90));
+    await expect(stage).toHaveAttribute("data-state", "launching");
 
     await page.evaluate(() => window.scrollTo(0, 520));
     await expect(mark).toHaveAttribute("data-mark", "spark");
-    const restingState = await mark.evaluate((element) => ({
-      mark: element.getAttribute("data-mark"),
-      progress: element.getAttribute("data-progress")
+    await expect(stage).toHaveAttribute("data-state", "running");
+    const [runningManX, runningDogX] = await Promise.all([
+      man.getAttribute("data-x"),
+      dog.getAttribute("data-x")
+    ]);
+    expect(Number(runningManX) - Number(runningDogX)).toBeGreaterThan(32);
+    const restingState = await stage.evaluate((element) => ({
+      state: element.getAttribute("data-state"),
+      progress: element.getAttribute("data-scroll"),
+      manX: element.querySelector('[data-ui="header-man"]')?.getAttribute("data-x")
     }));
 
-    await page.waitForTimeout(350);
+    await page.waitForTimeout(220);
+    await expect(stage).toHaveAttribute("data-moving", "false");
     await expect
       .poll(() =>
-        mark.evaluate((element) => ({
-          mark: element.getAttribute("data-mark"),
-          progress: element.getAttribute("data-progress")
+        stage.evaluate((element) => ({
+          state: element.getAttribute("data-state"),
+          progress: element.getAttribute("data-scroll"),
+          manX: element.querySelector('[data-ui="header-man"]')?.getAttribute("data-x")
         }))
       )
       .toEqual(restingState);
 
+    const workStart = await page.evaluate(() => {
+      const work = document.getElementById("work");
+      if (!work) throw new Error("Work section is missing");
+      return window.scrollY + work.getBoundingClientRect().top - window.innerHeight * 0.3;
+    });
+    const climbDistance = Math.min(
+      144,
+      Math.max(96, (await page.evaluate(() => innerHeight)) * 0.14)
+    );
+    await page.evaluate(
+      ([target, climb]) => window.scrollTo(0, target + climb + 2),
+      [workStart, climbDistance]
+    );
+    await expect(stage).toHaveAttribute("data-state", "seated");
+    await expect(stage).toHaveAttribute("data-facing", "left");
+    await page.waitForTimeout(180);
+
+    const [manBox, dogBox, resumeBox] = await Promise.all([
+      man.boundingBox(),
+      dog.boundingBox(),
+      page.locator('[data-ui="resume-initial"]').boundingBox()
+    ]);
+    expect(manBox).not.toBeNull();
+    expect(dogBox).not.toBeNull();
+    expect(resumeBox).not.toBeNull();
+    if (manBox && dogBox && resumeBox) {
+      expect(Math.abs(manBox.x - resumeBox.x)).toBeLessThan(24);
+      expect(dogBox.x + dogBox.width).toBeLessThan(resumeBox.x + 2);
+    }
+
+    await page.locator("#contact").scrollIntoViewIfNeeded();
+    await expect(stage).toHaveAttribute("data-state", "seated");
+
+    await page.evaluate((target) => window.scrollTo(0, target - 240), workStart);
+    await expect(stage).toHaveAttribute("data-state", "running");
+    await expect(stage).toHaveAttribute("data-direction", "reverse");
+    const [reverseManX, reverseDogX] = await Promise.all([
+      man.getAttribute("data-x"),
+      dog.getAttribute("data-x")
+    ]);
+    expect(Number(reverseDogX)).toBeLessThan(Number(reverseManX));
+
     await page.evaluate(() => window.scrollTo(0, 0));
     await expect(mark).toHaveAttribute("data-mark", "ko");
     await expect(mark).toHaveAttribute("data-progress", "0");
+    await expect(stage).toHaveAttribute("data-state", "merged");
   });
 
   test("@smoke renders all published case studies from direct links", async ({ page }) => {
@@ -269,6 +326,22 @@ test.describe("responsive and motion preferences", () => {
     }));
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
 
+    await page.evaluate(() => window.scrollTo(0, 240));
+    const mobileHeaderAnimation = page.locator('[data-ui="header-animation"]');
+    await expect(mobileHeaderAnimation).toHaveAttribute("data-state", "running");
+    const [mobileManBox, mobileHeaderBox] = await Promise.all([
+      page.locator('[data-ui="header-man"]').boundingBox(),
+      page.locator('[data-ui="site-navigation"]').boundingBox()
+    ]);
+    expect(mobileManBox).not.toBeNull();
+    expect(mobileHeaderBox).not.toBeNull();
+    if (mobileManBox && mobileHeaderBox) {
+      expect(mobileManBox.y).toBeGreaterThanOrEqual(mobileHeaderBox.y);
+      expect(mobileManBox.y + mobileManBox.height).toBeLessThanOrEqual(
+        mobileHeaderBox.y + mobileHeaderBox.height + 1
+      );
+    }
+
     const featuredProject = page.locator('a[aria-label="View RelayOps case study"]');
     await featuredProject.scrollIntoViewIfNeeded();
     const featuredImage = featuredProject.locator('img[alt*="RelayOps"]');
@@ -359,6 +432,12 @@ test.describe("responsive and motion preferences", () => {
     await expect
       .poll(() => page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches))
       .toBe(true);
+
+    await page.evaluate(() => window.scrollTo(0, 240));
+    await expect(page.locator('[data-ui="header-animation"]')).toHaveAttribute(
+      "data-state",
+      "running"
+    );
   });
 });
 

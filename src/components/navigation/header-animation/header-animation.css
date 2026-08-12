@@ -1,0 +1,359 @@
+.header-animation-stage {
+  --stride: 0;
+  --dog-stride: 0;
+  --lift: 0;
+  --lean: 0;
+  --climb: 0;
+  --sit: 0;
+  --man-torso: 0;
+  --man-pelvis-y: 0;
+  --man-near-shoulder: 0;
+  --man-near-elbow: 58;
+  --man-far-shoulder: 0;
+  --man-far-elbow: 58;
+  --man-near-hip: 0;
+  --man-near-knee: 12;
+  --man-near-ankle: 0;
+  --man-far-hip: 0;
+  --man-far-knee: 12;
+  --man-far-ankle: 0;
+  --dog-body-y: 0;
+  --dog-body-rotation: 0;
+  --dog-hind-y: 0;
+  --dog-spine-scale: 1;
+  --dog-head: 0;
+  --dog-tail: 0;
+  --dog-tail-y: 0;
+  --dog-near-front-shoulder: 0;
+  --dog-near-front-knee: 12;
+  --dog-far-front-shoulder: 0;
+  --dog-far-front-knee: 12;
+  --dog-near-hind-hip: 0;
+  --dog-near-hind-hock: -12;
+  --dog-far-hind-hip: 0;
+  --dog-far-hind-hock: -12;
+  contain: layout paint style;
+}
+
+.header-character {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  overflow: visible;
+  color: var(--text);
+  transform-origin: center;
+  transition:
+    transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 80ms linear;
+  will-change: transform, opacity;
+}
+
+.header-character-fill {
+  fill: currentColor;
+}
+
+.header-character-detail {
+  fill: none;
+  stroke: var(--canvas);
+  stroke-width: 0.62;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.header-character-detail-fill,
+.header-character-eye,
+.header-character-hair {
+  fill: var(--canvas);
+}
+
+.header-character-far {
+  opacity: 0.56;
+}
+
+.header-man .header-character-far {
+  opacity: 0.66;
+}
+
+.header-character [data-part] {
+  transform-box: view-box;
+  transition-property: transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-man-arm {
+  fill: none;
+  stroke: color-mix(in srgb, currentColor 78%, var(--canvas));
+  stroke-width: 1.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.header-man-arm-near {
+  stroke: currentColor;
+  stroke-width: 2.05;
+}
+
+.header-man-trouser {
+  fill: color-mix(in srgb, currentColor 70%, var(--canvas));
+  stroke: currentColor;
+  stroke-width: 0.3;
+  stroke-linejoin: round;
+}
+
+.header-man-trouser-near {
+  fill: color-mix(in srgb, currentColor 82%, var(--canvas));
+}
+
+.header-man-knee-seam {
+  fill: color-mix(in srgb, var(--canvas) 72%, currentColor);
+}
+
+.header-man-knee-cap {
+  fill: color-mix(in srgb, currentColor 70%, var(--canvas));
+}
+
+.header-man-knee-cap-near {
+  fill: color-mix(in srgb, currentColor 84%, var(--canvas));
+}
+
+.header-character-shoe-fill {
+  fill: currentColor;
+}
+
+.header-man [data-part="torso"] {
+  transform: rotate(calc(var(--man-torso) * 1deg));
+  transform-origin: 7.5px 19.5px;
+}
+
+.header-man [data-part="head"] {
+  transform: scale(0.82);
+  transform-origin: 7.55px 8.65px;
+}
+
+.header-man [data-part="pelvis"] {
+  transform: translateY(calc(var(--man-pelvis-y) * 1px));
+}
+
+.header-man [data-part="near-upper-arm"] {
+  transform: rotate(calc(var(--man-near-shoulder) * 1deg));
+  transform-origin: 8.55px 10.15px;
+}
+
+.header-man [data-part="near-forearm"] {
+  transform: rotate(calc(var(--man-near-elbow) * 1deg));
+  transform-origin: 9.05px 16.7px;
+}
+
+.header-man [data-part="far-upper-arm"] {
+  transform: rotate(calc(var(--man-far-shoulder) * 1deg));
+  transform-origin: 6.05px 10.1px;
+}
+
+.header-man [data-part="far-forearm"] {
+  transform: rotate(calc(var(--man-far-elbow) * 1deg));
+  transform-origin: 5.35px 16.6px;
+}
+
+.header-man [data-part="near-thigh"] {
+  transform: rotate(calc(var(--man-near-hip) * 1deg));
+  transform-origin: 8.3px 20px;
+}
+
+.header-man [data-part="near-knee"] {
+  transform: rotate(calc(var(--man-near-knee) * 1deg));
+  transform-origin: 8.25px 29.55px;
+}
+
+.header-man [data-part="near-dangle"] {
+  transform-origin: 8.25px 29.55px;
+}
+
+.header-man [data-part="near-ankle"] {
+  transform: rotate(calc(var(--man-near-ankle) * 1deg));
+  transform-origin: 8.05px 39.35px;
+}
+
+.header-man [data-part="far-thigh"] {
+  transform: rotate(calc(var(--man-far-hip) * 1deg));
+  transform-origin: 6.5px 20px;
+}
+
+.header-man [data-part="far-knee"] {
+  transform: rotate(calc(var(--man-far-knee) * 1deg));
+  transform-origin: 6.25px 29.5px;
+}
+
+.header-man [data-part="far-dangle"] {
+  transform-origin: 6.25px 29.5px;
+}
+
+.header-man [data-part="far-ankle"] {
+  transform: rotate(calc(var(--man-far-ankle) * 1deg));
+  transform-origin: 5.85px 39.35px;
+}
+
+.header-dog-leg,
+.header-dog-paw {
+  fill: none;
+  stroke: color-mix(in srgb, currentColor 78%, var(--canvas));
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.header-dog-leg-near,
+.header-dog-paw-near {
+  stroke: currentColor;
+  stroke-width: 1.75;
+}
+
+.header-dog-haunch {
+  fill: color-mix(in srgb, currentColor 76%, var(--canvas));
+}
+
+.header-dog-haunch-near {
+  fill: color-mix(in srgb, currentColor 92%, var(--canvas));
+}
+
+.header-dog-paw {
+  stroke-width: 1.8;
+}
+
+.header-dog-tail {
+  fill: currentColor;
+}
+
+.header-dog-seated-hind {
+  opacity: 0;
+  transition-property: opacity !important;
+  transition-duration: 120ms !important;
+}
+
+.header-dog-seated-haunch {
+  fill: color-mix(in srgb, currentColor 86%, var(--canvas));
+}
+
+.header-dog-seated-paw {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.header-animation-stage:is([data-state="waiting"], [data-state="climbing"], [data-state="seated"])
+  .header-dog-seated-hind {
+  opacity: 1;
+}
+
+.header-dog-chest {
+  fill: color-mix(in srgb, currentColor 88%, var(--canvas));
+}
+
+.header-dog [data-part="dog-body"] {
+  transform: translateY(calc(var(--dog-body-y) * 1px)) rotate(calc(var(--dog-body-rotation) * 1deg))
+    scaleX(var(--dog-spine-scale));
+  transform-origin: 19px 8px;
+}
+
+.header-dog [data-part="near-hind-leg"],
+.header-dog [data-part="far-hind-leg"] {
+  transform: translateY(calc(var(--dog-hind-y) * 1px));
+}
+
+.header-dog [data-part="dog-head"] {
+  transform: rotate(calc(var(--dog-head) * 1deg)) scale(0.84);
+  transform-origin: 20.2px 7.4px;
+}
+
+.header-dog [data-part="dog-tail"] {
+  transform: translateY(calc(var(--dog-tail-y) * 1px)) rotate(calc(var(--dog-tail) * 1deg));
+  transform-origin: 5.65px 7.1px;
+}
+
+.header-dog [data-part="near-front-upper"] {
+  transform: rotate(calc(var(--dog-near-front-shoulder) * 1deg));
+  transform-origin: 20.2px 8.25px;
+}
+
+.header-dog [data-part="near-front-knee"] {
+  transform: rotate(calc(var(--dog-near-front-knee) * 1deg));
+  transform-origin: 20.5px 13.35px;
+}
+
+.header-dog [data-part="far-front-upper"] {
+  transform: rotate(calc(var(--dog-far-front-shoulder) * 1deg));
+  transform-origin: 18.45px 8.3px;
+}
+
+.header-dog [data-part="far-front-knee"] {
+  transform: rotate(calc(var(--dog-far-front-knee) * 1deg));
+  transform-origin: 18.7px 13.3px;
+}
+
+.header-dog [data-part="near-hind-thigh"] {
+  transform: rotate(calc(var(--dog-near-hind-hip) * 1deg));
+  transform-origin: 8.6px 9.35px;
+}
+
+.header-dog [data-part="near-hind-hock"] {
+  transform: rotate(calc(var(--dog-near-hind-hock) * 1deg));
+  transform-origin: 7.35px 14px;
+}
+
+.header-dog [data-part="far-hind-thigh"] {
+  transform: rotate(calc(var(--dog-far-hind-hip) * 1deg));
+  transform-origin: 7.3px 9.1px;
+}
+
+.header-dog [data-part="far-hind-hock"] {
+  transform: rotate(calc(var(--dog-far-hind-hock) * 1deg));
+  transform-origin: 6.15px 13.7px;
+}
+
+.header-animation-stage[data-state="seated"] .header-man [data-part="near-dangle"] {
+  animation: header-calf-dangle-near 1.15s ease-in-out infinite alternate;
+}
+
+.header-animation-stage[data-state="seated"] .header-man [data-part="far-dangle"] {
+  animation: header-calf-dangle-far 1.15s 90ms ease-in-out infinite alternate;
+}
+
+.header-animation-stage[data-paused="true"] [data-part] {
+  animation-play-state: paused !important;
+}
+
+@keyframes header-calf-dangle-near {
+  from {
+    transform: rotate(-18deg);
+  }
+  to {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes header-calf-dangle-far {
+  from {
+    transform: rotate(16deg);
+  }
+  to {
+    transform: rotate(-18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-ui="header-animation"] [data-header-motion] {
+    transition-duration: 150ms !important;
+  }
+
+  [data-ui="header-animation"] .header-character {
+    transition-duration: 120ms, 80ms !important;
+  }
+
+  [data-ui="header-animation"][data-state="seated"] .header-man [data-part="near-dangle"],
+  [data-ui="header-animation"][data-state="seated"] .header-man [data-part="far-dangle"] {
+    animation-duration: 1.15s !important;
+    animation-iteration-count: infinite !important;
+  }
+}

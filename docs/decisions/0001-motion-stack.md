@@ -27,7 +27,9 @@ need explicit scoping and cleanup.
 - Render semantic final content before JavaScript. Motion layers are `aria-hidden`, pointer-inert,
   and supplementary.
 - Treat `prefers-reduced-motion: reduce`, coarse pointers, constrained widths, and hidden documents
-  as lifecycle inputs rather than CSS-only afterthoughts.
+  as lifecycle inputs rather than CSS-only afterthoughts. The homepage header character journey is
+  the sole deliberate reduced-motion exception: it stays scroll-linked, decorative, and
+  pointer-inert, while its autonomous seated details pause with the hidden document.
 
 ## Alternatives considered
 
@@ -45,6 +47,6 @@ need explicit scoping and cleanup.
 - Motion code has explicit owners and no interaction should be animated by competing systems.
 - Developers must test cleanup in Strict Mode and across route/preference changes.
 - GSAP and Lenis contribute to initial JavaScript and are subject to the 250 KiB gzip budget.
-- Reduced-motion and touch layouts are intentionally less animated but retain identical content and
-  actions.
+- Reduced-motion layouts are intentionally less animated except for the documented homepage header
+  journey; touch layouts retain the same header sequence and identical content and actions.
 - Named behaviors and their fallbacks must remain synchronized with `docs/motion-system.md`.
