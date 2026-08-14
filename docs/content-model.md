@@ -27,7 +27,7 @@ Use the narrowest available source and preserve its limitations.
 
 The current résumé-backed facts are:
 
-- Khalid Oyeneye, Fullstack SaaS Engineer, Lagos, Nigeria;
+- Khalid Oyeneye, Senior Frontend Engineer, Lagos, Nigeria;
 - `khalidoyeneye@gmail.com`;
 - 1840 & Company: Senior Frontend Engineer, June 2024 to present, Kansas/United States remote;
 - Atop Web Technologies: Frontend Engineer, April 2023 to January 2024, Stockholm/Sweden remote;
@@ -52,7 +52,7 @@ to make an otherwise unsupported figure appear defensible.
 | Field          | Type     | Rule                                                                         |
 | -------------- | -------- | ---------------------------------------------------------------------------- |
 | `name`         | `string` | Verified public name                                                         |
-| `role`         | `string` | Current positioning; presently `Fullstack SaaS Engineer`                     |
+| `role`         | `string` | Primary positioning; presently `Senior Frontend Engineer`                    |
 | `location`     | `string` | City and country only                                                        |
 | `email`        | `string` | Valid verified address; rendered through `mailto:`                           |
 | `summary`      | `string` | Concise positioning, not an unsupported outcome claim                        |

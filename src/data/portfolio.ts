@@ -102,11 +102,11 @@ const socialPreview = (
 export const portfolio: PortfolioContent = {
   profile: {
     name: "Khalid Oyeneye",
-    role: "Fullstack SaaS Engineer",
+    role: "Senior Frontend Engineer",
     location: "Lagos, Nigeria",
     email: "khalidoyeneye@gmail.com",
     summary:
-      "I build production SaaS products across web and mobile, from product architecture and interfaces to APIs, data, testing, and delivery.",
+      "I build production SaaS products across web and mobile, from frontend architecture and interfaces to APIs, data, testing, and delivery.",
     availability: "Open to opportunities.",
     resumeUrl: "/khalid-oyeneye-resume.pdf"
   },
@@ -134,8 +134,8 @@ export const portfolio: PortfolioContent = {
   ],
   capabilities: [
     {
-      title: "SaaS product engineering",
-      description: "Product architecture and fullstack delivery from idea to production."
+      title: "Product / full-stack engineering",
+      description: "Architecture and end-to-end delivery from idea to production."
     },
     {
       title: "Frontend and mobile",

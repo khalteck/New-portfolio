@@ -47,7 +47,7 @@ export function HeroSection() {
         >
           <span className="col-span-10 block overflow-clip max-md:col-span-full">
             <span className="block whitespace-nowrap max-md:whitespace-normal" data-hero-reveal>
-              Software
+              Senior Frontend
             </span>
           </span>
           <span className="col-span-10 col-start-3 block overflow-clip max-md:col-span-full max-md:col-start-1">

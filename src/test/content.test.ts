@@ -18,7 +18,7 @@ describe("portfolio content", () => {
   it("keeps identity, availability, public channels, and verified metrics centralized", () => {
     expect(portfolio.profile).toMatchObject({
       name: "Khalid Oyeneye",
-      role: "Fullstack SaaS Engineer",
+      role: "Senior Frontend Engineer",
       location: "Lagos, Nigeria",
       availability: "Open to opportunities.",
       resumeUrl: "/khalid-oyeneye-resume.pdf"
@@ -187,7 +187,7 @@ describe("route metadata and shared helpers", () => {
       "/projects/mfbi"
     ]);
     expect(getRouteMetadata("/")).toMatchObject({
-      title: "Khalid Oyeneye | Fullstack SaaS Web and Mobile Engineer",
+      title: "Khalid Oyeneye | Senior Frontend Engineer",
       canonicalPath: "/",
       type: "website"
     });

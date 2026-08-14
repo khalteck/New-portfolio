@@ -21,7 +21,7 @@ describe("homepage", () => {
     renderHome();
 
     expect(
-      screen.getByRole("heading", { level: 1, name: "Software Engineer" })
+      screen.getByRole("heading", { level: 1, name: "Senior Frontend Engineer" })
     ).toBeInTheDocument();
     expect(document.querySelector('[data-ui="availability"]')).not.toBeInTheDocument();
     const conversationLink = screen.getByRole("link", { name: /Start a conversation/i });

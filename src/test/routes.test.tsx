@@ -25,7 +25,7 @@ describe("application routes", () => {
   it("renders the homepage at the canonical root", () => {
     renderRoute("/");
     expect(
-      screen.getByRole("heading", { level: 1, name: "Software Engineer" })
+      screen.getByRole("heading", { level: 1, name: "Senior Frontend Engineer" })
     ).toBeInTheDocument();
   });
 
@@ -193,7 +193,7 @@ describe("route metadata and announcement components", () => {
         <RouteHead />
       </MemoryRouter>
     );
-    await waitFor(() => expect(document.title).toContain("Fullstack SaaS Web and Mobile Engineer"));
+    await waitFor(() => expect(document.title).toContain("Senior Frontend Engineer"));
     const personData = JSON.parse(
       document.head.querySelector<HTMLScriptElement>("#portfolio-structured-data")?.text ?? "{}"
     ) as { "@graph"?: Array<Record<string, unknown>> };

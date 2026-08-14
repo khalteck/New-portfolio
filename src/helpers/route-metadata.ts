@@ -8,12 +8,12 @@ export const PUBLISHED_PROJECT_PATHS = publishedProjects.map(
 );
 
 const homeMetadata: RouteMetadata = {
-  title: "Khalid Oyeneye | Fullstack SaaS Web and Mobile Engineer",
+  title: "Khalid Oyeneye | Senior Frontend Engineer",
   description:
-    "Fullstack SaaS engineer building production web platforms and mobile applications for teams in Nigeria and worldwide.",
+    "Senior Frontend Engineer building production SaaS products across web and mobile, from frontend architecture and interfaces to APIs, data, testing, and delivery.",
   canonicalPath: "/",
   image: "/images/og/khalid-oyeneye-portfolio.png",
-  imageAlt: "Khalid Oyeneye, Fullstack SaaS Engineer portfolio",
+  imageAlt: "Khalid Oyeneye, Senior Frontend Engineer portfolio",
   type: "website",
   robots: "index, follow, max-image-preview:large"
 };
