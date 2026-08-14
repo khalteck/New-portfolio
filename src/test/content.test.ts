@@ -33,7 +33,7 @@ describe("portfolio content", () => {
     );
   });
 
-  it("keeps resume-backed experience claims with their matching employers", () => {
+  it("keeps defensible experience claims with their matching employers", () => {
     expect(portfolio.experiences.map(({ company }) => company)).toEqual([
       "1840 & Company",
       "Atop Web Technologies",
@@ -54,11 +54,20 @@ describe("portfolio content", () => {
       )
       .flatMap(({ achievements }) => achievements);
 
-    expect(iroko?.achievements.join(" ")).toMatch(/50%.*70%.*95%/);
+    expect(iroko?.achievements).toEqual([
+      "Built a responsive React and Firebase voting experience that made participation easier across devices.",
+      "Built administration workflows that reduced manual vote-management work and significantly lowered operational errors."
+    ]);
     expect(iroko).toMatchObject({ title: "Fullstack Web Developer" });
-    expect(agrofeed?.achievements.join(" ")).toMatch(/20%.*100%/);
+    expect(agrofeed?.achievements).toEqual([
+      "Built and launched the company website to support product discovery and sales.",
+      "Implemented technical SEO improvements that increased the company's organic search visibility."
+    ]);
     expect(agrofeed).toMatchObject({ title: "Fullstack Web Developer" });
     expect(agrofeed?.technologies).toContain("Firebase");
+
+    const publicClaims = [...(iroko?.achievements ?? []), ...(agrofeed?.achievements ?? [])];
+    expect(publicClaims.join(" ")).not.toMatch(/Resume-reported|50%|70%|95%|20%|100%/i);
     expect(otherClaims.join(" ")).not.toMatch(/50%|70%|95%|20%|100%/);
   });
 

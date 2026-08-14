@@ -246,8 +246,8 @@ export const portfolio: PortfolioContent = {
       summary:
         "Built the React and Firebase voting product, administration workflows, and supporting services.",
       achievements: [
-        "Resume-reported voter participation increased by 50%.",
-        "Resume-reported admin effort fell by 70% and voting errors by 95%."
+        "Built a responsive React and Firebase voting experience that made participation easier across devices.",
+        "Built administration workflows that reduced manual vote-management work and significantly lowered operational errors."
       ],
       technologies: ["React", "Firebase", "Responsive UI", "Email workflows"]
     },
@@ -260,8 +260,8 @@ export const portfolio: PortfolioContent = {
       summary:
         "Built and maintained the company web platform, using Firebase for server-side functionality.",
       achievements: [
-        "Resume-reported sales increased by 20% after the company website launch.",
-        "Resume-reported search ranking improved by 100% through SEO work."
+        "Built and launched the company website to support product discovery and sales.",
+        "Implemented technical SEO improvements that increased the company's organic search visibility."
       ],
       technologies: ["HTML", "CSS", "JavaScript", "Firebase", "SEO", "Responsive design"]
     }

@@ -109,9 +109,10 @@ pull request or release handoff.
 Edit professional copy and data in `src/data/portfolio.ts`, then keep its types and evidence rules
 intact. Do not place résumé facts directly in components.
 
-- Experience dates, titles, and impact figures must remain consistent with the retained résumé.
-- An impact figure belongs only to the employer that supplied its evidence. Iroko holds the 50%,
-  70%, and 95% résumé-reported figures; Agrofeed holds the 20% and 100% figures.
+- Experience dates, titles, and outcome claims must remain consistent with the retained résumé.
+- Publish a quantitative impact claim only when its measurement, baseline, change, source, and the
+  candidate's contribution can be explained. Otherwise use a specific qualitative outcome; do not
+  make an unsupported figure appear safer by labelling it résumé-reported.
 - RelayOps claims are limited to public deployment, two independently deployable services,
   documented test architecture, and explicitly scoped coverage artifacts. Do not turn those into
   adoption, revenue, customer, whole-repository coverage, or currently-green-CI claims.
